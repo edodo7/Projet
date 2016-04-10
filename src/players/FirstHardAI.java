@@ -27,7 +27,7 @@ public class FirstHardAI extends AGenericPlayer{
 		this.y = 4;
 		plateau[x][y].setEmpty(false);
 		AIpath = new PathFindingFirstPlayer(plateau[0][4]);
-		nbresMurs = 10;
+		nbresMurs = 0;
 		tour1 = true;
 		tour2 = false;
 		tour3 = false;
@@ -159,16 +159,31 @@ public class FirstHardAI extends AGenericPlayer{
 						nbresMurs--;
 					}
 					else{
-						move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
+						if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
+							move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
+						}
+						else{
+							move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
+						}
 					}
 				}
 				else{
-					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
+					if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
+						move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
+					}
+					else{
+						move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
+					}
 				}
 			}
 		}
 		else{//Il n'y a plus de mur, on est obligé de se déplacer
-			move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
+			if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
+				move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
+			}
+			else{
+				move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
+			}
 		}
 	}
 }
