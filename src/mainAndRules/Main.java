@@ -2,16 +2,17 @@ package mainAndRules;
 import java.io.IOException;
 import java.util.Scanner;
 
+import GUI.Fenetre;
 import board.Board;
 import players.AGenericPlayer;
-import players.IPlayerAbility;
+import players.IPlayer;
 /**
  * @author Eduardo
  */
 public class Main {
 	private static Board board;
-	private IPlayerAbility joueur1;
-	private IPlayerAbility joueur2;
+	private IPlayer joueur1;
+	private IPlayer joueur2;
 	private boolean tourJoueur1;
 	public static void main(String[] args){
 		Main main = new Main();
@@ -28,6 +29,7 @@ public class Main {
 	
 	
 	public void play(){
+		Fenetre frame = new Fenetre();
 		Scanner question = new Scanner(System.in);
 		System.out.println("Le Joueur 1 doit il jouer le premier?[O]/[N]");
 		String reponse = question.nextLine();
@@ -41,6 +43,7 @@ public class Main {
 		}
 		boolean continuer = true;
 		while(continuer){
+			frame.repaint();
 			try{
 				if (tourJoueur1 && continuer){
 					System.out.println(board);

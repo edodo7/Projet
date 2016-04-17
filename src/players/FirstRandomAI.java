@@ -11,7 +11,7 @@ import java.io.IOException;
  *
  */
 public class FirstRandomAI extends AGenericPlayer{
-	public static IPlayerAbility joueur2 = Board.getSecondPlayer();
+	public static IPlayer joueur2 = Board.getSecondPlayer();
 	protected int nbresMurs;
 	
 	public FirstRandomAI (){
