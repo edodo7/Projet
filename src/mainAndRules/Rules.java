@@ -2,8 +2,8 @@ package mainAndRules;
 
 import board.Board;
 import board.Case;
-import pathFinding.PathFindingFirstPlayer;
-import pathFinding.PathFindingSecondPlayer;
+import pathFinding.PathFinding;
+
 import players.AGenericPlayer;
 import java.util.ArrayList;
 /**
@@ -15,8 +15,8 @@ public class Rules{
     public static Case[][] tableau = Board.getTableau();
     public static AGenericPlayer joueur1= Board.getFirstPlayer();
     public static AGenericPlayer joueur2= Board.getSecondPlayer();
-    private static PathFindingFirstPlayer pathFirstPlayer = new PathFindingFirstPlayer(tableau[joueur1.getX()][joueur1.getY()],true);
-    private static PathFindingSecondPlayer pathSecondPlayer = new PathFindingSecondPlayer(tableau[joueur2.getX()][joueur2.getY()],false);
+    private static PathFinding pathFirstPlayer = new PathFinding(tableau[joueur1.getX()][joueur1.getY()],true);
+    private static PathFinding pathSecondPlayer = new PathFinding(tableau[joueur2.getX()][joueur2.getY()],false);
     
     
     

@@ -9,7 +9,7 @@ import mainAndRules.Rules;
  * @author Eduardo Dom
  * @author Pierre Zielinski
  */
-public class PathFindingFirstPlayer {
+public class PathFinding {
 	
 	protected Case startingCase;
 	protected boolean findPath;
@@ -19,7 +19,7 @@ public class PathFindingFirstPlayer {
 	protected PathFindingCase exit;//case de sortie
 	protected boolean FirstPlayer;
 	
-	public PathFindingFirstPlayer(Case startingCase,boolean FirstPlayer){
+	public PathFinding(Case startingCase,boolean FirstPlayer){
 		this.startingCase = startingCase;
 		this.tableau = Board.getTableau();
 		this.exit = new PathFindingCase(null,-1,null);//on initialise la case de sortie à -1,-1 pour la methode way au cas où l'on demande la sortie alors qu'on n'a pas utiliser la methode isExit()
@@ -57,44 +57,6 @@ public class PathFindingFirstPlayer {
 					}
 				}
 			}
-			/*if (lookCase.getX()-1 >= 0 ){
-				Case new_case =  tableau[lookCase.getX() - 1][lookCase.getY()];
-				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
-				if (Rules.canMove(lookCase, new_case) &&(!isIn(new_PathFindingCase,lookedElements))){//on verifie si l'élément n'est pas par où on est déjà passé
-					al.add(new_PathFindingCase);
-					lookedElements.add(new_PathFindingCase);
-				}
-			}
-			if (lookCase.getX()+1 < 9 ){
-				Case new_case = tableau[lookCase.getX() +1][lookCase.getY()];
-				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
-				if (Rules.canMove(lookCase, new_case) && (!isIn(new_PathFindingCase,lookedElements))){//on verifie si l'élément n'est pas par où on est déjà passé
-
-					al.add(new_PathFindingCase);
-					lookedElements.add(new_PathFindingCase);
-				
-					if (new_case.getX() == 8){
-						findPath = true;
-						exit = new_PathFindingCase;//on donne la case de sortie
-					}
-				}
-			}
-			if (lookCase.getY()-1 >= 0 ){
-				Case new_case =  tableau[lookCase.getX() ][lookCase.getY()-1];
-				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
-				if (Rules.canMove(lookCase, new_case) && (!isIn(new_PathFindingCase,lookedElements))){//on verifie si l'élément n'est pas par où on est déjà passé
-					al.add(new_PathFindingCase);
-					lookedElements.add(new_PathFindingCase);
-				}
-			}
-			if (lookCase.getY()+1 < 9 ){
-				Case new_case =  tableau[lookCase.getX() ][lookCase.getY()+1];
-				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
-				if (Rules.canMove(lookCase, new_case) && (!isIn(new_PathFindingCase,lookedElements))){//on verifie si l'élément n'est pas par où on est déjà passé
-					al.add(new_PathFindingCase);
-					lookedElements.add(new_PathFindingCase);
-				}
-			}*/	
 		}
 		return al;
 	}

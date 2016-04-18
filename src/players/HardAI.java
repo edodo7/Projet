@@ -9,13 +9,12 @@ import java.util.ArrayList;
 import board.Board;
 import board.Case;
 import mainAndRules.Rules;
-import pathFinding.PathFindingFirstPlayer;
-import pathFinding.PathFindingSecondPlayer;
+import pathFinding.PathFinding;
 public class HardAI extends AGenericPlayer{
 	
 	public static AGenericPlayer joueur2;
-	protected PathFindingFirstPlayer AIpath;
-	protected  PathFindingSecondPlayer SecondPlayerpath;
+	protected PathFinding AIpath;
+	protected  PathFinding SecondPlayerpath;
 	protected int nbresMurs;
 	protected boolean tour1;
 	protected boolean tour2;
@@ -34,8 +33,8 @@ public class HardAI extends AGenericPlayer{
 			this.y = 4;
 		}
 		plateau[x][y].setEmpty(false);
-		AIpath = new PathFindingFirstPlayer(plateau[x][y],FirstPlayer);
-		nbresMurs = 0;
+		AIpath = new PathFinding(plateau[x][y],FirstPlayer);
+		nbresMurs = 10;
 		tour1 = true;
 		tour2 = false;
 		tour3 = false;
@@ -124,7 +123,7 @@ public class HardAI extends AGenericPlayer{
 	public void play() throws IOException{
 		joueur2 = Board.getSecondPlayer();
 		AIpath.setStartingCase(plateau[x][y]);
-		SecondPlayerpath = new PathFindingSecondPlayer(plateau[joueur2.getX()][joueur2.getY()],FirstPlayer);
+		SecondPlayerpath = new PathFinding(plateau[joueur2.getX()][joueur2.getY()],!FirstPlayer);
 		AIpath.isExit();
 		SecondPlayerpath.isExit();
 		AIpath.way();
