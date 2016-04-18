@@ -17,12 +17,14 @@ public class PathFindingFirstPlayer {
 	protected ArrayList<PathFindingCase> lookedElements;//on crée une arraylist des element où l'on est passé
 	protected ArrayList<Case> way;//liste du chemin possible à partir de la case 0 si c'est pas possible de trouver une sortie de là
 	protected PathFindingCase exit;//case de sortie
+	protected boolean FirstPlayer;
 	
-	public PathFindingFirstPlayer(Case startingCase){
+	public PathFindingFirstPlayer(Case startingCase,boolean FirstPlayer){
 		this.startingCase = startingCase;
 		this.tableau = Board.getTableau();
 		this.exit = new PathFindingCase(null,-1,null);//on initialise la case de sortie à -1,-1 pour la methode way au cas où l'on demande la sortie alors qu'on n'a pas utiliser la methode isExit()
 		this.way = new ArrayList<Case>();//on initialise l'arraylist au cas où on la demande directement
+		this.FirstPlayer = FirstPlayer;
 	}
 	
 	
@@ -45,7 +47,11 @@ public class PathFindingFirstPlayer {
 				if (!isIn(new_PathFindingCase,lookedElements)){
 					al.add(new_PathFindingCase);
 					lookedElements.add(new_PathFindingCase);
-					if( new_case.getX() == 8){
+					if( new_case.getX() == 8 && FirstPlayer){
+						findPath =true;
+						exit = new_PathFindingCase;
+					}
+					if (new_case.getX() == 0 && !FirstPlayer){
 						findPath =true;
 						exit = new_PathFindingCase;
 					}

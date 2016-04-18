@@ -11,7 +11,7 @@ import board.Case;
 import mainAndRules.Rules;
 import pathFinding.PathFindingFirstPlayer;
 import pathFinding.PathFindingSecondPlayer;
-public class FirstHardAI extends AGenericPlayer{
+public class HardAI extends AGenericPlayer{
 	
 	public static AGenericPlayer joueur2;
 	protected PathFindingFirstPlayer AIpath;
@@ -20,13 +20,21 @@ public class FirstHardAI extends AGenericPlayer{
 	protected boolean tour1;
 	protected boolean tour2;
 	protected boolean tour3;
+	protected boolean FirstPlayer;
 	//Je veux que pendant les 3 premiers tours de jeu L'IA essaye de placer un mur à l'adversaire
 	
-	public FirstHardAI(){
-		this.x = 0;
-		this.y = 4;
+	public HardAI(boolean FirstPlayer){
+		this.FirstPlayer = FirstPlayer;
+		if(FirstPlayer){
+			this.x = 0;
+			this.y = 4;
+		}
+		else{
+			this.x = 8;
+			this.y = 4;
+		}
 		plateau[x][y].setEmpty(false);
-		AIpath = new PathFindingFirstPlayer(plateau[0][4]);
+		AIpath = new PathFindingFirstPlayer(plateau[x][y],FirstPlayer);
 		nbresMurs = 0;
 		tour1 = true;
 		tour2 = false;
@@ -116,7 +124,7 @@ public class FirstHardAI extends AGenericPlayer{
 	public void play() throws IOException{
 		joueur2 = Board.getSecondPlayer();
 		AIpath.setStartingCase(plateau[x][y]);
-		SecondPlayerpath = new PathFindingSecondPlayer(plateau[joueur2.getX()][joueur2.getY()]);
+		SecondPlayerpath = new PathFindingSecondPlayer(plateau[joueur2.getX()][joueur2.getY()],FirstPlayer);
 		AIpath.isExit();
 		SecondPlayerpath.isExit();
 		AIpath.way();

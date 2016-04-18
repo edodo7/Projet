@@ -15,8 +15,8 @@ public class Rules{
     public static Case[][] tableau = Board.getTableau();
     public static AGenericPlayer joueur1= Board.getFirstPlayer();
     public static AGenericPlayer joueur2= Board.getSecondPlayer();
-    private static PathFindingFirstPlayer pathFirstPlayer = new PathFindingFirstPlayer(tableau[joueur1.getX()][joueur1.getY()]);
-    private static PathFindingSecondPlayer pathSecondPlayer = new PathFindingSecondPlayer(tableau[joueur2.getX()][joueur2.getY()]);
+    private static PathFindingFirstPlayer pathFirstPlayer = new PathFindingFirstPlayer(tableau[joueur1.getX()][joueur1.getY()],true);
+    private static PathFindingSecondPlayer pathSecondPlayer = new PathFindingSecondPlayer(tableau[joueur2.getX()][joueur2.getY()],false);
     
     
     

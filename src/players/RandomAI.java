@@ -10,13 +10,21 @@ import java.io.IOException;
  * @author Eduardo Dom
  *
  */
-public class FirstRandomAI extends AGenericPlayer{
+public class RandomAI extends AGenericPlayer{
 	public static IPlayer joueur2 = Board.getSecondPlayer();
 	protected int nbresMurs;
+	protected boolean FirstPlayer;
 	
-	public FirstRandomAI (){
-		this.x = 0;
-		this.y = 4;
+	public RandomAI (boolean FirstPlayer){
+		this.FirstPlayer = FirstPlayer;
+		if(FirstPlayer){
+			this.x = 0;
+			this.y = 4;
+		}
+		else{
+			this.x = 8;
+			this.y = 4;
+		}
 		plateau[x][y].setEmpty(false);
 		nbresMurs = 10;
 	}

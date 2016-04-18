@@ -2,12 +2,9 @@ package board;
 import java.util.Scanner;
 
 import players.AGenericPlayer;
-import players.FirstRandomAI;
-import players.FirstHardAI;
-import players.FirstHumanPlayer;
-import players.SecondRandomAI;
-import players.SecondHardAI;
-import players.SecondHumanPlayer;
+import players.RandomAI;
+import players.HardAI;
+import players.HumanPlayer;
 
 /**
  * Cette classe permet de modéliser le plateau de jeu ainsi que les joueurs qui y sont présents(Qu'ils soient humains ou IA)
@@ -75,17 +72,17 @@ public class Board
 			System.out.println("Entrez le numéro correspondant à votre choix.");
 			int reponse2 = question.nextInt();
 			if (reponse2 == 1){
-				joueur1 = new FirstRandomAI();
-				joueur2 = new SecondHumanPlayer();
+				joueur1 = new RandomAI(true);
+				joueur2 = new HumanPlayer(false);
 			}
 			else{
-				joueur1 = new FirstHardAI();
-				joueur2 = new SecondHumanPlayer();
+				joueur1 = new HardAI(true);
+				joueur2 = new HumanPlayer(false);
 			}
 		}
 		if (reponse == 2){
-			joueur1 = new FirstHumanPlayer();
-			joueur2 = new SecondHumanPlayer();
+			joueur1 = new HumanPlayer(true);
+			joueur2 = new HumanPlayer(false);
 		}
 		if (reponse == 3){
 			System.out.println("Quelle genre de partie voulez vous?");
@@ -95,16 +92,16 @@ public class Board
 			System.out.println("Entrez le numéro correspondant à votre choix.");
 			int reponse3 = question.nextInt();
 			if (reponse3 == 1){
-				joueur1 = new FirstRandomAI();
-				joueur2 = new SecondRandomAI();
+				joueur1 = new RandomAI(true);
+				joueur2 = new RandomAI(false);
 			}
 			else if (reponse3 == 2){
-				joueur1 = new FirstHardAI();
-				joueur2 = new SecondRandomAI();
+				joueur1 = new HardAI(true);
+				joueur2 = new RandomAI(false);
 			}
 			else{
-				joueur1 = new FirstHardAI();
-				joueur2 = new SecondHardAI();
+				joueur1 = new HardAI(true);
+				joueur2 = new HardAI(false);
 			}
 		}
 	}

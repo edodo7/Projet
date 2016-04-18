@@ -8,13 +8,21 @@ import mainAndRules.Rules;
  * @author Eduardo Dom
  *
  */
-public class FirstHumanPlayer extends AGenericPlayer
+public class HumanPlayer extends AGenericPlayer
 {
-	public FirstHumanPlayer()
+	private boolean FirstPlayer;
+	public HumanPlayer(boolean FirstPlayer)
 	{
-		plateau[0][4].setEmpty(false);
-		x = 0;
-		y = 4;
+		this.FirstPlayer = FirstPlayer;
+		if(FirstPlayer){
+			this.x =0;
+			this.y =4;
+		}
+		else{
+			this.x = 8;
+			this.y =4;
+		}
+		plateau[x][y].setEmpty(false);
 	}
 	
 

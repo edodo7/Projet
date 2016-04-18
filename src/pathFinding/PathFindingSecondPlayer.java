@@ -10,8 +10,8 @@ import mainAndRules.Rules;
  */
 public class PathFindingSecondPlayer extends PathFindingFirstPlayer {
 	
-	public PathFindingSecondPlayer(Case startingCase){
-		super(startingCase);
+	public PathFindingSecondPlayer(Case startingCase,boolean FirstPlayer){
+		super(startingCase,FirstPlayer);
 	}
 	
 	
