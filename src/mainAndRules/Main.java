@@ -48,6 +48,10 @@ public class Main {
 			frame.repaint();
 			try{
 				if (tourJoueur1 && continuer){
+					ArrayList<Case> al = Rules.canMove(board.getTableau()[joueur1.getX()][joueur1.getY()]);
+					for(Case elem : al){
+						System.out.println(elem);
+					}
 					System.out.println(board);
 					System.out.println("C'est au tour du Joueur 1");
 					joueur1.play();

@@ -21,7 +21,7 @@ public class Rules{
     
     
     public static  boolean canMove(Case case1,Case case2){
-        if (case1.getX() - case2.getX() == 1 && case1.getY() - case2.getY() == 0 ){
+        if (case1.getX() - case2.getX() == 1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en haut de la case1
             if (case2.isEdgeDownBegin() || case2.isEdgeDownEnd()){
                 return false;
             }
@@ -29,7 +29,7 @@ public class Rules{
                 return true;
             }
         }
-        else if (case1.getX() - case2.getX() == -1 && case1.getY() - case2.getY() == 0 ){
+        else if (case1.getX() - case2.getX() == -1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en bas de la case1
             if(case2.isEdgeUpBegin() || case2.isEdgeUpEnd()){
                 return false;
             }
@@ -37,7 +37,7 @@ public class Rules{
                 return true;
             }
         }
-        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == -1 ){
+        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == -1 ){//On regarde si la case2 est à droite de la case1
             if (case2.isEdgeLeftBegin() || case2.isEdgeLeftEnd()){
                 return false;
             }
@@ -45,7 +45,7 @@ public class Rules{
                 return true;
             }
         }
-        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == 1){
+        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == 1){//On regarde si la case2 est à gauche de la case1
             if (case2.isEdgeRightBegin() || case2.isEdgeRightEnd()){
                 return false;
             }
@@ -53,7 +53,7 @@ public class Rules{
                 return true;
             }
         }
-        else{
+        else{//Sinon il faut voir si on peut atteindre la case2 en sautant le pion adverse ou en allant en diagonale
             if(case1.getX()-1 == case2.getX() && case1.getY()+1 == case2.getY()){//Diagonale Haut/Droite
                 if(!case2.isEdgeLeftBegin() && !case2.isEdgeLeftEnd() && !case2.isEdgeDownBegin() && !case2.isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty()){
                     return true;
@@ -78,13 +78,48 @@ public class Rules{
                     return false;
                 }
             }
-            else{//Diagonale Bas/Droite
+            else if(case1.getX()+1 == case2.getX() && case1.getY() +1 == case2.getY()) {//Diagonale Bas/Droite
                 if (!case2.isEdgeLeftBegin() && !case2.isEdgeLeftEnd() && !case2.isEdgeUpBegin() && !case2.isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty()){
                     return true;
                 }
                 else{
                     return false;
                 }
+            }
+            else if(case1.getX()+2 == case2.getX() && case1.getY() == case2.getY()){//On tente de sauter un pion vers le bas
+            	if(!tableau[case1.getX()+1][case1.getY()].isEdgeUpBegin() && !tableau[case1.getX()+1][case1.getY()].isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEdgeDownBegin() && !tableau[case1.getX()+1][case1.getY()].isEdgeDownEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty()){
+            		return true;
+            	}
+            	else{
+            		return false;
+            	}
+            }
+            else if(case1.getX()-2 == case2.getX() && case1.getY() == case2.getY()){//On tente de sauter un pion vers le haut
+            	if(!tableau[case1.getX()-1][case1.getY()].isEdgeUpBegin() && !tableau[case1.getX()-1][case1.getY()].isEdgeUpEnd() && !tableau[case1.getX()-1][case1.getY()].isEdgeDownBegin() && !tableau[case1.getX()-1][case1.getY()].isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty()){
+            		return true;
+            	}
+            	else{
+            		return false;
+            	}
+            }
+            else if(case1.getX() == case2.getX() && case1.getY()+2 == case2.getY()){//On tente de sauter un  pion vers la droite 
+            	if(!tableau[case1.getX()][case1.getY()+1].isEdgeLeftBegin() && !tableau[case1.getX()][case1.getY()+1].isEdgeLeftEnd() && !tableau[case1.getX()][case1.getY()+1].isEdgeRightBegin() && !tableau[case1.getX()][case1.getY()+1].isEdgeRightEnd() && !tableau[case1.getX()][case1.getY()+1].isEmpty()){
+            		return true;
+            	}
+            	else{
+            		return false;
+            	}
+            }
+            else if(case1.getX() == case2.getX() && case1.getY()-2 == case2.getY()){//On tente de sauter un pion vers la gauche 
+            	if(!tableau[case1.getX()][case1.getY()-1].isEdgeLeftBegin() && !tableau[case1.getX()][case1.getY()-1].isEdgeLeftEnd() && !tableau[case1.getX()][case1.getY()-1].isEdgeRightBegin() && !tableau[case1.getX()][case1.getY()-1].isEdgeRightEnd() && !tableau[case1.getX()][case1.getY()-1].isEmpty()){
+            		return true;
+            	}
+            	else{
+            		return false;
+            	}
+            }
+            else{
+            	return false;
             }
         }
     }
@@ -114,49 +149,73 @@ public class Rules{
         int x = case1.getX();
         int y = case1.getY();
         ArrayList<Case> testAl = new ArrayList<Case>();
-        if (x == 0 && y == 0){
+        if (x == 0 && y == 0){//Coin supérieur gauche
             testAl.add(tableau[x][y+1]);
             testAl.add(tableau[x+1][y]);
             testAl.add(tableau[x+1][y+1]);
+            testAl.add(tableau[x][y+2]);
+            testAl.add(tableau[x+2][y]);
         }
-        else if(x == 0 && y != 0){
+        else if(x == 0 && y != 0){//Si on se trouve su la première ligne
             if(y != 8){
                 testAl.add(tableau[x][y-1]);
                 testAl.add(tableau[x][y+1]);
                 testAl.add(tableau[x+1][y]);
                 testAl.add(tableau[x+1][y-1]);
                 testAl.add(tableau[x+1][y+1]);
+                testAl.add(tableau[x+2][y]);
+                if (y-2 >= 0){
+                	testAl.add(tableau[x][y-2]);
+                }
+                if(y+2 <9){
+                	testAl.add(tableau[x][y+2]);
+                }
             }
-            else{
+            else{//Coin supérieur droit
                 testAl.add(tableau[x][y-1]);
                 testAl.add(tableau[x+1][y]);
                 testAl.add(tableau[x+1][y-1]);
+                testAl.add(tableau[x][y-2]);
+                testAl.add(tableau[x+2][y]);
             }
         }
-        else if(x == 8 && y == 8){
+        else if(x == 8 && y == 8){//Coin inférieur droit
             testAl.add(tableau[x][y-1]);
             testAl.add(tableau[x-1][y]);
             testAl.add(tableau[x-1][y-1]);
+            testAl.add(tableau[x-2][y]);
+            testAl.add(tableau[x][y-2]);
         }
         else if(x == 8 && y != 8){
-            if (y == 0){
+            if (y == 0){//Coin inférieur gauche
                 testAl.add(tableau[x-1][y]);
                 testAl.add(tableau[x][y+1]);
                 testAl.add(tableau[x-1][y+1]);
+                testAl.add(tableau[x-2][y]);
+                testAl.add(tableau[x][y+2]);
             }
-            else{
+            else{//On est sur la dernière ligne
                 testAl.add(tableau[x][y-1]);
                 testAl.add(tableau[x-1][y]);
                 testAl.add(tableau[x][y+1]);
                 testAl.add(tableau[x-1][y-1]);
                 testAl.add(tableau[x-1][y+1]);
+                testAl.add(tableau[x-2][y]);
+                if( y - 2 >= 0){
+                	testAl.add(tableau[x][y-2]);
+                }
+                if(y+2 < 9){
+                	testAl.add(tableau[x][y+2]);
+                }
             }
         }
         else if(y == 0 && x != 0){
-        	if(x==8){
+        	if(x==8){//Coin inférieur gauche
         		testAl.add(tableau[x-1][y]);
         		testAl.add(tableau[x][y+1]); 
         		testAl.add(tableau[x-1][y+1]);
+        		testAl.add(tableau[x-2][y]);
+                testAl.add(tableau[x][y+2]);
         	}
         	else{
         		testAl.add(tableau[x-1][y]);
@@ -164,6 +223,13 @@ public class Rules{
         		testAl.add(tableau[x][y+1]);
         		testAl.add(tableau[x-1][y+1]);
         		testAl.add(tableau[x+1][y+1]);
+        		testAl.add(tableau[x][y+2]);
+        		if (x-2 >= 0){
+        			testAl.add(tableau[x-2][y]);
+        		}
+        		if (x+2 < 9){
+        			testAl.add(tableau[x+2][y]);
+        		}
         	}
         }
         else if(y == 8){
@@ -171,11 +237,20 @@ public class Rules{
         		testAl.add(tableau[x][y-1]);
         		testAl.add(tableau[x+1][y]);
         		testAl.add(tableau[x+1][y-1]);
+        		testAl.add(tableau[x][y-2]);
+                testAl.add(tableau[x+2][y]);
         	}
         	else{
         		testAl.add(tableau[x-1][y]);
         		testAl.add(tableau[x+1][y]);
         		testAl.add(tableau[x][y-1]);
+        		testAl.add(tableau[x][y-2]);
+        		if(x- 2 >= 0){
+        			testAl.add(tableau[x-2][y]);
+        		}
+        		if(x+2 < 9){
+        			testAl.add(tableau[x+2][y]);
+        		}
         	}
         }
         else{
@@ -187,6 +262,18 @@ public class Rules{
             testAl.add(tableau[x+1][y+1]);
             testAl.add(tableau[x-1][y-1]);
             testAl.add(tableau[x-1][y+1]);
+            if(x- 2 >= 0){
+    			testAl.add(tableau[x-2][y]);
+    		}
+    		if(x+2 < 9){
+    			testAl.add(tableau[x+2][y]);
+    		}
+    		if( y - 2 >= 0){
+            	testAl.add(tableau[x][y-2]);
+            }
+            if(y+2 < 9){
+            	testAl.add(tableau[x][y+2]);
+            }
         }
         ArrayList<Case> realCase = new ArrayList<Case>();
         for (int i = 0; i < testAl.size();i++){
