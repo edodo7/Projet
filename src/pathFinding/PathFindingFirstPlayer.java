@@ -35,9 +35,23 @@ public class PathFindingFirstPlayer {
 	}
 	protected  ArrayList<PathFindingCase> loopFindingPath(ArrayList<PathFindingCase> liste){
 		ArrayList<PathFindingCase> al = new ArrayList<PathFindingCase>();
+		ArrayList<Case> lookCase;
 		for (int i = 0; i < liste.size();i++){
-			Case lookCase = liste.get(i).getCase();
-			if (lookCase.getX()-1 >= 0 ){
+			lookCase  = Rules.canMove(liste.get(i).getCase());
+			for (int j = 0;j < lookCase.size();j++){
+				//System.out.println(lookCase.get(j));
+				Case new_case = lookCase.get(j);
+				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
+				if (!isIn(new_PathFindingCase,lookedElements)){
+					al.add(new_PathFindingCase);
+					lookedElements.add(new_PathFindingCase);
+					if( new_case.getX() == 8){
+						findPath =true;
+						exit = new_PathFindingCase;
+					}
+				}
+			}
+			/*if (lookCase.getX()-1 >= 0 ){
 				Case new_case =  tableau[lookCase.getX() - 1][lookCase.getY()];
 				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
 				if (Rules.canMove(lookCase, new_case) &&(!isIn(new_PathFindingCase,lookedElements))){//on verifie si l'élément n'est pas par où on est déjà passé
@@ -74,7 +88,7 @@ public class PathFindingFirstPlayer {
 					al.add(new_PathFindingCase);
 					lookedElements.add(new_PathFindingCase);
 				}
-			}	
+			}*/	
 		}
 		return al;
 	}

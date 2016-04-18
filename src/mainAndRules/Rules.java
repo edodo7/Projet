@@ -152,6 +152,32 @@ public class Rules{
                 testAl.add(tableau[x-1][y+1]);
             }
         }
+        else if(y == 0 && x != 0){
+        	if(x==8){
+        		testAl.add(tableau[x-1][y]);
+        		testAl.add(tableau[x][y+1]); 
+        		testAl.add(tableau[x-1][y+1]);
+        	}
+        	else{
+        		testAl.add(tableau[x-1][y]);
+        		testAl.add(tableau[x+1][y]);
+        		testAl.add(tableau[x][y+1]);
+        		testAl.add(tableau[x-1][y+1]);
+        		testAl.add(tableau[x+1][y+1]);
+        	}
+        }
+        else if(y == 8){
+        	if (x == 0){
+        		testAl.add(tableau[x][y-1]);
+        		testAl.add(tableau[x+1][y]);
+        		testAl.add(tableau[x+1][y-1]);
+        	}
+        	else{
+        		testAl.add(tableau[x-1][y]);
+        		testAl.add(tableau[x+1][y]);
+        		testAl.add(tableau[x][y-1]);
+        	}
+        }
         else{
             testAl.add(tableau[x][y-1]);
             testAl.add(tableau[x-1][y]);

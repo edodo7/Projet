@@ -1,6 +1,8 @@
 package mainAndRules;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import board.Case;
 
 import GUI.Fenetre;
 import board.Board;

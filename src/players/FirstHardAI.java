@@ -27,7 +27,7 @@ public class FirstHardAI extends AGenericPlayer{
 		this.y = 4;
 		plateau[x][y].setEmpty(false);
 		AIpath = new PathFindingFirstPlayer(plateau[0][4]);
-		nbresMurs = 10;
+		nbresMurs = 0;
 		tour1 = true;
 		tour2 = false;
 		tour3 = false;
