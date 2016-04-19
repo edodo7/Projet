@@ -57,15 +57,15 @@ public class Panneau extends JPanel{
 						g.setColor(Color.BLACK);
 						g.fillRect(xDepart, yDepart+65, 140, 10);
 					}
-					else if(Board.tableau[i][j].isEdgeLeftBegin()){
+					if(Board.tableau[i][j].isEdgeLeftBegin()){
 						g.setColor(Color.BLACK);
 						g.fillRect(xDepart-15, yDepart, 10, 140);
 					}
-					else if(Board.tableau[i][j].isEdgeRightBegin()){
+					if(Board.tableau[i][j].isEdgeRightBegin()){
 						g.setColor(Color.BLACK);
 						g.fillRect(xDepart +65, yDepart, 10, 140);
 					}
-					else if(Board.tableau[i][j].isEdgeUpBegin()){
+					if(Board.tableau[i][j].isEdgeUpBegin()){
 						g.setColor(Color.BLACK);
 						g.fillRect(xDepart, yDepart-15, 140, 10);
 					}

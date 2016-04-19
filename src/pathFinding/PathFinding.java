@@ -11,13 +11,13 @@ import mainAndRules.Rules;
  */
 public class PathFinding {
 	
-	protected Case startingCase;
-	protected boolean findPath;
+	private Case startingCase;
+	private boolean findPath;
 	public Case[][] tableau;
-	protected ArrayList<PathFindingCase> lookedElements;//on crée une arraylist des element où l'on est passé
-	protected ArrayList<Case> way;//liste du chemin possible à partir de la case 0 si c'est pas possible de trouver une sortie de là
-	protected PathFindingCase exit;//case de sortie
-	protected boolean FirstPlayer;
+	private ArrayList<PathFindingCase> lookedElements;//on crée une arraylist des element où l'on est passé
+	private ArrayList<Case> way;//liste du chemin possible à partir de la case 0 si c'est pas possible de trouver une sortie de là
+	private PathFindingCase exit;//case de sortie
+	private boolean FirstPlayer;
 	
 	public PathFinding(Case startingCase,boolean FirstPlayer){
 		this.startingCase = startingCase;

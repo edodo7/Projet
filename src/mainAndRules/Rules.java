@@ -136,7 +136,7 @@ public class Rules{
             }
         }
         else{
-            if(case1.isEdgeRightBegin() || case1.isEdgeRightEnd() || case1.isEdgeDownBegin() || case1.getY() == 8 || tableau[i-1][j].isEdgeUpEnd()){
+            if(case1.isEdgeRightEnd() || case1.isEdgeUpBegin() || case1.getY() == 8 || tableau[i-1][j].isEdgeRightEnd()){
                 return false;
             }
             else{
@@ -327,7 +327,7 @@ public class Rules{
             }
         }
         else{
-            if (case1.isEdgeLeftBegin() || case1.isEdgeLeftEnd() || case1.isEdgeDownEnd() || case1.getY() == 0 || tableau[i-1][j].isEdgeLeftEnd()){
+            if ( case1.isEdgeLeftEnd() || case1.isEdgeUpEnd() || case1.getY() == 0 || tableau[i-1][j].isEdgeLeftEnd()){
                 return false;
             }
             else{
@@ -371,7 +371,7 @@ public class Rules{
         int i = case1.getX();
         int j = case1.getY();
         if (j != 8){
-            if (case1.isEdgeUpBegin() || case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j+1].isEdgeUpBegin()){
+            if (case1.isEdgeUpBegin() || case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j+1].isEdgeUpBegin()|| case1.isEdgeRightEnd()){
                 return false;
             }
             else{
@@ -379,7 +379,7 @@ public class Rules{
             }
         }
         else{
-            if (case1.isEdgeUpBegin() || case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j-1].isEdgeUpEnd()){
+            if (case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j-1].isEdgeUpEnd()|| case1.isEdgeLeftEnd()){
                 return false;
             }
             else{
@@ -423,7 +423,7 @@ public class Rules{
         int i = case1.getX();
         int j = case1.getY();
         if (j != 8){
-            if (case1.isEdgeDownBegin() || case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j+1].isEdgeDownBegin()){
+            if (case1.isEdgeDownBegin() || case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j+1].isEdgeDownBegin()|| case1.isEdgeRightBegin()){
                 return false;
             }
             else{
@@ -431,7 +431,7 @@ public class Rules{
             }
         }
         else{
-            if (case1.isEdgeDownBegin() || case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j-1].isEdgeDownEnd()){
+            if (case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j-1].isEdgeDownEnd()|| case1.isEdgeLeftBegin()){
                 return false;
             }
             else{

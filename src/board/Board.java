@@ -19,8 +19,10 @@ public class Board
 
 
 
-	public Board ()
+	public Board (AGenericPlayer joueur1,AGenericPlayer joueur2)
 	{
+		this.joueur1 = joueur1;
+		this.joueur2 = joueur2;
 		for (int i = 0; i < 9; i++)
 		{
 			for (int j = 0; j < 9; j++)
@@ -28,6 +30,8 @@ public class Board
 				tableau[i][j] = new Case(i,j);
 			}
 		}
+		tableau[joueur1.getX()][joueur1.getY()].setEmpty(false);
+		tableau[joueur2.getX()][joueur2.getY()].setEmpty(false);
 	}
 
 
@@ -57,7 +61,7 @@ public class Board
 	}
 
 	
-	public void whatKindOfPlayers(){
+	/*public void whatKindOfPlayers(){
 		System.out.println("Quelle genre de partie voulez vous?");
 		System.out.println("1 : IA vs joueur humain");
 		System.out.println("2 : joueur humain vs joueur humain");
@@ -104,7 +108,7 @@ public class Board
 				joueur2 = new HardAI(false);
 			}
 		}
-	}
+	}*/
 
 
 	public static Case[][] getTableau()

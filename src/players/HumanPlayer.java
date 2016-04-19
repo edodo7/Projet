@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 import mainAndRules.Rules;
 /**
- * Cette classe modélise le comportemet du premier joueur humain.
+ * Cette classe modélise le comportemet du  joueur humain.
  * @author Eduardo Dom
  *
  */
 public class HumanPlayer extends AGenericPlayer
 {
-	private boolean FirstPlayer;
-	public HumanPlayer(boolean FirstPlayer)
+	private boolean isFirstPlayer;
+	public HumanPlayer(boolean isFirstPlayer)
 	{
-		this.FirstPlayer = FirstPlayer;
-		if(FirstPlayer){
+		this.isFirstPlayer = isFirstPlayer;
+		if(isFirstPlayer){
 			this.x =0;
 			this.y =4;
 		}
@@ -22,7 +22,6 @@ public class HumanPlayer extends AGenericPlayer
 			this.x = 8;
 			this.y =4;
 		}
-		plateau[x][y].setEmpty(false);
 	}
 	
 

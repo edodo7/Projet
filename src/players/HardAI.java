@@ -10,21 +10,23 @@ import board.Board;
 import board.Case;
 import mainAndRules.Rules;
 import pathFinding.PathFinding;
+import pathFinding.*;
 public class HardAI extends AGenericPlayer{
 	
 	public static AGenericPlayer joueur2;
-	protected PathFinding AIpath;
-	protected  PathFinding SecondPlayerpath;
-	protected int nbresMurs;
-	protected boolean tour1;
-	protected boolean tour2;
-	protected boolean tour3;
-	protected boolean FirstPlayer;
+	private PathFinding AIpath;
+	private  PathFinding SecondPlayerpath;
+	private int nbresMurs;
+	private boolean tour1;
+	private boolean tour2;
+	private boolean tour3;
+	private boolean isFirstPlayer;
+	private Case[][] plateau;
 	//Je veux que pendant les 3 premiers tours de jeu L'IA essaye de placer un mur à l'adversaire
 	
-	public HardAI(boolean FirstPlayer){
-		this.FirstPlayer = FirstPlayer;
-		if(FirstPlayer){
+	public HardAI(boolean isFirstPlayer){
+		this.isFirstPlayer = isFirstPlayer;
+		if(isFirstPlayer){
 			this.x = 0;
 			this.y = 4;
 		}
@@ -32,12 +34,14 @@ public class HardAI extends AGenericPlayer{
 			this.x = 8;
 			this.y = 4;
 		}
-		plateau[x][y].setEmpty(false);
-		AIpath = new PathFinding(plateau[x][y],FirstPlayer);
+		//plateau[x][y].setEmpty(false);
+		//AIpath = new PathFinding(plateau[x][y],isFirstPlayer);
 		nbresMurs = 10;
 		tour1 = true;
 		tour2 = false;
 		tour3 = false;
+		this.plateau = Board.getTableau();
+		AIpath = new PathFinding(plateau[x][y],isFirstPlayer);
 	}
 	
 	protected void move(int i,int j){
@@ -123,7 +127,7 @@ public class HardAI extends AGenericPlayer{
 	public void play() throws IOException{
 		joueur2 = Board.getSecondPlayer();
 		AIpath.setStartingCase(plateau[x][y]);
-		SecondPlayerpath = new PathFinding(plateau[joueur2.getX()][joueur2.getY()],!FirstPlayer);
+		SecondPlayerpath = new PathFinding(plateau[joueur2.getX()][joueur2.getY()],!isFirstPlayer);
 		AIpath.isExit();
 		SecondPlayerpath.isExit();
 		AIpath.way();

@@ -3,20 +3,21 @@ import java.util.Random;
 
 import board.Board;
 import mainAndRules.Rules;
-
+import board.Case;
 import java.io.IOException;
 /**
- * Cette classe modélise L'IA facile en tant que premier joueur ainsi que son comportement
+ * Cette classe modélise L'IA facile ainsi que son comportement
  * @author Eduardo Dom
  *
  */
 public class RandomAI extends AGenericPlayer{
 	public static IPlayer joueur2 = Board.getSecondPlayer();
-	protected int nbresMurs;
-	protected boolean FirstPlayer;
+	private int nbresMurs;
+	private boolean isFirstPlayer;
+	private Case[][] plateau;
 	
 	public RandomAI (boolean FirstPlayer){
-		this.FirstPlayer = FirstPlayer;
+		this.isFirstPlayer = FirstPlayer;
 		if(FirstPlayer){
 			this.x = 0;
 			this.y = 4;
@@ -25,8 +26,8 @@ public class RandomAI extends AGenericPlayer{
 			this.x = 8;
 			this.y = 4;
 		}
-		plateau[x][y].setEmpty(false);
 		nbresMurs = 10;
+		this.plateau = Board.getTableau();
 	}
 	
 	
