@@ -10,7 +10,7 @@ public class PathFindingCase{
 	private int depth;
 	private PathFindingCase lastPFC;
 	
-	public PathFindingCase(Case case1,int depth,PathFindingCase lastPFC){
+	public PathFindingCase(Case case1,PathFindingCase lastPFC){
 		this.case1 = case1;
 		this.depth = depth;
 		this.lastPFC = lastPFC;

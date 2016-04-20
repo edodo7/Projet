@@ -22,7 +22,7 @@ public class PathFinding {
 	public PathFinding(Case startingCase,boolean FirstPlayer){
 		this.startingCase = startingCase;
 		this.tableau = Board.getTableau();
-		this.exit = new PathFindingCase(null,-1,null);//on initialise la case de sortie à -1,-1 pour la methode way au cas où l'on demande la sortie alors qu'on n'a pas utiliser la methode isExit()
+		this.exit = new PathFindingCase(null,null);//on initialise la case de sortie à null,null pour la methode way au cas où l'on demande la sortie alors qu'on n'a pas utiliser la methode isExit()
 		this.way = new ArrayList<Case>();//on initialise l'arraylist au cas où on la demande directement
 		this.FirstPlayer = FirstPlayer;
 	}
@@ -43,7 +43,7 @@ public class PathFinding {
 			for (int j = 0;j < lookCase.size();j++){
 				//System.out.println(lookCase.get(j));
 				Case new_case = lookCase.get(j);
-				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i).getDepth(),liste.get(i));
+				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i));
 				if (!isIn(new_PathFindingCase,lookedElements)){
 					al.add(new_PathFindingCase);
 					lookedElements.add(new_PathFindingCase);
@@ -74,7 +74,7 @@ public class PathFinding {
 	public boolean isExit(){
 		findPath = false;//on initialise findPath là pour pouvoir réutiliser tout le pathfinding quand on place un nouveau mur
 		ArrayList<PathFindingCase> al = new ArrayList<PathFindingCase>();
-		al.add(new PathFindingCase(startingCase, 0, null));
+		al.add(new PathFindingCase(startingCase, null));
 		lookedElements = new ArrayList<PathFindingCase>();//on initialise l'arraylist
 		while(al.size() != 0 && !findPath){
 			ArrayList<PathFindingCase> new_al =loopFindingPath(al);
