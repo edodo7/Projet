@@ -19,6 +19,24 @@ public class PathFinding {
 	private PathFindingCase exit;//case de sortie
 	private boolean FirstPlayer;
 	
+	private class PathFindingCase{
+		private Case case1;
+		private PathFindingCase lastPFC;
+		
+		public PathFindingCase(Case case1,PathFindingCase lastPFC){
+			this.case1 = case1;
+			this.lastPFC = lastPFC;
+		}
+		
+		public PathFindingCase getLastPFC(){
+			return this.lastPFC;  
+		}
+		
+		public Case getCase(){
+			return this.case1;
+		}
+	}
+	
 	public PathFinding(Case startingCase,boolean FirstPlayer){
 		this.startingCase = startingCase;
 		this.tableau = Board.getTableau();
