@@ -59,7 +59,6 @@ public class PathFinding {
 		for (int i = 0; i < liste.size();i++){
 			lookCase  = Rules.canMove(liste.get(i).getCase());
 			for (int j = 0;j < lookCase.size();j++){
-				//System.out.println(lookCase.get(j));
 				Case new_case = lookCase.get(j);
 				PathFindingCase new_PathFindingCase = new PathFindingCase(new_case,liste.get(i));
 				if (!isIn(new_PathFindingCase,lookedElements)){

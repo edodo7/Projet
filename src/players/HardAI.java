@@ -34,8 +34,6 @@ public class HardAI extends AGenericPlayer{
 			this.x = 8;
 			this.y = 4;
 		}
-		//plateau[x][y].setEmpty(false);
-		//AIpath = new PathFinding(plateau[x][y],isFirstPlayer);
 		nbresMurs = 10;
 		tour1 = true;
 		tour2 = false;
@@ -145,7 +143,7 @@ public class HardAI extends AGenericPlayer{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 				}
 			}
-			else if (tour2){
+			/*else if (tour2){
 				if(blockPath(SecondPlayerListPath)){
 					tour2 = false;
 					tour3 = true;
@@ -163,28 +161,18 @@ public class HardAI extends AGenericPlayer{
 				else{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 				}
-			}
+			}*/
 			else{
-				if (SecondPlayerListPath.size() < AIListPath.size()){
+				if (SecondPlayerListPath.size()< AIListPath.size()){
 					if (blockPath(SecondPlayerListPath)){
 						nbresMurs--;
 					}
 					else{
-						if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
-							move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
-						}
-						else{
-							move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
-						}
+						move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 					}
 				}
 				else{
-					if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
-						move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
-					}
-					else{
-						move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
-					}
+					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 				}
 			}
 		}

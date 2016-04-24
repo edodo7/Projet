@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import board.Case;
 
-import GUI.Fenetre;
+import GUI.MyFrame;
 import board.Board;
 import players.AGenericPlayer;
 import players.HardAI;
@@ -78,7 +78,7 @@ public class Main {
 	
 	
 	public void play(){
-		Fenetre frame = new Fenetre();
+		MyFrame frame = new MyFrame();
 		Random choice = new Random();
 		int whoStarts = choice.nextInt(2);
 		int nbreCoupsJ1 =0;

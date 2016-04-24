@@ -59,6 +59,11 @@ public class HumanPlayer extends AGenericPlayer
 		}
 	}
 	
+	public void move(int i,int j){
+		plateau[this.x][this.y].setEmpty(true);
+		plateau[i][j].setEmpty(false);
+	}
+	
 	protected void setWall(int i,int j) throws IOException
 	{
 		Scanner wall = new Scanner(System.in);
