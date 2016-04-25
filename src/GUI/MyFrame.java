@@ -15,6 +15,7 @@ public class MyFrame extends JFrame {
 		this.setSize(1280,1280);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new MyPannel());
+		this.setMinimumSize(new Dimension(1000,1000));
 		this.setVisible(true);
 	}
 }

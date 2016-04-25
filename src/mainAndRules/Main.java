@@ -81,7 +81,7 @@ public class Main {
 		MyFrame frame = new MyFrame();
 		Random choice = new Random();
 		int whoStarts = choice.nextInt(2);
-		int nbreCoupsJ1 =0;
+		int nbreCoupsJ1 = 0;
 		int nbreCoupsJ2 = 0;
 		if(whoStarts == 1){
 			tourJoueur1 = true;

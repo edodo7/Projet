@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import board.Board;
 public class MyPannel extends JPanel {
 	public void paintComponent(Graphics g){
+		this.removeAll();
 		super.paintComponent(g);
 		try{
 			Image background = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/vault boy.jpg"));
@@ -31,16 +32,6 @@ public class MyPannel extends JPanel {
 			g.drawImage(background,0, 0, this.getWidth(), this.getHeight(),this);
 			int xDepart = this.getWidth()/8;
 			int yDepart = this.getHeight()/8;
-			JButton bouton = new JButton(new ImageIcon(square));
-			bouton.setSize(60, 60);
-			bouton.addActionListener(new ActionListener() {
-
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("Hello World!");
-					
-				}
-			});
-			bouton.setEnabled(false);
 			for (int i =0; i <9;i++){
 				if (i != 0){
 					yDepart += 80; 
@@ -72,6 +63,13 @@ public class MyPannel extends JPanel {
 						JButton bouton2 = new Case(new ImageIcon(square3));
 						bouton2.setSize(60, 60);
 						bouton2.setLocation(xDepart, yDepart);
+						bouton2.addActionListener(new ActionListener(){
+							public void actionPerformed(ActionEvent e){
+								HumanPlayer joueur1 = (HumanPlayer) Board.getSecondPlayer();
+								joueur1.move(0, 5);
+								getRootPane().repaint();
+							}
+						});
 						this.add(bouton2);
 					}
 					if (Board.tableau[i][j].isEdgeDownBegin()){

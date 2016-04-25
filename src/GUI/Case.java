@@ -16,7 +16,7 @@ import players.HumanPlayer;
 
 import java.io.IOException;
 
-public class Case extends JButton implements ActionListener{
+public class Case extends JButton{
 	private Image player1 ;
 	private Image player2;
 	private Image square;
@@ -25,12 +25,6 @@ public class Case extends JButton implements ActionListener{
 	public board.Case[][] plateau = Board.getTableau();
 	public Case(Icon img){
 		super(img);
-	}
-	
-	public void actionPerformed(ActionEvent e){
-		HumanPlayer joueur1 = (HumanPlayer)Board.getFirstPlayer();
-		joueur1.move(x, y);
-		getRootPane().repaint();
 	}
 	
 }
