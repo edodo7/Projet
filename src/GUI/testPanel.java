@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -33,10 +34,7 @@ public class testPanel extends JPanel {
 		gl.setVgap(20);
 		this.setLayout(gl);
 		for (int i = 0 ;i <= 80;i++){
-			JButton bouton2 = new JButton(new ImageIcon(square));
-			bouton2.setSize(60, 60);
-			bouton2.setPreferredSize(new Dimension(60,60));;
-			this.add(bouton2);
+			this.add(new Case(new ImageIcon(square)));
 		}
 	}
 	
