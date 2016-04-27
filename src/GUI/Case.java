@@ -19,12 +19,6 @@ import players.HumanPlayer;
 import java.io.IOException;
 
 public class Case extends JButton{
-	private Image player1 ;
-	private Image player2;
-	private Image square;
-	public int x;
-	public int y;
-	public board.Case[][] plateau = Board.getTableau();
 	public Case(Icon img){
 		super(img);
 		this.setSize(60, 60);

@@ -17,7 +17,15 @@ public class MyFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.setLayout(new BorderLayout());
 		this.add(new testPanel(),BorderLayout.WEST);
+		JPanel pan = new JPanel();
+		pan.setLayout(new BoxLayout(pan,BoxLayout.Y_AXIS));
+		pan.add(new JButton("Move"));
+		pan.add(new JButton("Wall"));
+		this.add(pan,BorderLayout.EAST);
 		this.setMinimumSize(new Dimension(1000,1000));
 		this.setVisible(true);
+		while(true){
+			this.getContentPane().repaint();
+		}
 	}
 }

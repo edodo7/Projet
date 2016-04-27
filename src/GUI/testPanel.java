@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,10 +15,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import board.Board;
+
 public class testPanel extends JPanel {
 	Image bluePawn;
 	Image redPawn;
 	Image square;
+	Case[][] tabCases = new Case[9][9];
+	board.Case[][] realTab = Board.getTableau();
+	
 	
 	public testPanel(){
 		try{
@@ -33,12 +40,31 @@ public class testPanel extends JPanel {
 		gl.setHgap(20);
 		gl.setVgap(20);
 		this.setLayout(gl);
-		for (int i = 0 ;i <= 80;i++){
-			this.add(new Case(new ImageIcon(square)));
+		for (int i = 0 ;i < 9;i++){
+			for (int j = 0; j< 9;j++){
+				tabCases[i][j] = new Case(new ImageIcon(square));
+				this.add(new Case(new ImageIcon(square)));
+			}
 		}
+		this.setPreferredSize(new Dimension(700,700));
 	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		for (int i =0;i < 9;i++){
+			for (int j = 0 ; j < 9;j++){
+				if (!realTab[i][j].isEmpty()){
+					if (board.Board.getFirstPlayer().getX() == i && board.Board.getFirstPlayer().getY()== j){
+						tabCases[i][j].setIcon(new ImageIcon(redPawn));
+					}
+					else{
+						tabCases[i][j].setIcon(new ImageIcon(bluePawn));
+					}
+				}
+				else{
+					tabCases[i][j].setIcon(new ImageIcon(square));
+				}
+			}
+		}
 	}
 }
