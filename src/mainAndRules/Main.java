@@ -10,7 +10,6 @@ import board.Board;
 import players.AGenericPlayer;
 import players.HardAI;
 import players.HumanPlayer;
-import players.IPlayer;
 import players.RandomAI;
 /**
  * @author Eduardo

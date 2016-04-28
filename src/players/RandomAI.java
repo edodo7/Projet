@@ -11,7 +11,7 @@ import java.io.IOException;
  *
  */
 public class RandomAI extends AGenericPlayer{
-	public static IPlayer joueur2 = Board.getSecondPlayer();
+	public static AGenericPlayer joueur2 = Board.getSecondPlayer();
 	private int nbresMurs;
 	private boolean isFirstPlayer;
 	private Case[][] plateau;

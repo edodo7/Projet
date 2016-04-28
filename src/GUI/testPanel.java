@@ -28,9 +28,9 @@ public class testPanel extends JPanel {
 	
 	public testPanel(){
 		try{
-			bluePawn = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/blue.png"));
-			redPawn = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/red.png"));
-			square = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/empty.png"));
+			bluePawn = ImageIO.read(new File("./ressources/blue.png"));
+			redPawn = ImageIO.read(new File("./ressources/red.png"));
+			square = ImageIO.read(new File("./ressources/empty.png"));
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -43,31 +43,27 @@ public class testPanel extends JPanel {
 		this.setLayout(gl);
 		for (int i = 0 ;i < 9;i++){
 			for (int j = 0; j< 9;j++){
-				Case bouton =new Case(new ImageIcon(square));
+				Case bouton =new Case(i,j);
 				tabCases[i][j] =bouton;
 				this.add(bouton);
 			}
 		}
+		this.setOpaque(false);
 		this.setPreferredSize(new Dimension(850,700));
+		for (int i = 0;i < 9 ;i++){
+			for (int j = 0; j < 9;j++){
+				tabCases[i][j].actualize();
+			}
+		}
 	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		for (int i =0;i < 9;i++){
-			for (int j = 0 ; j < 9;j++){
-				if (!realTab[i][j].isEmpty()){
-					System.out.println("Je suis occupe");
-					if (board.Board.getFirstPlayer().getX() == i && board.Board.getFirstPlayer().getY()== j){
-						tabCases[i][j].setIcon(new ImageIcon(redPawn));
-					}
-					else{
-						tabCases[i][j].setIcon(new ImageIcon(bluePawn));
-					}
-				}
-				else{
-					tabCases[i][j].setIcon(new ImageIcon(square));
-				}
+		for (int i = 0;i < 9 ;i++){
+			for (int j = 0; j < 9;j++){
+				tabCases[i][j].actualize();
 			}
 		}
 	}
+	
 }

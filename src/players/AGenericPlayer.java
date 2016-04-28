@@ -7,7 +7,7 @@ import board.Case;
  * Cette classe modélise le comportement de n'impote quel joueur(qu'il soit humain ou IA).
  * @author Eduardo Dom
  */
-public abstract class AGenericPlayer implements IPlayer {
+public abstract class AGenericPlayer {
 	public static Case[][] plateau = Board.getTableau();
 	protected int x;
 	protected int y;
