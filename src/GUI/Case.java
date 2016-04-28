@@ -22,11 +22,15 @@ public class Case extends JButton{
 	public Case(Icon img){
 		super(img);
 		this.setSize(60, 60);
-		this.setPreferredSize(new Dimension(60,60));
+		this.setPreferredSize(new Dimension(65,60));
 		this.setFocusPainted(false);
 		this.setMargin(null);
-		this.setBorder(BorderFactory.createEmptyBorder()); 
-		this.setContentAreaFilled(false); 
+		this.setBorder(BorderFactory.createEmptyBorder());
+		this.setContentAreaFilled(false);
+		this.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				getRootPane().repaint();
+			}
+		});
 	}
-	
 }

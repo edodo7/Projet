@@ -23,10 +23,10 @@ public class MyPannel extends JPanel {
 		this.removeAll();
 		super.paintComponent(g);
 		try{
-			Image background = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/vault boy.jpg"));
-			Image square = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/blue.png"));
-			Image square2 = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/red.png"));
-			Image square3 = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/empty.png"));
+			Image background = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/vault boy.jpg"));
+			Image square = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/blue.png"));
+			Image square2 = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/red.png"));
+			Image square3 = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/empty.png"));
 			/*Image wallV = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/wallV.png"));
 			Image wallH = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/wallH.png"));*/
 			g.drawImage(background,0, 0, this.getWidth(), this.getHeight(),this);

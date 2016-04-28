@@ -10,11 +10,10 @@ import board.Board;
 
 public class MyFrame extends JFrame {
 	public MyFrame() {
-		this.setTitle("Fenêtre d'Eduardo");
+		this.setTitle("Fenï¿½tre d'Eduardo");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1280,1280);
 		this.setLocationRelativeTo(null);
-		this.setLayout(new BorderLayout());
 		this.setLayout(new BorderLayout());
 		this.add(new testPanel(),BorderLayout.WEST);
 		JPanel pan = new JPanel();
@@ -24,8 +23,5 @@ public class MyFrame extends JFrame {
 		this.add(pan,BorderLayout.EAST);
 		this.setMinimumSize(new Dimension(1000,1000));
 		this.setVisible(true);
-		while(true){
-			this.getContentPane().repaint();
-		}
 	}
 }

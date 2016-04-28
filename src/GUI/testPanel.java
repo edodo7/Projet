@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import board.Board;
 
 public class testPanel extends JPanel {
+	
 	Image bluePawn;
 	Image redPawn;
 	Image square;
@@ -27,9 +28,9 @@ public class testPanel extends JPanel {
 	
 	public testPanel(){
 		try{
-			bluePawn = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/blue.png"));
-			redPawn = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/red.png"));
-			square = ImageIO.read(new File("C:/Users/Eduardo/Desktop/ressources/empty.png"));
+			bluePawn = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/blue.png"));
+			redPawn = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/red.png"));
+			square = ImageIO.read(new File("/home/umons.ac.be/161974/Projet/ressources/empty.png"));
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -42,11 +43,12 @@ public class testPanel extends JPanel {
 		this.setLayout(gl);
 		for (int i = 0 ;i < 9;i++){
 			for (int j = 0; j< 9;j++){
-				tabCases[i][j] = new Case(new ImageIcon(square));
-				this.add(new Case(new ImageIcon(square)));
+				Case bouton =new Case(new ImageIcon(square));
+				tabCases[i][j] =bouton;
+				this.add(bouton);
 			}
 		}
-		this.setPreferredSize(new Dimension(700,700));
+		this.setPreferredSize(new Dimension(850,700));
 	}
 	
 	public void paintComponent(Graphics g){
@@ -54,6 +56,7 @@ public class testPanel extends JPanel {
 		for (int i =0;i < 9;i++){
 			for (int j = 0 ; j < 9;j++){
 				if (!realTab[i][j].isEmpty()){
+					System.out.println("Je suis occupe");
 					if (board.Board.getFirstPlayer().getX() == i && board.Board.getFirstPlayer().getY()== j){
 						tabCases[i][j].setIcon(new ImageIcon(redPawn));
 					}
