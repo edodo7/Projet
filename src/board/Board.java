@@ -7,7 +7,7 @@ import players.HardAI;
 import players.HumanPlayer;
 
 /**
- * Cette classe permet de modéliser le plateau de jeu ainsi que les joueurs qui y sont présents(Qu'ils soient humains ou IA)
+ * Cette classe permet de modeliser le plateau de jeu ainsi que les joueurs qui y sont presents(Qu'ils soient humains ou IA)
  * @author Eduardo Dom
  *
  */
@@ -61,55 +61,17 @@ public class Board
 	}
 
 	
-	/*public void whatKindOfPlayers(){
-		System.out.println("Quelle genre de partie voulez vous?");
-		System.out.println("1 : IA vs joueur humain");
-		System.out.println("2 : joueur humain vs joueur humain");
-		System.out.println("3 : IA vs IA");
-		System.out.println("Entrez le numéro correspondant à votre choix.");
-		Scanner question = new Scanner(System.in);
-		int reponse = question.nextInt();
-		if (reponse == 1){
-			System.out.println("Quel genre d'IA voulez vous?");
-			System.out.println("1 : Aléatoire");
-			System.out.println("2 : Difficile");
-			System.out.println("Entrez le numéro correspondant à votre choix.");
-			int reponse2 = question.nextInt();
-			if (reponse2 == 1){
-				joueur1 = new RandomAI(true);
-				joueur2 = new HumanPlayer(false);
-			}
-			else{
-				joueur1 = new HardAI(true);
-				joueur2 = new HumanPlayer(false);
-			}
-		}
-		if (reponse == 2){
-			joueur1 = new HumanPlayer(true);
-			joueur2 = new HumanPlayer(false);
-		}
-		if (reponse == 3){
-			System.out.println("Quelle genre de partie voulez vous?");
-			System.out.println("1 : IA aléatoire vs IA aléatoire");
-			System.out.println("2 : IA difficile vs IA aléatoire");
-			System.out.println("3 : IA difficile vs IA difficile");
-			System.out.println("Entrez le numéro correspondant à votre choix.");
-			int reponse3 = question.nextInt();
-			if (reponse3 == 1){
-				joueur1 = new RandomAI(true);
-				joueur2 = new RandomAI(false);
-			}
-			else if (reponse3 == 2){
-				joueur1 = new HardAI(true);
-				joueur2 = new RandomAI(false);
-			}
-			else{
-				joueur1 = new HardAI(true);
-				joueur2 = new HardAI(false);
-			}
-		}
-	}*/
-
+	public void setTableau(Case[][] tableau){
+		this.tableau = tableau;
+	}
+	
+	public void setFirstPlayer(AGenericPlayer joueur1){
+		Board.joueur1 = joueur1;
+	}
+	
+	public void setSecondPlayer(AGenericPlayer joueur2){
+		Board.joueur2 = joueur2;
+	}
 
 	public static Case[][] getTableau()
 	{

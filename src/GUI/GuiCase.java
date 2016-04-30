@@ -18,7 +18,7 @@ import players.HumanPlayer;
 
 import java.io.IOException;
 
-public class Case extends JButton{
+public class GuiCase extends JButton{
 	
 	public static ImageIcon bluePawn;
 	public static ImageIcon redPawn;
@@ -27,7 +27,7 @@ public class Case extends JButton{
 	private int y;
 	public static AGenericPlayer joueur1 = Board.getFirstPlayer();
 	public static AGenericPlayer joueur2 = Board.getSecondPlayer();
-	public Case(int x,int y){
+	public GuiCase(int x,int y){
 		this.x = x;
 		this.y = y;
 		try{
@@ -44,7 +44,7 @@ public class Case extends JButton{
 		this.setMargin(null);
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
-		this.addActionListener(new personalListener());
+		this.addActionListener(new MoveListener(this.x,this.y,this));
 	}
 	
 	public void actualize (){
@@ -59,12 +59,4 @@ public class Case extends JButton{
 		}
 	}
 	
-	 private class personalListener implements ActionListener {
-		public void actionPerformed(ActionEvent e){
-			System.out.println("Je suis cliqué");
-			HumanPlayer joueur1 = (HumanPlayer) Board.getSecondPlayer();
-			joueur1.move(1,5);
-			getRootPane().repaint();
-		}
-	}
 }

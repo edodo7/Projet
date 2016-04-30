@@ -42,7 +42,7 @@ public class HardAI extends AGenericPlayer{
 		AIpath = new PathFinding(plateau[x][y],isFirstPlayer);
 	}
 	
-	protected void move(int i,int j){
+	public void move(int i,int j){
 		plateau[x][y].setEmpty(true);
 		x = i;
 		y = j;
@@ -53,7 +53,7 @@ public class HardAI extends AGenericPlayer{
 	 * @param CasesPath L'ArrayList contenant le plus court chemin de l'adversaire
 	 * @return true  si un mur a été placé et false sinon
 	 */
-	protected boolean blockPath(ArrayList<Case> CasesPath){
+	public boolean blockPath(ArrayList<Case> CasesPath){
 		Case lastCase = null;
 		boolean sameLine = false;
 		int casesSameLine = 0;

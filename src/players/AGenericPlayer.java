@@ -78,26 +78,26 @@ public abstract class AGenericPlayer {
 			plateau[i+1][j-1].setEdgeUpBegin(true);
 		}
 	}
-	protected void moveRight()
+	public void moveRight()
 	{
 		plateau[x][y].setEmpty(true);
 		y++;
 		plateau[x][y].setEmpty(false);
 	}
 	
-	protected void moveLeft(){
+	public void moveLeft(){
 		plateau[x][y].setEmpty(true);
 		y--;
 		plateau[x][y].setEmpty(false);
 	}
 	
-	protected void moveUp(){
+	public void moveUp(){
 		plateau[x][y].setEmpty(true);
 		x--;
 		plateau[x][y].setEmpty(false);
 	}
 	
-	protected void moveDown(){
+	public void moveDown(){
 		plateau[x][y].setEmpty(true);
 		x++;
 		plateau[x][y].setEmpty(false);

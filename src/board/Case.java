@@ -2,7 +2,7 @@ package board;
 /**
  * @author Eduardo Dom
  */
-public class Case implements Cloneable
+public class Case 
 {
 	private boolean empty;
 	private boolean EdgeLeftBegin;
@@ -31,9 +31,6 @@ public class Case implements Cloneable
 		this.y = y;
 	}
 	
-	public Case clone() throws CloneNotSupportedException{
-		return (Case) super.clone();
-	}
 	
 	public boolean isEmpty() {
 		return empty;

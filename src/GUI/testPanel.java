@@ -22,7 +22,7 @@ public class testPanel extends JPanel {
 	Image bluePawn;
 	Image redPawn;
 	Image square;
-	Case[][] tabCases = new Case[9][9];
+	GuiCase[][] tabCases = new GuiCase[9][9];
 	board.Case[][] realTab = Board.getTableau();
 	
 	
@@ -43,7 +43,7 @@ public class testPanel extends JPanel {
 		this.setLayout(gl);
 		for (int i = 0 ;i < 9;i++){
 			for (int j = 0; j< 9;j++){
-				Case bouton =new Case(i,j);
+				GuiCase bouton =new GuiCase(i,j);
 				tabCases[i][j] =bouton;
 				this.add(bouton);
 			}
@@ -56,7 +56,6 @@ public class testPanel extends JPanel {
 			}
 		}
 	}
-	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		for (int i = 0;i < 9 ;i++){
@@ -65,5 +64,6 @@ public class testPanel extends JPanel {
 			}
 		}
 	}
+	
 	
 }

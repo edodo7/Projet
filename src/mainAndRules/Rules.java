@@ -22,7 +22,7 @@ public class Rules{
     
     public static  boolean canMove(Case case1,Case case2){
         if (case1.getX() - case2.getX() == 1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en haut de la case1
-            if (case2.isEdgeDownBegin() || case2.isEdgeDownEnd()){
+            if (case2.isEdgeDownBegin() || case2.isEdgeDownEnd()|| !case2.isEmpty()){
                 return false;
             }
             else{
@@ -30,7 +30,7 @@ public class Rules{
             }
         }
         else if (case1.getX() - case2.getX() == -1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en bas de la case1
-            if(case2.isEdgeUpBegin() || case2.isEdgeUpEnd()){
+            if(case2.isEdgeUpBegin() || case2.isEdgeUpEnd()|| !case2.isEmpty()){
                 return false;
             }
             else{
@@ -38,7 +38,7 @@ public class Rules{
             }
         }
         else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == -1 ){//On regarde si la case2 est à droite de la case1
-            if (case2.isEdgeLeftBegin() || case2.isEdgeLeftEnd()){
+            if (case2.isEdgeLeftBegin() || case2.isEdgeLeftEnd()|| !case2.isEmpty()){
                 return false;
             }
             else{
@@ -46,7 +46,7 @@ public class Rules{
             }
         }
         else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == 1){//On regarde si la case2 est à gauche de la case1
-            if (case2.isEdgeRightBegin() || case2.isEdgeRightEnd()){
+            if (case2.isEdgeRightBegin() || case2.isEdgeRightEnd()|| !case2.isEmpty()){
                 return false;
             }
             else{

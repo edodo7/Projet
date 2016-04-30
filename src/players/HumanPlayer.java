@@ -26,7 +26,7 @@ public class HumanPlayer extends AGenericPlayer
 	
 
 	
-	protected void move()
+	public void move()
 	{
 		boolean continuer = true;
 		while (continuer){
@@ -59,12 +59,22 @@ public class HumanPlayer extends AGenericPlayer
 		}
 	}
 	
-	public void move(int i,int j){
-		plateau[this.x][this.y].setEmpty(true);
-		plateau[i][j].setEmpty(false);
+	public boolean move(int i,int j){
+		if (Rules.canMove(plateau[this.x][this.y], plateau[i][j])){
+			plateau[x][y].setEmpty(true);
+			this.x = i;
+			this.y = j;
+			plateau[this.x][this.y].setEmpty(false);
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
-	protected void setWall(int i,int j) throws IOException
+
+	
+	public void setWall(int i,int j) throws IOException
 	{
 		Scanner wall = new Scanner(System.in);
 		System.out.println("Voulez-vous un mur horizontal? Oui[O] ou Non[N]");

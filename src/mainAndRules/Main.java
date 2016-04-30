@@ -90,7 +90,6 @@ public class Main {
 		}
 		boolean continuer = true;
 		while(continuer){
-			frame.repaint();
 			try{
 				if (tourJoueur1 && continuer){
 					System.out.println(board);

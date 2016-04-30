@@ -32,7 +32,7 @@ public class RandomAI extends AGenericPlayer{
 	
 	
 	
-	protected void move(int i,int j){
+	public void move(int i,int j){
 		plateau[x][y].setEmpty(true);
 		x = i;
 		y = j;
