@@ -27,5 +27,4 @@ public class MoveListener implements ActionListener{
 			//System.out.println("joueur ne s'est pas déplacé");
 		}
 	}
-
 }
