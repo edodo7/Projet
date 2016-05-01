@@ -36,11 +36,11 @@ public class testPanel extends JPanel {
 		GridLayout gl = new GridLayout();
 		gl.setColumns(16);
 		gl.setRows(16);
-		gl.setHgap(5);
-		gl.setVgap(5);
+		gl.setHgap(0);
+		gl.setVgap(0);
 		this.setLayout(gl);
-		for (int i = 0 ;i < 16;i++){
-			for (int j = 0; j< 16;j++){
+		for (int i = 0 ;i <= 16;i++){
+			for (int j = 0; j<= 16;j++){
 				if(i % 2 == 0){
 					if (j % 2 == 0){
 						GuiCase bouton = new GuiCase(i/2,j/2);
@@ -48,14 +48,14 @@ public class testPanel extends JPanel {
 						this.add(bouton);
 					}
 					else{
-						GuiWall VerticalWall = new GuiWall(i/2,j-1,true);
+						GuiWall VerticalWall = new GuiWall(i/2,j/2,true);
 						tabWalls.add(VerticalWall);
 						this.add(VerticalWall);
 					}
 				}
 				else{
 					if(j % 2 == 0){
-						GuiWall HorizontalWall = new GuiWall(i-1,j/2,false);
+						GuiWall HorizontalWall = new GuiWall(i/2,j/2,false);
 						tabWalls.add(HorizontalWall);
 						this.add(HorizontalWall);
 					}
@@ -66,12 +66,12 @@ public class testPanel extends JPanel {
 			}
 		}
 		this.setOpaque(false);
-		this.setPreferredSize(new Dimension(850,700));
+		this.setPreferredSize(new Dimension(1000,1000));
 		for (int i = 0;i < tabCases.size() ;i++){
 			tabCases.get(i).actualize();
 		}
 		for (int i = 0;i < tabWalls.size();i++){
-			tabWalls.get(i).actuaize();
+			tabWalls.get(i).actualize();
 		}
 	}
 	
@@ -81,7 +81,7 @@ public class testPanel extends JPanel {
 			tabCases.get(i).actualize();
 		}
 		for (int i = 0;i < tabWalls.size();i++){
-			tabWalls.get(i).actuaize();
+			tabWalls.get(i).actualize();
 		}
 	}
 	

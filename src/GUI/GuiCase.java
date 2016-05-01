@@ -40,22 +40,22 @@ public class GuiCase extends JButton{
 		}
 		this.setSize(60, 60);
 		this.setPreferredSize(new Dimension(65,60));
-		this.setFocusPainted(false);
+		/*this.setFocusPainted(false);
 		this.setMargin(null);
 		this.setBorder(BorderFactory.createEmptyBorder());
-		this.setContentAreaFilled(false);
+		this.setContentAreaFilled(false);*/
 		this.addActionListener(new MoveListener(this.x,this.y,this));
 	}
 	
 	public void actualize (){
 		if (this.x == joueur1.getX() && this.y == joueur1.getY() ){
-			this.setIcon(redPawn);
+			this.setText("Hello");
 		}
 		else if (this.x == joueur2.getX() && this.y == joueur2.getY()){
-			this.setIcon(bluePawn);
+			this.setText("Hello2");
 		}
 		else{
-			this.setIcon(square);
+			this.setText("Hello3");
 		}
 	}
 	
