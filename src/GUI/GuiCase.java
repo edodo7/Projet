@@ -38,8 +38,25 @@ public class GuiCase extends JButton{
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		this.setSize(60, 60);
-		this.setPreferredSize(new Dimension(65,60));
+		this.setPreferredSize(new Dimension(62,62));
+		this.setFocusPainted(false);
+		this.setMargin(null);
+		this.setBorder(BorderFactory.createEmptyBorder());
+		this.setContentAreaFilled(false);
+		this.addActionListener(new MoveListener(this.x,this.y,this));
+	}
+	
+	public GuiCase(){
+		try{
+			bluePawn = new ImageIcon(ImageIO.read(new File("./ressources/blue.png")));
+			redPawn = new ImageIcon(ImageIO.read(new File("./ressources/red.png")));
+			square = new ImageIcon(ImageIO.read(new File("./ressources/empty.png")));
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+		this.setIcon(square);
+		this.setPreferredSize(new Dimension(62,62));
 		this.setFocusPainted(false);
 		this.setMargin(null);
 		this.setBorder(BorderFactory.createEmptyBorder());

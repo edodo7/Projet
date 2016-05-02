@@ -6,7 +6,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.Border;
 
 import board.Board;
 
@@ -16,9 +21,13 @@ public class MyFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1280,1280);
 		this.setLocationRelativeTo(null);
-		MyPannel background = new MyPannel();
+		JPanel background = new MyPannel();
 		background.setLayout(new BorderLayout());
-		background.add(new testPanel(),BorderLayout.WEST);
+		JPanel nordEst = new JPanel();
+		nordEst.setOpaque(false);
+		nordEst.setLayout(new BorderLayout());
+		nordEst.add(new testPanel(),BorderLayout.WEST);
+		background.add(nordEst,BorderLayout.NORTH);
 		JPanel pan = new JPanel();
 		pan.setOpaque(false);
 		pan.setLayout(new BoxLayout(pan,BoxLayout.Y_AXIS));
