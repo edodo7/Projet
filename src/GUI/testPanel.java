@@ -1,7 +1,10 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
@@ -9,17 +12,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import board.Board;
+import mainAndRules.Main;
 
 public class testPanel extends JPanel {
+	
 	
 	private Image bluePawn;
 	private Image redPawn;
 	private Image square;
-	private ArrayList<GuiCase> tabCases = new ArrayList();
+	private GuiCase[][] tabCases = new GuiCase[9][9];
 	private board.Case[][] realTab = Board.getTableau();
 	private ArrayList<GuiWall> tabWalls = new ArrayList();
 	
@@ -33,57 +40,59 @@ public class testPanel extends JPanel {
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		GridLayout gl = new GridLayout();
-		gl.setColumns(16);
-		gl.setRows(16);
-		gl.setHgap(0);
-		gl.setVgap(0);
-		this.setLayout(gl);
-		for (int i = 0 ;i <= 16;i++){
-			for (int j = 0; j<= 16;j++){
-				if(i % 2 == 0){
-					if (j % 2 == 0){
-						GuiCase bouton = new GuiCase(i/2,j/2);
-						tabCases.add(bouton);
-						this.add(bouton);
-					}
-					else{
-						GuiWall VerticalWall = new GuiWall(i/2,j/2,true);
-						tabWalls.add(VerticalWall);
-						this.add(VerticalWall);
-					}
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		for (int i = 0; i < 9;i++){
+				gbc.gridx = 0;
+				if(i != 0){
+					gbc.gridy += 2;
 				}
-				else{
-					if(j % 2 == 0){
-						GuiWall HorizontalWall = new GuiWall(i/2,j/2,false);
-						tabWalls.add(HorizontalWall);
-						this.add(HorizontalWall);
-					}
-					else{
-						this.add(new JLabel(""));
-					}
-				}
+			for(int j = 0; j < 9;j++){
+				gbc.gridheight = 1;
+				gbc.gridwidth = 1;
+				GuiCase bouton = new GuiCase(i,j);
+				tabCases[i][j] = bouton;
+				//System.out.println("x : "+gbc.gridx+" y :"+gbc.gridy);
+				this.add(bouton, gbc);
+				GuiWall VWall = new GuiWall(i,j,true);
+				GuiWall HWall = new GuiWall(i,j,false);
+				VWall.addActionListener(new WallListener(i, j));
+				HWall.addActionListener(new WallListener(i, j));
+				tabWalls.add(VWall);
+				tabWalls.add(HWall);
+				gbc.gridx += 1;
+				gbc.gridheight = 2;
+				gbc.gridwidth = 1;
+				gbc.fill = GridBagConstraints.VERTICAL;
+				this.add(VWall, gbc);
+				gbc.gridx -= 1;
+				gbc.gridy += 1;
+				gbc.gridheight = 1;
+				gbc.gridwidth = 2;
+				gbc.fill = GridBagConstraints.HORIZONTAL;
+				this.add(HWall, gbc);
+				gbc.gridx += 2;
+				gbc.gridy -= 1;
+				
 			}
 		}
-		this.setOpaque(false);
-		this.setPreferredSize(new Dimension(1000,1000));
-		for (int i = 0;i < tabCases.size() ;i++){
-			tabCases.get(i).actualize();
+		this.setBackground(new Color(0,0,0,0));
+		this.setVisible(true);
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		for (int i = 0;i < tabCases.length ;i++){
+			for (int j = 0;j < tabCases[0].length ;j++){
+				tabCases[i][j].actualize();
+			}
 		}
 		for (int i = 0;i < tabWalls.size();i++){
 			tabWalls.get(i).actualize();
 		}
 	}
 	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		for (int i = 0;i < tabCases.size() ;i++){
-			tabCases.get(i).actualize();
-		}
-		for (int i = 0;i < tabWalls.size();i++){
-			tabWalls.get(i).actualize();
-		}
-	}
 	
 	
 }
