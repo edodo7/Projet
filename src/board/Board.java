@@ -128,25 +128,6 @@ public class Board
 		}
 	}
 	
-	public void answerToPutWallRight(){
-		
-	}
-	
-	public void answerToPutWallLeft(){
-		
-	}
-	
-	public void answerToPutWallDown(){
-		
-	}
-	
-	public void answerToPutWallUp(){
-		
-	}
-	
-	public void answerToMove(){
-		
-	}
 
 	
 	public void setTableau(Case[][] tableau){
