@@ -44,15 +44,16 @@ public class GuiWall extends JButton{
 		this.setFocusPainted(false);
 		this.setMargin(null);
 		this.setBorder(BorderFactory.createEmptyBorder());
+		this.addActionListener(new WallListener(this.x,this.y));
 		this.setVisible(true);
 	}
 	
 	
 	public void actualize(){
-		if ((realTab[this.x][this.y].isEdgeRightBegin() ||realTab[this.x][this.y].isEdgeRightEnd()&& isVertical)){
-			//this.setBackground(Color.BLACK);
+		if ((realTab[this.x][this.y].isEdgeRightBegin() ||realTab[this.x][this.y].isEdgeRightEnd())&& isVertical){
+			this.setBackground(Color.BLACK);
 		}
-		else if((realTab[this.x][this.y].isEdgeDownBegin() ||realTab[this.x][this.y].isEdgeDownEnd()&& !isVertical)){
+		else if((realTab[this.x][this.y].isEdgeDownBegin() ||realTab[this.x][this.y].isEdgeDownEnd())&& !isVertical){
 			this.setBackground(Color.BLACK);
 		}
 		else{
