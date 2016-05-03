@@ -36,29 +36,30 @@ public class GuiWall extends JButton{
 			e.printStackTrace();
 		}
 		if (isVertical){
-			this.setPreferredSize(new Dimension(15,100));
+			this.setPreferredSize(new Dimension(15,90));
 		}
 		else{
-			this.setPreferredSize(new Dimension(100,15));
+			this.setPreferredSize(new Dimension(90,15));
 		}
 		this.setEnabled(true);
-		this.setBackground(new Color(0,0,0,0));
+		/*this.setBackground(new Color(0,0,0,0));
 		this.setFocusPainted(false);
 		this.setMargin(null);
-		this.setBorder(BorderFactory.createEmptyBorder());
+		this.setBorder(BorderFactory.createEmptyBorder());*/
+		this.addActionListener(new WallListener(this.x,this.y,isVertical));
 		this.setVisible(true);
 	}
 	
 	
 	public void actualize(){
-		if ((realTab[this.x][this.y].isEdgeRightBegin() ||realTab[this.x][this.y].isEdgeRightEnd()&& isVertical)){
-			//this.setBackground(Color.BLACK);
+		if ((realTab[this.x][this.y].isEdgeRightBegin() ||realTab[this.x][this.y].isEdgeRightEnd())&& isVertical){
+			this.setBackground(Color.BLACK);
 		}
-		else if((realTab[this.x][this.y].isEdgeDownBegin() ||realTab[this.x][this.y].isEdgeDownEnd()&& !isVertical)){
+		else if((realTab[this.x][this.y].isEdgeDownBegin() ||realTab[this.x][this.y].isEdgeDownEnd())&& !isVertical){
 			this.setBackground(Color.BLACK);
 		}
 		else{
-			this.setBackground(new Color(0,0,0,0));;
+			//this.setBackground(new Color(0,0,0,0));;
 		}
 	}
 }
