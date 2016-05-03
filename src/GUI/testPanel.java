@@ -57,8 +57,8 @@ public class testPanel extends JPanel {
 				this.add(bouton, gbc);
 				GuiWall VWall = new GuiWall(i,j,true);
 				GuiWall HWall = new GuiWall(i,j,false);
-				VWall.addActionListener(new WallListener(i, j));
-				HWall.addActionListener(new WallListener(i, j));
+				/*VWall.addActionListener(new WallListener(i, j));
+				HWall.addActionListener(new WallListener(i, j));*/
 				tabWalls.add(VWall);
 				tabWalls.add(HWall);
 				gbc.gridx += 1;
