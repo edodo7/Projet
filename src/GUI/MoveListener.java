@@ -1,10 +1,10 @@
 package GUI;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import board.Board;
+import players.AGenericPlayer;
 import players.HumanPlayer;
 
 public class MoveListener implements ActionListener{
@@ -12,19 +12,26 @@ public class MoveListener implements ActionListener{
 	private int x;
 	private int y;
 	private GuiCase myCase;
+	private static AGenericPlayer joueur1;
+	private static  AGenericPlayer joueur2;
 	public MoveListener(int x,int y,GuiCase myCase){
 		this.x = x;
 		this.y = y;
 		this.myCase = myCase;
+		joueur1 = Board.getFirstPlayer();
+		joueur2 = Board.getSecondPlayer();
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		HumanPlayer joueur1 = (HumanPlayer) Board.getSecondPlayer();
-		if (joueur1.move(this.x, this.y)){
-			//System.out.println("joueur déplacé");
+		if(Main.tourJoueur1){
+			if (joueur1.move(this.x, this.y)){
+				Main.tourJoueur1 = false;
+			}
 		}
 		else{
-			//System.out.println("joueur ne s'est pas déplacé");
+			if (joueur2.move(this.x, this.y)){
+				Main.tourJoueur1 = true;
+			}
 		}
 	}
 }

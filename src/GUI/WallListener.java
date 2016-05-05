@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import board.Board;
 import board.Case;
+import mainAndRules.Rules;
+import players.AGenericPlayer;
 import players.HumanPlayer;
 
 public class WallListener implements ActionListener {   
@@ -12,7 +14,8 @@ public class WallListener implements ActionListener {
 	private int x;
 	private int y;
 	private boolean isVertical;
-	private static HumanPlayer joueur2 = (HumanPlayer) Board.getSecondPlayer();
+	private static AGenericPlayer joueur2 = Board.getSecondPlayer();
+	private static AGenericPlayer joueur1 = Board.getFirstPlayer();
 	private static Case[][] realTab = Board.getTableau();
 	
 	public WallListener(int x,int y,boolean isVertical){
@@ -22,12 +25,33 @@ public class WallListener implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		//System.out.println("x : "+this.x+"\n"+"y : "+this.y + "\n"+"Mur Vertical : "+isVertical);
 		if (isVertical){
-			joueur2.putWallRight(realTab[x][y]);
+			if(Main.tourJoueur1){
+				if ( Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y])){
+					joueur1.putWallRight(Board.getTableau()[x][y]);
+					Main.tourJoueur1 = false;
+				}
+			}
+			else{
+				if (Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y])){
+					joueur2.putWallRight(Board.getTableau()[x][y]);
+					Main.tourJoueur1 = true;
+				}
+			}
 		}
 		else{
-			joueur2.putWallDown(realTab[x][y]);
+			if(Main.tourJoueur1){
+				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y])){
+					joueur1.putWallDown(Board.getTableau()[x][y]);
+					Main.tourJoueur1 = false;
+				}
+			}
+			else{
+				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y])){
+					joueur2.putWallDown(Board.getTableau()[x][y]);
+					Main.tourJoueur1 = true;
+				}
+			}
 		}
 	}
 }

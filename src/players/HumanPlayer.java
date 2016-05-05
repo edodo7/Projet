@@ -1,4 +1,5 @@
 package players;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class HumanPlayer extends AGenericPlayer
 		}
 		else{
 			this.x = 8;
-			this.y =4;
+			this.y = 4;
 		}
 	}
 	

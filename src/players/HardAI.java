@@ -42,11 +42,12 @@ public class HardAI extends AGenericPlayer{
 		AIpath = new PathFinding(plateau[x][y],isFirstPlayer);
 	}
 	
-	public void move(int i,int j){
+	public boolean move(int i,int j){
 		plateau[x][y].setEmpty(true);
 		x = i;
 		y = j;
 		plateau[x][y].setEmpty(false);
+		return true;
 	}
 	/**
 	 * Cette méthode permet de bloquer le chemin de l'adversaire si c'est possible

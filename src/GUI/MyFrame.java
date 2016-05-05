@@ -35,10 +35,9 @@ public class MyFrame extends JFrame {
 		start.setLayout(new BorderLayout());
 		start.add(build(),BorderLayout.SOUTH);
 		contentPane.add(start, BorderLayout.CENTER);
-		this.setVisible(true);
 		Timer timer = new Timer(96,new Repaint());
 		timer.start();
-		
+		this.setVisible(true);
 	}
 	
 	
@@ -67,13 +66,10 @@ public class MyFrame extends JFrame {
 		JPanel nordEst = new JPanel();
 		nordEst.setOpaque(false);
 		nordEst.setLayout(new BorderLayout());
-		nordEst.add(new testPanel(),BorderLayout.WEST);
+		nordEst.add(new GamePanel(),BorderLayout.WEST);
 		background.add(nordEst,BorderLayout.NORTH);
 		JPanel pan = new JPanel();
 		pan.setOpaque(false);
-		pan.setLayout(new BoxLayout(pan,BoxLayout.Y_AXIS));
-		pan.add(new JButton("Move"));
-		pan.add(new JButton("Wall"));
 		background.add(pan,BorderLayout.EAST);
 		return background;
 	}

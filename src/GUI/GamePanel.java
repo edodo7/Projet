@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import board.Board;
 import mainAndRules.Main;
 
-public class testPanel extends JPanel {
+public class GamePanel extends JPanel {
 	
 	private Image bluePawn;
 	private Image redPawn;
@@ -30,7 +30,7 @@ public class testPanel extends JPanel {
 	private ArrayList<GuiWall> tabWalls = new ArrayList<GuiWall>();
 	
 	
-	public testPanel(){
+	public GamePanel(){
 		try{
 			bluePawn = ImageIO.read(new File("./ressources/blue.png"));
 			redPawn = ImageIO.read(new File("./ressources/red.png"));

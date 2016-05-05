@@ -32,11 +32,12 @@ public class RandomAI extends AGenericPlayer{
 	
 	
 	
-	public void move(int i,int j){
+	public boolean move(int i,int j){
 		plateau[x][y].setEmpty(true);
 		x = i;
 		y = j;
 		plateau[x][y].setEmpty(false);
+		return true;
 	}
 	
 	public void play()throws IOException{

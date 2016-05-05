@@ -121,4 +121,5 @@ public abstract class AGenericPlayer {
 		y = new_y;
 	}
 	public abstract void play()throws IOException;
+	public abstract boolean move(int x,int y);
 }
