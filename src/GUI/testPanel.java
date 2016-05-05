@@ -22,13 +22,12 @@ import mainAndRules.Main;
 
 public class testPanel extends JPanel {
 	
-	
 	private Image bluePawn;
 	private Image redPawn;
 	private Image square;
 	private GuiCase[][] tabCases = new GuiCase[9][9];
 	private board.Case[][] realTab = Board.getTableau();
-	private ArrayList<GuiWall> tabWalls = new ArrayList();
+	private ArrayList<GuiWall> tabWalls = new ArrayList<GuiWall>();
 	
 	
 	public testPanel(){
@@ -53,12 +52,9 @@ public class testPanel extends JPanel {
 				gbc.gridwidth = 1;
 				GuiCase bouton = new GuiCase(i,j);
 				tabCases[i][j] = bouton;
-				//System.out.println("x : "+gbc.gridx+" y :"+gbc.gridy);
 				this.add(bouton, gbc);
 				GuiWall VWall = new GuiWall(i,j,true);
 				GuiWall HWall = new GuiWall(i,j,false);
-				/*VWall.addActionListener(new WallListener(i, j));
-				HWall.addActionListener(new WallListener(i, j));*/
 				tabWalls.add(VWall);
 				tabWalls.add(HWall);
 				gbc.gridx += 1;

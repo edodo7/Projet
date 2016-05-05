@@ -120,6 +120,7 @@ public class Main {
 				System.out.println(e.getMessage());
 			}
 		}
+		//frame.dispose();
 	}
 	
 	public static Board getBoard(){
