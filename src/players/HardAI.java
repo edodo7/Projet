@@ -55,72 +55,39 @@ public class HardAI extends AGenericPlayer{
 	 * @return true  si un mur a été placé et false sinon
 	 */
 	public boolean blockPath(ArrayList<Case> CasesPath){
-		Case lastCase = null;
-		boolean sameLine = false;
-		int casesSameLine = 0;
-		int casesSameColumn = 0;
-		for (int i = 0;i < CasesPath.size();i++){//La boucle parcours la liste de chemin de l'adversaire et regarde si à un moment il y a un changement de direction(changement de ligne ou de colonne)
-			if (i == 0){
+		Case lastCase;
+		Case followingCase;
+		for (int i = 0;i < CasesPath.size();i++){
+			if (i != CasesPath.size() -1){
 				lastCase = CasesPath.get(i);
-			}
-			else if (i == 1){
-				if(CasesPath.get(i).getX() == lastCase.getX()){
-					sameLine = true;
-					casesSameLine++;
-					lastCase = CasesPath.get(i);
-				}
-				else{
-					sameLine = false;
-					casesSameColumn++;
-					lastCase = CasesPath.get(i);
-				}
-			}
-			else{
-				if (sameLine){
-					if (CasesPath.get(i).getX() == lastCase.getX()){
-						casesSameLine++;
-						lastCase = CasesPath.get(i);
-					}
-					else{//Il y a un changement de direction sur le chemin de l'adversaire
-						sameLine = false;
-						casesSameColumn++;
-						lastCase = CasesPath.get(i);
+				followingCase = CasesPath.get(i+1);
+				if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY()== -1)){//la case suivante se trouve à droite
+					if(Rules.canPutWallRight(lastCase) && Rules.canReallyPutWallRight(lastCase)){
+						putWallRight(lastCase);
+						return true;
 					}
 				}
-				else{
-					if (CasesPath.get(i).getY() == lastCase.getY()){
-						casesSameColumn++;
-						lastCase = CasesPath.get(i);
+				else if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY()== 1)){//la case se trouve à gauche
+					if(Rules.canPutWallLeft(lastCase) && Rules.canReallyPutWallLeft(lastCase)){
+						putWallLeft(lastCase);
+						return true;
 					}
-					else{//Il y a un changement de direction sur le chemin de l'adversaire
-						sameLine = true;
-						casesSameLine++;
-						lastCase = CasesPath.get(i);
-					}
+				}
+				else if((lastCase.getX() - followingCase.getX() == -1) && (lastCase.getY() - followingCase.getY()== 0)){//la case se trouve en bas
+					if(Rules.canPutWallDown(lastCase) && Rules.canReallyPutWallDown(lastCase)){
+						putWallDown(lastCase);
+						return true;
+					}	
+				}
+				else if((lastCase.getX() - followingCase.getX() == 1) && (lastCase.getY() - followingCase.getY()== 0)){
+					if(Rules.canPutWallUp(lastCase) && Rules.canReallyPutWallUp(lastCase)){
+						putWallUp(lastCase);
+						return true;
+					}	
 				}
 			}
 		}
-		if (casesSameColumn >= casesSameLine){//Il y a plus de cases sur la même ligne que de cases sur la même colonne,c'est donc plus contraignant pour l'adversaire de bloquer horizontaalement 
-			for (int i = 1; i < CasesPath.size();i++){
-				if (Rules.canPutWallDown(plateau[CasesPath.get(i).getX()][CasesPath.get(i).getY()]) && Rules.canReallyPutWallDown(plateau[CasesPath.get(i).getX()][CasesPath.get(i).getY()])){
-					putWallDown(plateau[CasesPath.get(i).getX()][CasesPath.get(i).getY()]);
-					//afficher l'endroit où on a placé un mur
-					System.out.println("L'IA difficile a placé un mur en bas de la case en position ("+CasesPath.get(i).getX()+","+ CasesPath.get(i).getY()+")");
-					return true;
-				}
-			}
-			return false;
-		}
-		else{
-			for (int i = 1; i < CasesPath.size();i++){
-				if(Rules.canPutWallLeft(plateau[CasesPath.get(i).getX()][CasesPath.get(i).getY()])&& Rules.canReallyPutWallLeft(plateau[CasesPath.get(i).getX()][CasesPath.get(i).getY()])){
-					putWallLeft(plateau[CasesPath.get(i).getX()][CasesPath.get(i).getY()]);
-					System.out.println("L'IA difficile a placé un mur à gauche de la case en position ("+CasesPath.get(i).getX()+","+ CasesPath.get(i).getY()+")");
-					return true;
-				}
-			}
-			return false;
-		}
+		return false;
 	}
 	
 	public void play() throws IOException{
@@ -144,7 +111,7 @@ public class HardAI extends AGenericPlayer{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 				}
 			}
-			/*else if (tour2){
+			else if (tour2){
 				if(blockPath(SecondPlayerListPath)){
 					tour2 = false;
 					tour3 = true;
@@ -162,7 +129,7 @@ public class HardAI extends AGenericPlayer{
 				else{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 				}
-			}*/
+			}
 			else{
 				if (SecondPlayerListPath.size()< AIListPath.size()){
 					if (blockPath(SecondPlayerListPath)){

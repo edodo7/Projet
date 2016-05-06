@@ -70,7 +70,6 @@ public class GamePanel extends JPanel {
 				this.add(HWall, gbc);
 				gbc.gridx += 2;
 				gbc.gridy -= 1;
-				
 			}
 		}
 		this.setBackground(new Color(0,0,0,0));

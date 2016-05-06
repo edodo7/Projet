@@ -1,17 +1,22 @@
 package GUI;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import board.Board;
 import players.AGenericPlayer;
+import players.HumanPlayer;
+
+import java.io.IOException;
 
 public class GuiCase extends JButton{
 	
@@ -59,9 +64,7 @@ public class GuiCase extends JButton{
 		this.addActionListener(new MoveListener(this.x,this.y,this));
 	}
 	
-	public void paintComponent(Graphics g){
-		
-	}
+	
 	
 	public void actualize (){
 		if (this.x == joueur1.getX() && this.y == joueur1.getY() ){
