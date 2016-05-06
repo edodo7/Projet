@@ -36,7 +36,6 @@ public class Main {
 			int reponse2 = question.nextInt();
 			if (reponse2 == 1){
 				joueur1 = new RandomAI(true);
-				System.out.println("bananaa");
 				joueur2 = new HumanPlayer(false);
 			}
 			else{
@@ -99,8 +98,7 @@ public class Main {
 					else{
 						System.out.println("C'est au tour du Joueur 1");
 						while(tourJoueur1){
-							System.out.println(".");
-							continue;
+							System.out.println("");
 						}
 						System.out.println("Le joueur1 a joué");
 						nbreCoupsJ1++;
@@ -116,8 +114,7 @@ public class Main {
 					}
 					else{
 						while(!tourJoueur1){
-							System.out.println(".");
-							continue;
+							System.out.println("");
 						}
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
