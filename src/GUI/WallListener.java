@@ -29,13 +29,17 @@ public class WallListener implements ActionListener {
 			if(Main.tourJoueur1){
 				if ( Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y])){
 					joueur1.putWallRight(Board.getTableau()[x][y]);
+					System.out.println("avant modif tourJoueur1");
 					Main.tourJoueur1 = false;
+					System.out.println("après modif tourJoueur1");
 				}
 			}
 			else{
 				if (Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y])){
 					joueur2.putWallRight(Board.getTableau()[x][y]);
+					System.out.println("avant modif tourJoueur1");
 					Main.tourJoueur1 = true;
+					System.out.println("après modif tourJoueur1");
 				}
 			}
 		}
@@ -43,13 +47,17 @@ public class WallListener implements ActionListener {
 			if(Main.tourJoueur1){
 				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y])){
 					joueur1.putWallDown(Board.getTableau()[x][y]);
+					System.out.println("avant modif tourJoueur1");
 					Main.tourJoueur1 = false;
+					System.out.println("après modif tourJoueur1");
 				}
 			}
 			else{
 				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y])){
 					joueur2.putWallDown(Board.getTableau()[x][y]);
+					System.out.println("avant modif tourJoueur1");
 					Main.tourJoueur1 = true;
+					System.out.println("après modif tourJoueur1");
 				}
 			}
 		}

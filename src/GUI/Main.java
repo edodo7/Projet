@@ -36,6 +36,7 @@ public class Main {
 			int reponse2 = question.nextInt();
 			if (reponse2 == 1){
 				joueur1 = new RandomAI(true);
+				System.out.println("bananaa");
 				joueur2 = new HumanPlayer(false);
 			}
 			else{
@@ -87,7 +88,7 @@ public class Main {
 			System.out.println(board);
 			System.out.println(joueur1.getClass().getName());
 			try{
-				if ((tourJoueur1) && continuer){
+				if ((tourJoueur1)){
 					if(joueur1.getClass().getName().equals("players.RandomAI")|| joueur1.getClass().getName().equals("players.HardAI")){
 						System.out.println("C'est au tour du Joueur 1");				
 						joueur1.play();
@@ -98,13 +99,14 @@ public class Main {
 					else{
 						System.out.println("C'est au tour du Joueur 1");
 						while(tourJoueur1){
+							System.out.println(".");
 							continue;
 						}
 						System.out.println("Le joueur1 a joué");
 						nbreCoupsJ1++;
 					}
 				}
-				if((!tourJoueur1) && continuer){
+				else{
 					System.out.println("C'est au tour du Joueur 2");
 					if(joueur2.getClass().getName().equals("players.RandomAI")|| joueur2.getClass().getName().equals("players.HardAI")){
 						joueur2.play();
@@ -114,6 +116,7 @@ public class Main {
 					}
 					else{
 						while(!tourJoueur1){
+							System.out.println(".");
 							continue;
 						}
 						System.out.println("Le joueur2 a joué");

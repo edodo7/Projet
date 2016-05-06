@@ -25,12 +25,16 @@ public class MoveListener implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		if(Main.tourJoueur1){
 			if (joueur1.move(this.x, this.y)){
+				System.out.println("avant modif tourJoueur1");
 				Main.tourJoueur1 = false;
+				System.out.println("après modif tourJoueur1");
 			}
 		}
 		else{
 			if (joueur2.move(this.x, this.y)){
+				System.out.println("avant modif tourJoueur1");
 				Main.tourJoueur1 = true;
+				System.out.println("après modif tourJoueur1");
 			}
 		}
 	}

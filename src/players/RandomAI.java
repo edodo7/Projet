@@ -41,6 +41,7 @@ public class RandomAI extends AGenericPlayer{
 	}
 	
 	public void play()throws IOException{
+		System.out.println("Hello");
 		Random whatChoice = new Random();
 		int WallOrMove = whatChoice.nextInt(2);
 		if (WallOrMove == 0 && nbresMurs > 0){//on place un mur 
