@@ -61,7 +61,7 @@ public class HardAI extends AGenericPlayer{
 			if (i != CasesPath.size() -1){
 				lastCase = CasesPath.get(i);
 				followingCase = CasesPath.get(i+1);
-				if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY()== -1)){//la case suivante se trouve à droite
+				if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY() == -1)){//la case suivante se trouve à droite
 					if(Rules.canPutWallRight(lastCase) && Rules.canReallyPutWallRight(lastCase)){
 						putWallRight(lastCase);
 						return true;
@@ -131,7 +131,7 @@ public class HardAI extends AGenericPlayer{
 				}
 			}
 			else{
-				if (SecondPlayerListPath.size()< AIListPath.size()){
+				if (SecondPlayerListPath.size()+3< AIListPath.size()){
 					if (blockPath(SecondPlayerListPath)){
 						nbresMurs--;
 					}
