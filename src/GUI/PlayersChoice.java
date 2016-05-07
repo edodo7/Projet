@@ -1,12 +1,17 @@
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+import javax.swing.border.Border;
 
 import board.Board;
 import players.HardAI;
@@ -24,8 +29,7 @@ public class PlayersChoice extends JFrame{
 	public static boolean notDone;
 	
 	public PlayersChoice(){
-		this.setSize(300, 300);
-		this.setContentPane(new JPanel());
+		this.setSize(1280, 1280);
 		this.setTitle("Choisissez le type de joueurs");
 		this.setLocationRelativeTo(null);
 		humanVShuman.addActionListener(new PlayerListener());
@@ -34,12 +38,19 @@ public class PlayersChoice extends JFrame{
 		randomAIVSrandomAI.addActionListener(new PlayerListener());
 		randomAIVShardAI.addActionListener(new PlayerListener());
 		hardAIVShardAI.addActionListener(new PlayerListener());
-		this.add(humanVShuman);
-		this.add(humanVSrandomAI);
-		this.add(humanVShardAI);
-		this.add(randomAIVSrandomAI);
-		this.add(randomAIVShardAI);
-		this.add(hardAIVShardAI);
+		Start contentPane = new Start();
+		contentPane.setLayout(new BorderLayout());
+		JPanel pan = new JPanel();
+		pan.setLayout(new BoxLayout(pan,BoxLayout.LINE_AXIS));
+		pan.add(humanVShuman);
+		pan.add(humanVSrandomAI);
+		pan.add(humanVShardAI);
+		pan.add(randomAIVSrandomAI);
+		pan.add(randomAIVShardAI);
+		pan.add(hardAIVShardAI);
+		pan.setOpaque(false);
+		contentPane.add(pan,BorderLayout.SOUTH);
+		this.setContentPane(contentPane);
 		this.notDone = true;
 		this.setVisible(true);
 	}

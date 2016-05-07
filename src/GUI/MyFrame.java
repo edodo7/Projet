@@ -31,10 +31,7 @@ public class MyFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.setMinimumSize(new Dimension(1000,1000));
 		contentPane.setLayout(new BorderLayout());
-		//contentPane.add(gamePanel,BorderLayout.CENTER);
-		start.setLayout(new BorderLayout());
-		start.add(build(),BorderLayout.SOUTH);
-		contentPane.add(start, BorderLayout.CENTER);
+		contentPane.add(gamePanel,BorderLayout.CENTER);
 		Timer timer = new Timer(96,new Repaint());
 		timer.start();
 		this.setVisible(true);
@@ -82,6 +79,5 @@ public class MyFrame extends JFrame {
 				MyFrame.this.contentPane.remove(start);
 			}
 		}
-	}
-	 
+	} 
 }
