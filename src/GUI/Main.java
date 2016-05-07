@@ -1,10 +1,13 @@
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Random;
-import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import board.Board;
 import players.AGenericPlayer;
@@ -14,61 +17,25 @@ import players.RandomAI;
 
 public class Main {
 
-	private AGenericPlayer joueur1;
-	private AGenericPlayer joueur2;
+	public static AGenericPlayer joueur1;
+	public static AGenericPlayer joueur2;
 	private MyFrame frame;
-	private Board board;
+	public static Board board;
+	private JFrame menuFrame;
+	private JButton humanVShuman = new JButton("joueur humain vs joueur humain");
+	private JButton humanVSrandomAI = new JButton("joueur humain vs IA facile");
+	private JButton humanVShardAI = new JButton("joueur humain vs IA difficile");
+	private JButton randomAIVSrandomAI = new JButton("IA facile vs IA facile");
+	private JButton randomAIVShardAI = new JButton("IA facile vs IA difficile");
+	private JButton hardAIVShardAI = new JButton("IA difficile vs IA difficile");
 	public static boolean tourJoueur1;
 	
 	public Main() {
-		System.out.println("Quelle genre de partie voulez vous?");
-		System.out.println("1 : IA vs joueur humain");
-		System.out.println("2 : joueur humain vs joueur humain");
-		System.out.println("3 : IA vs IA");
-		System.out.println("Entrez le numéro correspondant à votre choix.");
-		Scanner question = new Scanner(System.in);
-		int reponse = question.nextInt();
-		if (reponse == 1){
-			System.out.println("Quel genre d'IA voulez vous?");
-			System.out.println("1 : Aléatoire");
-			System.out.println("2 : Difficile");
-			System.out.println("Entrez le numéro correspondant à votre choix.");
-			int reponse2 = question.nextInt();
-			if (reponse2 == 1){
-				joueur1 = new RandomAI(true);
-				joueur2 = new HumanPlayer(false);
-			}
-			else{
-				joueur1 = new HardAI(true);
-				joueur2 = new HumanPlayer(false);
-			}
-		}
-		if (reponse == 2){
-			joueur1 = new HumanPlayer(true);
-			joueur2 = new HumanPlayer(false);
-		}
-		if (reponse == 3){
-			System.out.println("Quelle genre de partie voulez vous?");
-			System.out.println("1 : IA aléatoire vs IA aléatoire");
-			System.out.println("2 : IA difficile vs IA aléatoire");
-			System.out.println("3 : IA difficile vs IA difficile");
-			System.out.println("Entrez le numéro correspondant à votre choix.");
-			int reponse3 = question.nextInt();
-			if (reponse3 == 1){
-				joueur1 = new RandomAI(true);
-				joueur2 = new RandomAI(false);
-			}
-			else if (reponse3 == 2){
-				joueur1 = new HardAI(true);
-				joueur2 = new RandomAI(false);
-			}
-			else{
-				joueur1 = new HardAI(true);
-				joueur2 = new HardAI(false);
-			}
-		}
+		PlayersChoice choix = new PlayersChoice();
+		choix.Wait();
 		board = new Board(joueur1,joueur2);
 		this.frame = new MyFrame();
+		choix.dispose();
 	}
 	
 	public void play(){
@@ -97,10 +64,16 @@ public class Main {
 					}
 					else{
 						System.out.println("C'est au tour du Joueur 1");
-						while(tourJoueur1){
-							System.out.println("");
+						ActionThread actionJoueur1 = new ActionThread();
+						Thread t = new Thread(actionJoueur1);
+						t.start();
+						try {
+							t.join();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
 						}
 						System.out.println("Le joueur1 a joué");
+						tourJoueur1 = false;
 						nbreCoupsJ1++;
 					}
 				}
@@ -113,11 +86,17 @@ public class Main {
 						tourJoueur1 = true;
 					}
 					else{
-						while(!tourJoueur1){
-							System.out.println("");
+						ActionThread actionJoueur1 = new ActionThread();
+						Thread t = new Thread(actionJoueur1);
+						t.start();
+						try {
+							t.join();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
 						}
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
+						tourJoueur1 = true;
 					}
 				}
 			}
@@ -126,6 +105,7 @@ public class Main {
 			}
 		}
 	}
+	
 	
 	public static void main(String[] args){
 		Main main = new Main();

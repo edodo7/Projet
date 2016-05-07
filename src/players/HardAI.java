@@ -84,7 +84,7 @@ public class HardAI extends AGenericPlayer{
 					if(Rules.canPutWallUp(lastCase) && Rules.canReallyPutWallUp(lastCase)){
 						putWallUp(lastCase);
 						return true;
-					}	
+					}
 				}
 			}
 		}
