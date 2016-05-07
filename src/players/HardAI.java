@@ -3,6 +3,7 @@ package players;
  * @author Eduardo
  * Cette classe modélise L'IA Difficile
  */
+
 import java.io.IOException;
 import java.util.ArrayList;
 
