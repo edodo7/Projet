@@ -1,4 +1,5 @@
 ﻿package pathFinding;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import board.Board;
@@ -9,7 +10,7 @@ import mainAndRules.Rules;
  * @author Eduardo Dom
  * @author Pierre Zielinski
  */
-public class PathFinding {
+public class PathFinding implements Serializable{
 	
 	private Case startingCase;
 	private boolean findPath;

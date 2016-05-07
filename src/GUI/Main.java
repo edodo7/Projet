@@ -1,21 +1,17 @@
 package GUI;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import board.Board;
 import players.AGenericPlayer;
-import players.HardAI;
-import players.HumanPlayer;
-import players.RandomAI;
 
-public class Main {
+public class Main implements Serializable {
 
 	public static AGenericPlayer joueur1;
 	public static AGenericPlayer joueur2;
@@ -29,6 +25,8 @@ public class Main {
 	private JButton randomAIVShardAI = new JButton("IA facile vs IA difficile");
 	private JButton hardAIVShardAI = new JButton("IA difficile vs IA difficile");
 	public static boolean tourJoueur1;
+	private static ArrayList<Save> AllSaves;
+	private static Save lastSave;
 	
 	public Main() {
 		PlayersChoice choix = new PlayersChoice();
@@ -36,6 +34,8 @@ public class Main {
 		board = new Board(joueur1,joueur2);
 		this.frame = new MyFrame();
 		choix.dispose();
+		AllSaves = new ArrayList<Save>();
+		lastSave = new Save();
 	}
 	
 	public void play(){
@@ -60,6 +60,8 @@ public class Main {
 						joueur1.play();
 						nbreCoupsJ1++;
 						System.out.println("Le joueur1 a joué");
+						lastSave.shoot();
+						AllSaves.add(lastSave);
 						tourJoueur1 = false;
 					}
 					else{
@@ -73,6 +75,8 @@ public class Main {
 							e.printStackTrace();
 						}
 						System.out.println("Le joueur1 a joué");
+						lastSave.shoot();
+						AllSaves.add(lastSave);
 						tourJoueur1 = false;
 						nbreCoupsJ1++;
 					}
@@ -83,6 +87,8 @@ public class Main {
 						joueur2.play();
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
+						lastSave.shoot();
+						AllSaves.add(lastSave);
 						tourJoueur1 = true;
 					}
 					else{
@@ -96,6 +102,8 @@ public class Main {
 						}
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
+						lastSave.shoot();
+						AllSaves.add(lastSave);
 						tourJoueur1 = true;
 					}
 				}
@@ -105,6 +113,8 @@ public class Main {
 			}
 		}
 	}
+	
+	
 	
 	
 	public static void main(String[] args){

@@ -1,17 +1,14 @@
 package board;
-import java.util.Scanner;
+import java.io.Serializable;
 
 import players.AGenericPlayer;
-import players.RandomAI;
-import players.HardAI;
-import players.HumanPlayer;
 
 /**
  * Cette classe permet de modeliser le plateau de jeu ainsi que les joueurs qui y sont presents(Qu'ils soient humains ou IA)
  * @author Eduardo Dom
  *
  */
-public class Board
+public class Board implements Serializable
 {
 	public static Case[][] tableau = new Case[9][9];
 	private static AGenericPlayer joueur1;
@@ -131,7 +128,7 @@ public class Board
 
 	
 	public void setTableau(Case[][] tableau){
-		this.tableau = tableau;
+		Board.tableau = tableau;
 	}
 	
 	public void setFirstPlayer(AGenericPlayer joueur1){

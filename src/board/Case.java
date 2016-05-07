@@ -1,8 +1,11 @@
 package board;
+
+import java.io.Serializable;
+
 /**
  * @author Eduardo Dom
  */
-public class Case 
+public class Case implements Serializable
 {
 	private boolean empty;
 	private boolean EdgeLeftBegin;
