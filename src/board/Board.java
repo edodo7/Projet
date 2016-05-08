@@ -11,8 +11,8 @@ import players.AGenericPlayer;
 public class Board implements Serializable
 {
 	public static Case[][] tableau = new Case[9][9];
-	private static AGenericPlayer joueur1;
-	private static AGenericPlayer joueur2;
+	public static AGenericPlayer joueur1;
+	public static AGenericPlayer joueur2;
 
 
 

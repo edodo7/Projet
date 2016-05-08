@@ -26,7 +26,7 @@ public class WallListener implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e){
-		//System.out.println("notDone avant : " + notDone);
+		System.out.println("notDone avant : " + notDone);
 		if (isVertical){
 			if(Main.tourJoueur1){
 				
@@ -64,6 +64,6 @@ public class WallListener implements ActionListener {
 				}
 			}
 		}
-		//System.out.println("notDone après : " + notDone);
+		System.out.println("notDone après : " + notDone);
 	}
 }

@@ -1,24 +1,21 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.Serializable;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
-import board.Board;
 import players.HardAI;
 import players.HumanPlayer;
 import players.RandomAI;
 
-public class PlayersChoice extends JFrame{
+public class PlayersChoice extends JFrame implements Serializable{
 	
 	private JButton humanVShuman = new JButton("joueur humain vs joueur humain");
 	private JButton humanVSrandomAI = new JButton("joueur humain vs IA facile");
@@ -26,7 +23,9 @@ public class PlayersChoice extends JFrame{
 	private JButton randomAIVSrandomAI = new JButton("IA facile vs IA facile");
 	private JButton randomAIVShardAI = new JButton("IA facile vs IA difficile");
 	private JButton hardAIVShardAI = new JButton("IA difficile vs IA difficile");
+	private JButton charger = new JButton("Charger partie");
 	public static boolean notDone;
+	public Save save;
 	
 	public PlayersChoice(){
 		this.setSize(1280, 1280);
@@ -38,6 +37,7 @@ public class PlayersChoice extends JFrame{
 		randomAIVSrandomAI.addActionListener(new PlayerListener());
 		randomAIVShardAI.addActionListener(new PlayerListener());
 		hardAIVShardAI.addActionListener(new PlayerListener());
+		charger.addActionListener(new LoadListener());
 		Start contentPane = new Start();
 		contentPane.setLayout(new BorderLayout());
 		JPanel pan = new JPanel();
@@ -48,11 +48,13 @@ public class PlayersChoice extends JFrame{
 		pan.add(randomAIVSrandomAI);
 		pan.add(randomAIVShardAI);
 		pan.add(hardAIVShardAI);
+		pan.add(charger);
 		pan.setOpaque(false);
 		contentPane.add(pan,BorderLayout.SOUTH);
 		this.setContentPane(contentPane);
 		this.notDone = true;
 		this.setVisible(true);
+		save = null;
 	}
 	
 	
@@ -94,6 +96,18 @@ public class PlayersChoice extends JFrame{
 				Main.joueur1 = new HardAI(true);
 				Main.joueur2 = new HardAI(false);
 				notDone = false;
+			}
+		}
+	}
+	
+	public class LoadListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){	
+			try {
+				save = Save.load();
+				notDone = false;
+			} 
+			catch (ClassNotFoundException | IOException a) {
+				a.printStackTrace();
 			}
 		}
 	}

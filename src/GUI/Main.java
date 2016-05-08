@@ -1,5 +1,9 @@
 package GUI;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,6 +11,9 @@ import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import board.Board;
 import players.AGenericPlayer;
@@ -25,17 +32,33 @@ public class Main implements Serializable {
 	private JButton randomAIVShardAI = new JButton("IA facile vs IA difficile");
 	private JButton hardAIVShardAI = new JButton("IA difficile vs IA difficile");
 	public static boolean tourJoueur1;
-	private static ArrayList<Save> AllSaves;
-	private static Save lastSave;
+	public static Save lastSave;
+	private JMenuBar menuBar = new JMenuBar();
+	private JMenu partie = new JMenu("Partie");
+	private JMenuItem sauver = new JMenuItem("Sauvegarder");
 	
 	public Main() {
 		PlayersChoice choix = new PlayersChoice();
 		choix.Wait();
-		board = new Board(joueur1,joueur2);
+		if (choix.save != null){
+			this.joueur1= choix.save.joueur1;
+			this.joueur2 = choix.save.joueur2;
+			this.board = new Board(joueur1,joueur2) ;
+			board.setTableau(choix.save.plateau);
+			this.lastSave = choix.save;
+		}
+		else{
+			board = new Board(joueur1,joueur2);
+			lastSave = new Save(board);
+		}
 		this.frame = new MyFrame();
+		sauver.addActionListener(new SaveListener());
+		partie.add(sauver);
+		menuBar.add(partie);
+		menuBar.setOpaque(false);
+		frame.setJMenuBar(menuBar);
+		frame.setVisible(true);
 		choix.dispose();
-		AllSaves = new ArrayList<Save>();
-		lastSave = new Save();
 	}
 	
 	public void play(){
@@ -60,8 +83,7 @@ public class Main implements Serializable {
 						joueur1.play();
 						nbreCoupsJ1++;
 						System.out.println("Le joueur1 a joué");
-						lastSave.shoot();
-						AllSaves.add(lastSave);
+						lastSave.shoot(board);
 						tourJoueur1 = false;
 					}
 					else{
@@ -75,8 +97,7 @@ public class Main implements Serializable {
 							e.printStackTrace();
 						}
 						System.out.println("Le joueur1 a joué");
-						lastSave.shoot();
-						AllSaves.add(lastSave);
+						lastSave.shoot(board);
 						tourJoueur1 = false;
 						nbreCoupsJ1++;
 					}
@@ -87,8 +108,7 @@ public class Main implements Serializable {
 						joueur2.play();
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
-						lastSave.shoot();
-						AllSaves.add(lastSave);
+						lastSave.shoot(board);
 						tourJoueur1 = true;
 					}
 					else{
@@ -102,8 +122,7 @@ public class Main implements Serializable {
 						}
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
-						lastSave.shoot();
-						AllSaves.add(lastSave);
+						lastSave.shoot(board);
 						tourJoueur1 = true;
 					}
 				}
@@ -114,6 +133,19 @@ public class Main implements Serializable {
 		}
 	}
 	
+	public class SaveListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			System.out.println("L'état du tableau quand je l'ai sauvé");
+			System.out.println(board);
+			Save.save(lastSave);
+			try {
+				System.out.println("Voici normalement le plateau sauvé");
+				System.out.println(Save.load().board);
+			} catch (ClassNotFoundException | IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 	
 	
 	
