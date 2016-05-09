@@ -83,7 +83,7 @@ public class GamePanel extends JPanel {
 				tabCases[i][j].actualize();
 			}
 		}
-		g.setColor(Color.BLACK);
+		g.setColor(Color.RED);
 		int xDepart = 70;
 		int yDepart = 0;
 		for (int i = 0;i < 9;i++){
