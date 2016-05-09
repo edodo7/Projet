@@ -29,7 +29,8 @@ public class WallListener implements ActionListener {
 		System.out.println("notDone avant : " + notDone);
 		if (isVertical){
 			if(Main.tourJoueur1){
-				
+				System.out.println(Rules.canPutWallRight(Board.getTableau()[x][y]));
+				System.out.println(Rules.canReallyPutWallRight(Board.getTableau()[x][y]));
 				if ( Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y])){
 					joueur1.putWallRight(Board.getTableau()[x][y]);
 					System.out.println("avant modif tourJoueur1");
@@ -47,6 +48,8 @@ public class WallListener implements ActionListener {
 			}
 		}
 		else{
+			System.out.println(Rules.canPutWallRight(Board.getTableau()[x][y]));
+			System.out.println(Rules.canReallyPutWallRight(Board.getTableau()[x][y]));
 			if(Main.tourJoueur1){
 				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y])){
 					joueur1.putWallDown(Board.getTableau()[x][y]);

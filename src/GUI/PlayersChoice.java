@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.concurrent.locks.Lock;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -31,6 +32,8 @@ public class PlayersChoice extends JFrame implements Serializable{
 		this.setSize(1280, 1280);
 		this.setTitle("Choisissez le type de joueurs");
 		this.setLocationRelativeTo(null);
+		//Lock lock = nes Lock();
+		//Condition done = lock.newCondition();
 		humanVShuman.addActionListener(new PlayerListener());
 		humanVShardAI.addActionListener(new PlayerListener());
 		humanVSrandomAI.addActionListener(new PlayerListener());
@@ -59,6 +62,9 @@ public class PlayersChoice extends JFrame implements Serializable{
 	
 	
 	public void Wait(){
+		/*lock.lock();
+		done.await();
+		lock.unlock();*/
 		while(notDone){
 			System.out.println("");
 		}
@@ -67,9 +73,12 @@ public class PlayersChoice extends JFrame implements Serializable{
 	
 	private class PlayerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			//lock.lock();
+			//try {
 			if (e.getSource() == humanVShuman){
 				Main.joueur1 = new HumanPlayer(true);
 				Main.joueur2 = new HumanPlayer(false);
+				//done.signal();
 				notDone = false;
 			}
 			else if (e.getSource() == humanVSrandomAI){
@@ -97,7 +106,10 @@ public class PlayersChoice extends JFrame implements Serializable{
 				Main.joueur2 = new HardAI(false);
 				notDone = false;
 			}
-		}
+			}
+		/*	finally
+				lock.unlock();
+		}*/
 	}
 	
 	public class LoadListener implements ActionListener{

@@ -40,6 +40,7 @@ public class Main implements Serializable {
 	public Main() {
 		PlayersChoice choix = new PlayersChoice();
 		choix.Wait();
+		//choix.get();
 		if (choix.save != null){
 			this.joueur1= choix.save.joueur1;
 			this.joueur2 = choix.save.joueur2;
