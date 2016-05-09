@@ -83,8 +83,27 @@ public class GamePanel extends JPanel {
 				tabCases[i][j].actualize();
 			}
 		}
-		for (int i = 0;i < tabWalls.size();i++){
-			tabWalls.get(i).actualize();
+		g.setColor(Color.BLACK);
+		int xDepart = 70;
+		int yDepart = 0;
+		for (int i = 0;i < 9;i++){
+			if( i != 0){
+				yDepart += 90;
+			}
+			for(int j =0;j < 9;j++ ){
+				if(j == 0){
+					xDepart = 70;
+				}
+				else{
+					xDepart += 90;
+				}
+				if(realTab[i][j].isEdgeRightBegin()){
+					g.fillRect(xDepart, yDepart, 15, 155);
+				}
+				if(realTab[i][j].isEdgeDownBegin()){
+					g.fillRect(xDepart - 70, yDepart + 70, 155, 15);
+				}
+			}
 		}
 	}
 	
