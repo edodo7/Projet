@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import board.Board;
 import players.AGenericPlayer;
@@ -75,6 +76,7 @@ public class Main implements Serializable {
 	
 	public void play(){
 		Random choice = new Random();
+		JOptionPane victory = new JOptionPane();
 		int whoStarts = choice.nextInt(2);
 		int nbreCoupsJ1 = 0;
 		int nbreCoupsJ2 = 0;
@@ -99,7 +101,7 @@ public class Main implements Serializable {
 						tourJoueur1 = false;
 						if (!joueur2.getClass().getName().equals("players.HumanPlayer")){
 							try {
-								Thread.sleep(1000);
+								Thread.sleep(100);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
@@ -126,6 +128,10 @@ public class Main implements Serializable {
 						tourJoueur1 = false;
 						nbreCoupsJ1++;
 					}
+					if (joueur1.getX() == 8){
+						victory.showMessageDialog(null, "Le joueur1 a gagne");
+						continuer = false;
+					}
 				}
 				else{
 					System.out.println("C'est au tour du Joueur 2");
@@ -137,7 +143,7 @@ public class Main implements Serializable {
 						tourJoueur1 = true;
 						if (!joueur1.getClass().getName().equals("players.HumanPlayer")){
 							try {
-								Thread.sleep(1000);
+								Thread.sleep(100);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
@@ -161,6 +167,10 @@ public class Main implements Serializable {
 						nbreCoupsJ2++;
 						lastSave.shoot(board);
 						tourJoueur1 = true;
+					}
+					if (joueur2.getX() == 0){
+						victory.showMessageDialog(null, "Le joueur2 a gagne");
+						continuer = false;
 					}
 				}
 			}
