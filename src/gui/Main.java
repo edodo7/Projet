@@ -94,18 +94,19 @@ public class Main implements Serializable {
 				if ((tourJoueur1)){
 					if(joueur1.getClass().getName().equals("players.RandomAI")|| joueur1.getClass().getName().equals("players.HardAI")){
 						System.out.println("C'est au tour du Joueur 1");				
+						if (!joueur2.getClass().getName().equals("players.HumanPlayer")){
+							try {
+								Thread.sleep(1000);
+								
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
 						joueur1.play();
 						nbreCoupsJ1++;
 						System.out.println("Le joueur1 a joué");
 						lastSave.shoot(board);
 						tourJoueur1 = false;
-						if (!joueur2.getClass().getName().equals("players.HumanPlayer")){
-							try {
-								Thread.sleep(100);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
 					}
 					else{
 						System.out.println("C'est au tour du Joueur 1");
@@ -143,7 +144,7 @@ public class Main implements Serializable {
 						tourJoueur1 = true;
 						if (!joueur1.getClass().getName().equals("players.HumanPlayer")){
 							try {
-								Thread.sleep(100);
+								Thread.sleep(1000);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
