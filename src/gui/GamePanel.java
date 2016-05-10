@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -61,13 +61,17 @@ public class GamePanel extends JPanel {
 				gbc.gridheight = 2;
 				gbc.gridwidth = 1;
 				gbc.fill = GridBagConstraints.VERTICAL;
-				this.add(VWall, gbc);
+				if (i != 8 && j !=8 ){
+					this.add(VWall, gbc);
+				}
 				gbc.gridx -= 1;
 				gbc.gridy += 1;
 				gbc.gridheight = 1;
 				gbc.gridwidth = 2;
 				gbc.fill = GridBagConstraints.HORIZONTAL;
-				this.add(HWall, gbc);
+				if (i != 8 && j != 8){
+					this.add(HWall, gbc);
+				}
 				gbc.gridx += 2;
 				gbc.gridy -= 1;
 			}

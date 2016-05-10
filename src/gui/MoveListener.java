@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +15,8 @@ public class MoveListener implements ActionListener{
 	private static AGenericPlayer joueur1;
 	private static  AGenericPlayer joueur2;
 	public static boolean notDone;
+	
+	
 	public MoveListener(int x,int y,GuiCase myCase){
 		this.x = x;
 		this.y = y;

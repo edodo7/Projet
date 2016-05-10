@@ -103,6 +103,7 @@ public class PathFinding implements Serializable{
 	
 	public void way(){//la méthode va ajouter dans way le chemin, le dernier elements sera l element d'ou on part donc l avant dernier sera la case où l'on doit se deplace ,..., et le premier sera la case de sortie
 		way = new ArrayList<Case>();//on reinitialise l arraylist
+		System.out.println("Case : "+exit.getCase());
 		if(!exit.getCase().equals(null)){
 			way.add(exit.getCase());
 			PathFindingCase nextPathFindingCase = exit.getLastPFC();

@@ -1,11 +1,13 @@
-package GUI;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -25,15 +27,16 @@ public class PlayersChoice extends JFrame implements Serializable{
 	private JButton randomAIVShardAI = new JButton("IA facile vs IA difficile");
 	private JButton hardAIVShardAI = new JButton("IA difficile vs IA difficile");
 	private JButton charger = new JButton("Charger partie");
-	public static boolean notDone;
 	public Save save;
+	public Lock lock;
+	public Condition done;
 	
 	public PlayersChoice(){
 		this.setSize(1280, 1280);
 		this.setTitle("Choisissez le type de joueurs");
 		this.setLocationRelativeTo(null);
-		//Lock lock = nes Lock();
-		//Condition done = lock.newCondition();
+		lock = new ReentrantLock();
+		done = lock.newCondition();
 		humanVShuman.addActionListener(new PlayerListener());
 		humanVShardAI.addActionListener(new PlayerListener());
 		humanVSrandomAI.addActionListener(new PlayerListener());
@@ -55,68 +58,66 @@ public class PlayersChoice extends JFrame implements Serializable{
 		pan.setOpaque(false);
 		contentPane.add(pan,BorderLayout.SOUTH);
 		this.setContentPane(contentPane);
-		this.notDone = true;
 		this.setVisible(true);
 		save = null;
 	}
 	
 	
-	public void Wait(){
-		/*lock.lock();
+	public void Wait() throws InterruptedException{
+		lock.lock();
 		done.await();
-		lock.unlock();*/
-		while(notDone){
-			System.out.println("");
-		}
+		lock.unlock();
 	}
 	
 	
 	private class PlayerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			//lock.lock();
-			//try {
-			if (e.getSource() == humanVShuman){
-				Main.joueur1 = new HumanPlayer(true);
-				Main.joueur2 = new HumanPlayer(false);
-				//done.signal();
-				notDone = false;
+			lock.lock();
+			try {
+				if (e.getSource() == humanVShuman){
+					Main.joueur1 = new HumanPlayer(true);
+					Main.joueur2 = new HumanPlayer(false);
+					done.signal();
+				}
+				else if (e.getSource() == humanVSrandomAI){
+					Main.joueur1 = new RandomAI(true);
+					Main.joueur2 = new HumanPlayer(false);
+					done.signal();
+				}
+				else if(e.getSource() == humanVShardAI){
+					Main.joueur1 = new HardAI(true);
+					Main.joueur2 = new HumanPlayer(false);
+					done.signal();
+				}
+				else if (e.getSource() == randomAIVSrandomAI){
+					Main.joueur1 = new RandomAI(true);
+					Main.joueur2 = new RandomAI(false);
+					done.signal();
+				}
+				else if(e.getSource() == randomAIVShardAI){
+					Main.joueur1 = new HardAI(true);
+					Main.joueur2 = new RandomAI(false);
+					done.signal();
+				}
+				else if (e.getSource() == hardAIVShardAI){
+					Main.joueur1 = new HardAI(true);
+					Main.joueur2 = new HardAI(false);
+					done.signal();
+				}
 			}
-			else if (e.getSource() == humanVSrandomAI){
-				Main.joueur1 = new RandomAI(true);
-				Main.joueur2 = new HumanPlayer(false);
-				notDone = false;
-			}
-			else if(e.getSource() == humanVShardAI){
-				Main.joueur1 = new HardAI(true);
-				Main.joueur2 = new HumanPlayer(false);
-				PlayersChoice.notDone = false;
-			}
-			else if (e.getSource() == randomAIVSrandomAI){
-				Main.joueur1 = new RandomAI(true);
-				Main.joueur2 = new RandomAI(false);
-				notDone = false;
-			}
-			else if(e.getSource() == randomAIVShardAI){
-				Main.joueur1 = new HardAI(true);
-				Main.joueur2 = new RandomAI(false);
-				notDone = false;
-			}
-			else if (e.getSource() == hardAIVShardAI){
-				Main.joueur1 = new HardAI(true);
-				Main.joueur2 = new HardAI(false);
-				notDone = false;
-			}
-			}
-		/*	finally
+			finally{
 				lock.unlock();
-		}*/
+			}
+		}
 	}
 	
 	public class LoadListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){	
 			try {
+				lock.lock();
 				save = Save.load();
-				notDone = false;
+				done.signal();
+				lock.unlock();
 			} 
 			catch (ClassNotFoundException | IOException a) {
 				a.printStackTrace();

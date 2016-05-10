@@ -146,12 +146,7 @@ public class HardAI extends AGenericPlayer{
 			}
 		}
 		else{//Il n'y a plus de mur, on est obligé de se déplacer
-			if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
-				move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
-			}
-			else{
-				move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
-			}
+			move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
 		}
 	}
 }

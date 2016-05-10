@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 import mainAndRules.*;
 import board.*;
 import pathFinding.*;

@@ -4,8 +4,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
 import board.Case;
-
-import GUI.MyFrame;
+import gui.MyFrame;
 import board.Board;
 import players.AGenericPlayer;
 import players.HardAI;

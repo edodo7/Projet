@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,10 +39,16 @@ public class Main implements Serializable {
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu partie = new JMenu("Partie");
 	private JMenuItem sauver = new JMenuItem("Sauvegarder");
+	public static Lock lock;
+	public static Condition done;
 	
 	public Main() {
 		PlayersChoice choix = new PlayersChoice();
-		choix.Wait();
+		try {
+			choix.Wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		//choix.get();
 		if (choix.save != null){
 			this.joueur1= choix.save.joueur1;
@@ -60,6 +69,8 @@ public class Main implements Serializable {
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 		choix.dispose();
+		lock = new ReentrantLock();
+		done = lock.newCondition();
 	}
 	
 	public void play(){
@@ -86,16 +97,29 @@ public class Main implements Serializable {
 						System.out.println("Le joueur1 a joué");
 						lastSave.shoot(board);
 						tourJoueur1 = false;
+						if (!joueur2.getClass().getName().equals("players.HumanPlayer")){
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
 					}
 					else{
 						System.out.println("C'est au tour du Joueur 1");
-						ActionThread actionJoueur1 = new ActionThread();
-						Thread t = new Thread(actionJoueur1);
-						t.start();
-						try {
-							t.join();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						//ActionThread actionJoueur1 = new ActionThread();
+						boolean notPlayedYet = true;
+						MoveListener.notDone = true;
+						WallListener.notDone = true;
+						while (notPlayedYet){
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							if ((MoveListener.notDone && WallListener.notDone )== false){
+								notPlayedYet = false;
+							}
 						}
 						System.out.println("Le joueur1 a joué");
 						lastSave.shoot(board);
@@ -111,15 +135,27 @@ public class Main implements Serializable {
 						nbreCoupsJ2++;
 						lastSave.shoot(board);
 						tourJoueur1 = true;
+						if (!joueur1.getClass().getName().equals("players.HumanPlayer")){
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
 					}
 					else{
-						ActionThread actionJoueur1 = new ActionThread();
-						Thread t = new Thread(actionJoueur1);
-						t.start();
-						try {
-							t.join();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						boolean notPlayedYet = true;
+						MoveListener.notDone = true;
+						WallListener.notDone = true;
+						while (notPlayedYet){
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							if ((MoveListener.notDone && WallListener.notDone )== false){
+								notPlayedYet = false;
+							}
 						}
 						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
