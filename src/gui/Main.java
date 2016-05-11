@@ -50,12 +50,13 @@ public class Main implements Serializable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		//choix.get();
 		if (choix.save != null){
 			this.joueur1= choix.save.joueur1;
 			this.joueur2 = choix.save.joueur2;
 			this.board = new Board(joueur1,joueur2) ;
 			board.setTableau(choix.save.plateau);
+			joueur1.plateau = choix.save.plateau;
+			joueur2.plateau = choix.save.plateau;
 			this.lastSave = choix.save;
 		}
 		else{
@@ -70,8 +71,8 @@ public class Main implements Serializable {
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 		choix.dispose();
-		lock = new ReentrantLock();
-		done = lock.newCondition();
+		//lock = new ReentrantLock();
+		//done = lock.newCondition();
 	}
 	
 	public void play(){

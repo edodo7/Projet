@@ -59,7 +59,7 @@ public class RandomAI extends AGenericPlayer{
 					System.out.println("L'IA facile a posé un mur en dessous de la case en position ("+i+","+j+")");
 					murs--;
 					not_done = false;
-				}
+				}				
 				if (wall == 2 && Rules.canPutWallRight(plateau[i][j])&& Rules.canReallyPutWallRight(plateau[i][j])){
 					putWallRight(plateau[i][j]);
 					System.out.println("L'IA facile a posé un mur à droite de la case en position ("+i+","+j+")");

@@ -20,7 +20,7 @@ public class PathFinding implements Serializable{
 	private PathFindingCase exit;//case de sortie
 	private boolean FirstPlayer;
 	
-	private class PathFindingCase{
+	private class PathFindingCase implements Serializable {
 		private Case case1;
 		private PathFindingCase lastPFC;
 		
@@ -38,7 +38,7 @@ public class PathFinding implements Serializable{
 		}
 	}
 	
-	public PathFinding(Case startingCase,boolean FirstPlayer){
+	public PathFinding(Case startingCase,boolean FirstPlayer) {
 		this.startingCase = startingCase;
 		this.tableau = Board.getTableau();
 		this.exit = new PathFindingCase(null,null);//on initialise la case de sortie à null,null pour la methode way au cas où l'on demande la sortie alors qu'on n'a pas utiliser la methode isExit()
@@ -103,7 +103,7 @@ public class PathFinding implements Serializable{
 	
 	public void way(){//la méthode va ajouter dans way le chemin, le dernier elements sera l element d'ou on part donc l avant dernier sera la case où l'on doit se deplace ,..., et le premier sera la case de sortie
 		way = new ArrayList<Case>();//on reinitialise l arraylist
-		System.out.println("Case : "+exit.getCase());
+		//System.out.println("Case : "+exit.getCase());
 		if(!exit.getCase().equals(null)){
 			way.add(exit.getCase());
 			PathFindingCase nextPathFindingCase = exit.getLastPFC();
