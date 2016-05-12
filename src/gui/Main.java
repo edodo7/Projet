@@ -57,12 +57,20 @@ public class Main implements Serializable {
 			board.setTableau(choix.save.plateau);
 			joueur1.plateau = choix.save.plateau;
 			joueur2.plateau = choix.save.plateau;
-			this.lastSave = choix.save;
+			tourJoueur1 = choix.save.tourJoueur1;
 		}
 		else{
 			board = new Board(joueur1,joueur2);
-			lastSave = new Save(board);
+			Random choice = new Random();
+			int whoStarts = choice.nextInt(2);
+			if(whoStarts == 1){
+				tourJoueur1 = true;
+			}
+			else{
+				tourJoueur1 = false;
+			}
 		}
+		lastSave = new Save(board);
 		this.frame = new MyFrame();
 		sauver.addActionListener(new SaveListener());
 		partie.add(sauver);
@@ -76,17 +84,9 @@ public class Main implements Serializable {
 	}
 	
 	public void play(){
-		Random choice = new Random();
 		JOptionPane victory = new JOptionPane();
-		int whoStarts = choice.nextInt(2);
 		int nbreCoupsJ1 = 0;
 		int nbreCoupsJ2 = 0;
-		if(whoStarts == 1){
-			tourJoueur1 = true;
-		}
-		else{
-			tourJoueur1 = false;
-		}
 		boolean continuer = true;
 		while(continuer){
 			System.out.println(board);
@@ -112,6 +112,7 @@ public class Main implements Serializable {
 					else{
 						System.out.println("C'est au tour du Joueur 1");
 						//ActionThread actionJoueur1 = new ActionThread();
+						lastSave.shoot(board);
 						boolean notPlayedYet = true;
 						MoveListener.notDone = true;
 						WallListener.notDone = true;
@@ -155,6 +156,7 @@ public class Main implements Serializable {
 						boolean notPlayedYet = true;
 						MoveListener.notDone = true;
 						WallListener.notDone = true;
+						lastSave.shoot(board);
 						while (notPlayedYet){
 							try {
 								Thread.sleep(10);
@@ -200,6 +202,9 @@ public class Main implements Serializable {
 	
 	public static void main(String[] args){
 		Main main = new Main();
-		main.play();
+		while(true){
+			main.play();
+			main = new Main();
+		}
 	}
 }

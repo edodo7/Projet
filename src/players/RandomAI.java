@@ -26,6 +26,7 @@ public class RandomAI extends AGenericPlayer{
 			this.y = 4;
 		}
 		this.plateau = Board.getTableau();
+		walls = 10;
 	}
 	
 	
@@ -39,10 +40,9 @@ public class RandomAI extends AGenericPlayer{
 	}
 	
 	public void play()throws IOException{
-		System.out.println("Hello");
 		Random whatChoice = new Random();
 		int WallOrMove = whatChoice.nextInt(2);
-		if (WallOrMove == 0 && murs > 0){//on place un mur 
+		if (WallOrMove == 0 && walls > 0){//on place un mur 
 			boolean not_done = true;
 			while(not_done){
 				int wall = whatChoice.nextInt(4);
@@ -51,25 +51,25 @@ public class RandomAI extends AGenericPlayer{
 				if (wall == 0 && Rules.canPutWallUp(plateau[i][j]) && Rules.canReallyPutWallUp(plateau[i][j])){
 					putWallUp(plateau[i][j]);
 					System.out.println("L'IA facile a posé un mur au dessus de la case en position ("+i+","+j+")");
-					murs--;
+					walls--;
 					not_done = false;
 				}
 				if (wall == 1 && Rules.canPutWallDown(plateau[i][j])&& Rules.canReallyPutWallDown(plateau[i][j])){
 					putWallDown(plateau[i][j]);
 					System.out.println("L'IA facile a posé un mur en dessous de la case en position ("+i+","+j+")");
-					murs--;
+					walls--;
 					not_done = false;
 				}				
 				if (wall == 2 && Rules.canPutWallRight(plateau[i][j])&& Rules.canReallyPutWallRight(plateau[i][j])){
 					putWallRight(plateau[i][j]);
 					System.out.println("L'IA facile a posé un mur à droite de la case en position ("+i+","+j+")");
-					murs--;
+					walls--;
 					not_done = false;
 				}
 				if (wall == 3 && Rules.canPutWallLeft(plateau[i][j])&& Rules.canReallyPutWallLeft(plateau[i][j])){
 					putWallLeft(plateau[i][j]);
 					System.out.println("L'IA facile a posé un mur à gauche de la case en position ("+i+","+j+")");
-					murs--;
+					walls--;
 					not_done = false;
 				}
 			}

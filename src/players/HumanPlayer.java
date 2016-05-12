@@ -23,6 +23,7 @@ public class HumanPlayer extends AGenericPlayer
 			this.x = 8;
 			this.y = 4;
 		}
+		walls = 10;
 	}
 	
 

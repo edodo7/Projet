@@ -17,7 +17,6 @@ public class HardAI extends AGenericPlayer{
 	public static AGenericPlayer joueur2;
 	private PathFinding AIpath;
 	private  PathFinding SecondPlayerpath;
-	private int murs;
 	private boolean tour1;
 	private boolean tour2;
 	private boolean tour3;
@@ -35,12 +34,12 @@ public class HardAI extends AGenericPlayer{
 			this.x = 8;
 			this.y = 4;
 		}
-		murs = 10;
 		tour1 = true;
 		tour2 = false;
 		tour3 = false;
 		this.plateau = Board.getTableau();
 		AIpath = new PathFinding(plateau[x][y],isFirstPlayer);
+		walls = 10;
 	}
 	
 	public boolean move(int i,int j){
@@ -101,12 +100,12 @@ public class HardAI extends AGenericPlayer{
 		SecondPlayerpath.way();
 		ArrayList<Case> AIListPath = AIpath.getWay();
 		ArrayList<Case> SecondPlayerListPath = SecondPlayerpath.getWay();
-		if (murs > 0){
+		if (walls > 0){
 			if (tour1){
 				if (blockPath(SecondPlayerListPath)){
 					tour1 = false;
 					tour2 = true;
-					murs--;
+					walls--;
 				}
 				else{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
@@ -116,7 +115,7 @@ public class HardAI extends AGenericPlayer{
 				if(blockPath(SecondPlayerListPath)){
 					tour2 = false;
 					tour3 = true;
-					murs--;
+					walls--;
 				}
 				else{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
@@ -125,7 +124,7 @@ public class HardAI extends AGenericPlayer{
 			else if (tour3){
 				if (blockPath(SecondPlayerListPath)){
 					tour3 = false;
-					murs--;
+					walls--;
 				}
 				else{
 					move(AIListPath.get(1).getX(),AIListPath.get(1).getY());
@@ -134,7 +133,7 @@ public class HardAI extends AGenericPlayer{
 			else{
 				if (SecondPlayerListPath.size()+3< AIListPath.size()){
 					if (blockPath(SecondPlayerListPath)){
-						murs--;
+						walls--;
 					}
 					else{
 						move(AIListPath.get(1).getX(),AIListPath.get(1).getY());

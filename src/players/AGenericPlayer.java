@@ -13,7 +13,7 @@ public abstract class AGenericPlayer implements Serializable{
 	public static Case[][] plateau = Board.getTableau();
 	protected int x;
 	protected int y;
-	public int murs = 10;
+	public int walls;
 	public void putWallRight(Case case1){
 		int i = case1.getX();
 		int j = case1.getY();
