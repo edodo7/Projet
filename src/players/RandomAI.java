@@ -30,7 +30,12 @@ public class RandomAI extends AGenericPlayer{
 	}
 	
 	
-	
+	/**
+	 * Permet a l'IA de se deplacer vers une case
+	 * @param i ,la ligne sur laquelle se trouve la case
+	 * @param j ,la colonne sur laquelle se trouve la case
+	 * @return Vrai 
+	 */
 	public boolean move(int i,int j){
 		plateau[x][y].setEmpty(true);
 		x = i;
@@ -38,7 +43,9 @@ public class RandomAI extends AGenericPlayer{
 		plateau[x][y].setEmpty(false);
 		return true;
 	}
-	
+	/**
+	 * Permet a l'IA de jouer 
+	 */
 	public void play()throws IOException{
 		Random whatChoice = new Random();
 		int WallOrMove = whatChoice.nextInt(2);

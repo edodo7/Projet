@@ -18,6 +18,11 @@ import players.HardAI;
 import players.HumanPlayer;
 import players.RandomAI;
 
+/**
+ * Fenetre demandant le type de partie
+ * @author Eduardo
+ *
+ */
 public class PlayersChoice extends JFrame implements Serializable{
 	
 	private JButton humanVShuman = new JButton("joueur humain vs joueur humain");
@@ -59,17 +64,25 @@ public class PlayersChoice extends JFrame implements Serializable{
 		contentPane.add(pan,BorderLayout.SOUTH);
 		this.setContentPane(contentPane);
 		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		save = null;
 	}
 	
-	
+	/**
+	 * Permet d'attendre jusqu'a ce qu'un choix soit effectue
+	 * @throws InterruptedException
+	 */
 	public void Wait() throws InterruptedException{
 		lock.lock();
 		done.await();
 		lock.unlock();
 	}
 	
-	
+	/**
+	 * Permet d'instancier le type de joueurs selectiones
+	 * @author Eduardo
+	 *
+	 */
 	private class PlayerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			lock.lock();
@@ -111,6 +124,11 @@ public class PlayersChoice extends JFrame implements Serializable{
 		}
 	}
 	
+	/**
+	 * Permet de recuperer une partie sauvegardee
+	 * @author Eduardo
+	 *
+	 */
 	public class LoadListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){	
 			try {

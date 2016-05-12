@@ -8,7 +8,10 @@ import board.Case;
 import mainAndRules.Rules;
 import players.AGenericPlayer;
 import players.HumanPlayer;
-
+/**
+ * Permet la pose des murs en mode graphique
+ * @author Eduardo Dom
+ */
 public class WallListener implements ActionListener {   
 	
 	private int x;
@@ -24,53 +27,41 @@ public class WallListener implements ActionListener {
 		this.y = y;
 		this.isVertical = isVertical;
 	}
-	
+	/**
+	 * Permet,si c'est possible, de poser un mur a la position de la souris lors d'un clic
+	 */
 	public void actionPerformed(ActionEvent e){
-		//System.out.println("notDone avant : " + notDone);
 		if (isVertical){
 			if(Main.tourJoueur1){
-				//System.out.println(Rules.canPutWallRight(Board.getTableau()[x][y]));
-				//System.out.println(Rules.canReallyPutWallRight(Board.getTableau()[x][y]));
 				if ( Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y]) && joueur1.walls > 0){
 					joueur1.putWallRight(Board.getTableau()[x][y]);
-					//System.out.println("avant modif tourJoueur1");
 					joueur1.walls--;
 					notDone = false;
-					//System.out.println("après modif tourJoueur1");
 				}
 			}
 			else{
 				if (Rules.canPutWallRight(Board.getTableau()[x][y]) && Rules.canReallyPutWallRight(Board.getTableau()[x][y]) && joueur2.walls > 0){
 					joueur2.putWallRight(Board.getTableau()[x][y]);
-					//System.out.println("avant modif tourJoueur2");
 					joueur2.walls--;
 					notDone = false;
-					//System.out.println("après modif tourJoueur2");
 				}
 			}
 		}
 		else{
-			//System.out.println(Rules.canPutWallRight(Board.getTableau()[x][y]));
-			//System.out.println(Rules.canReallyPutWallRight(Board.getTableau()[x][y]));
 			if(Main.tourJoueur1){
 				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y]) && joueur1.walls > 0){
 					joueur1.putWallDown(Board.getTableau()[x][y]);
-					//System.out.println("avant modif tourJoueur1");
 					joueur1.walls--;
 					notDone = false;
-					//System.out.println("après modif tourJoueur1");
 				}
 			}
 			else{
 				if (Rules.canPutWallDown(Board.getTableau()[x][y]) && Rules.canReallyPutWallDown(Board.getTableau()[x][y]) && joueur2.walls > 0){
 					joueur2.putWallDown(Board.getTableau()[x][y]);
-					//System.out.println("avant modif tourJoueur2");
 					joueur2.walls--;
 					notDone = false;
-					//System.out.println("après modif tourJoueur2");
 				}
 			}
 		}
-		//System.out.println("notDone après : " + notDone);
 	}
 }

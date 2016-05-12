@@ -3,6 +3,7 @@ package board;
 import java.io.Serializable;
 
 /**
+ * Definit les cases du plateau et leurs etat
  * @author Eduardo Dom
  */
 public class Case implements Serializable
@@ -22,10 +23,10 @@ public class Case implements Serializable
 	public Case(int x ,int y)
 	{
 		empty = true;//la case est vide
-		EdgeLeftBegin = false;//il n'y a pas de mur à gauche de la case
+		EdgeLeftBegin = false;//il n'y a pas de mur a gauche de la case
 		EdgeLeftEnd = false;
 		EdgeRightBegin = false;
-		EdgeRightEnd = false;//il n'y a pas de mur à droite de la case
+		EdgeRightEnd = false;//il n'y a pas de mur a� droite de la case
 		EdgeUpBegin = false;//il n'y a pas de mur en haut de la case
 		EdgeUpEnd = false;
 		EdgeDownBegin = false; // il n'y a pas de mur en bas de la case

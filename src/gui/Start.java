@@ -5,9 +5,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-
+/**
+ * Page d'acceuil
+ * @author Eduardo
+ *
+ */
 public class Start extends JPanel {
-	
 	
 	public void paintComponent(Graphics g){
 		g.setColor(Color.BLUE);

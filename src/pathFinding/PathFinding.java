@@ -48,8 +48,8 @@ public class PathFinding implements Serializable{
 	}
 	/**
 	 * Constructeur
-	 * @param startingCase
-	 * @param FirstPlayer
+	 * @param startingCase la case de depart pour la recherche du cchemin
+	 * @param FirstPlayer si oui,alors la  sortie est atteinte en x = 8,si non elle l'est en x = 0 
 	 */
 	public PathFinding(Case startingCase,boolean FirstPlayer) {
 		this.startingCase = startingCase;
@@ -62,7 +62,6 @@ public class PathFinding implements Serializable{
 	/**
 	 * Permet de changer la case a partir de laquelle on commence le calcul du chemin
 	 * @param newStartingCase
-	 * @return void
 	 */
 	public void setStartingCase(Case newStartingCase){
 		this.startingCase = newStartingCase;
@@ -71,7 +70,6 @@ public class PathFinding implements Serializable{
 	/**
 	 * Permet ce changer le tableau sur lequel on fait les calculs
 	 * @param newTab
-	 * @return void
 	 */
 	public void setTabeau(Case[][] newTab){
 		this.tableau = newTab;
@@ -82,8 +80,8 @@ public class PathFinding implements Serializable{
 	 * Pour chaque case contenue dans L'ArrayList,on regarde tous ses voisins.
 	 * S'ils sont deja marques,on ne les ajoute pas dans la nouvelle ArrayList.
 	 * Sinon,on les ajoutes et on les marques afin de ne plus revenir sur nos pas.
-	 * @param Une ArrayList de Case avec leurs parents
-	 * @return Une ArrayList de case,si elle est vide,alors il n'y a pas de chemin
+	 * @param liste cases avec leurs parents
+	 * @return chemin ou vide s'il n'en existe pas
 	 */
 	protected  ArrayList<PathFindingCase> loopFindingPath(ArrayList<PathFindingCase> liste){
 		ArrayList<PathFindingCase> al = new ArrayList<PathFindingCase>();
@@ -112,9 +110,9 @@ public class PathFinding implements Serializable{
 	
 	/**
 	 * Permet de savoir si une case est presente dans une ArrayList de cases
-	 * @param Une case ainsi que son parent
-	 * @param Une ArrayList de Cases avec leurs parents
-	 * @return Vrai,si la case se trouve dans l'ArrayList de cases.Faux sinon.
+	 * @param pathfindcase Une case ainsi que son parent
+	 * @param al cases avec leurs parents
+	 * @return si oui ou non la case se trouve dans l'ArrayList de cases
 	 */
 	protected boolean isIn(PathFindingCase pathfindcase,ArrayList<PathFindingCase> al){
 		for (int i = 0 ; i < al.size(); i++){
@@ -124,7 +122,10 @@ public class PathFinding implements Serializable{
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @return Vrai si il existe unn chemin jusqu'a la sortie,Faux sinon
+	 */
 	public boolean isExit(){
 		findPath = false;//on initialise findPath la pour pouvoir reutiliser tout le pathfinding quand on place un nouveau mur
 		ArrayList<PathFindingCase> al = new ArrayList<PathFindingCase>();
@@ -137,6 +138,10 @@ public class PathFinding implements Serializable{
 		return findPath;
 	}
 	
+	/**
+	 * Reconsitue le chemin en partant de la case de sortie, et en remontant jusqu'a la case de depart grace aux parents
+	 * 
+	 */
 	public void way(){//la methode va ajouter dans way le chemin, le dernier elements sera l element d'ou on part donc l avant dernier sera la case ou l'on doit se deplace ,..., et le premier sera la case de sortie
 		way = new ArrayList<Case>();//on reinitialise l arraylist
 		//System.out.println("Case : "+exit.getCase());
@@ -154,7 +159,10 @@ public class PathFinding implements Serializable{
 		}
 		this.way = new_way;
 	}
-	
+	/**
+	 * 
+	 * @return La liste des chemins reconstitues
+	 */
 	public ArrayList<Case> getWay(){
 		return way;
 	}

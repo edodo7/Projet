@@ -7,7 +7,7 @@ import pathFinding.PathFinding;
 import players.AGenericPlayer;
 import java.util.ArrayList;
 /**
- * Cette classe regroupe un ensemble de méthodes permettant de dire ce qu'on a le droit de faire ou pas
+ * Cette classe regroupe un ensemble de methodes permettant de dire ce qu'on a le droit de faire ou pas
  * @author Eduardo Dom
  *
  */
@@ -19,7 +19,12 @@ public class Rules{
     private static PathFinding pathSecondPlayer = new PathFinding(tableau[joueur2.getX()][joueur2.getY()],false);
     
     
-    
+    /**
+     * Permet de dire si on peut se deplacer d'une case vers une autre
+     * @param case1 ,la case de depart
+     * @param case2 , la case d'arrivee
+     * @return Vrai si on peut se deplacer depuis la case de depart vers la case d'arrivee,Faux sinon
+     */
     public static  boolean canMove(Case case1,Case case2){
         if (case1.getX() - case2.getX() == 1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en haut de la case1
             if (case2.isEdgeDownBegin() || case2.isEdgeDownEnd()|| !case2.isEmpty()){
@@ -123,7 +128,11 @@ public class Rules{
             }
         }
     }
-    
+    /**
+     * Permet de savoir si on peut placer un mur a droite d'une case sans tenir compte du chemin
+     * @param case1  
+     * @return Vrai si on peut poser un mur a droite,Faux sinon
+     */
     public static boolean canPutWallRight(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -144,7 +153,11 @@ public class Rules{
             }
         }
     }
-    
+    /**
+     * Donne tout les cases voisines atteignables depuis une case de depart
+     * @param case1 , la case de depart
+     * @return Une ArrayList contenant toutes les cas atteignables
+     */
     public static ArrayList<Case> canMove(Case case1){
         int x = case1.getX();
         int y = case1.getY();
@@ -284,6 +297,10 @@ public class Rules{
         return realCase;
     }
     
+    /**
+     * Supprime le mur a droite de la case
+     * @param case1
+     */
     protected static void eraseWallRight(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -301,6 +318,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si on peut placer un mur a droite d'une case sans bloquer le chemin
+     * @param case1
+     * @return Vrai si peut placer un mur a droite d'une case sans bloquer le chemin,Faux sinon
+     */
     public static boolean canReallyPutWallRight(Case case1){
         pathFirstPlayer.setStartingCase(tableau[joueur1.getX()][joueur1.getY()]);
         pathSecondPlayer.setStartingCase(tableau[joueur2.getX()][joueur2.getY()]);
@@ -315,6 +337,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si on peut placer un mur a gauche d'une case sans tenir compte du chemin
+     * @param case1  
+     * @return Vrai si on peut poser un mur a gauche,Faux sinon
+     */
     public static boolean canPutWallLeft(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -335,7 +362,10 @@ public class Rules{
             }
         }
     }
-    
+    /**
+     * Supprime le mur a gauche de la case
+     * @param case1
+     */
     protected static void eraseWallLeft(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -353,6 +383,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si on peut placer un mur a gauche d'une case sans bloquer le chemin
+     * @param case1
+     * @return Vrai si peut placer un mur a gauche d'une case sans bloquer le chemin,Faux sinon
+     */
     public static boolean canReallyPutWallLeft(Case case1){
         pathFirstPlayer.setStartingCase(tableau[joueur1.getX()][joueur1.getY()]);
         pathSecondPlayer.setStartingCase(tableau[joueur2.getX()][joueur2.getY()]);
@@ -367,6 +402,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si on peut placer un mur en haut d'une case sans tenir compte du chemin
+     * @param case1  
+     * @return Vrai si on peut poser un mur en haut,Faux sinon
+     */
     public static boolean canPutWallUp(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -387,7 +427,10 @@ public class Rules{
             }
         }
     }
-    
+    /**
+     * Supprime le mur en haut de la case
+     * @param case1
+     */
     protected static void eraseWallUp(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -404,7 +447,11 @@ public class Rules{
             tableau[i-1][j-1].setEdgeDownBegin(false);
         }
     }
-    
+    /**
+     * Permet de savoir si on peut placer un mur en haut d'une case sans bloquer le chemin
+     * @param case1
+     * @return Vrai si peut placer un mur en haut d'une case sans bloquer le chemin,Faux sinon
+     */
     public static boolean canReallyPutWallUp(Case case1){
         pathFirstPlayer.setStartingCase(tableau[joueur1.getX()][joueur1.getY()]);
         pathSecondPlayer.setStartingCase(tableau[joueur2.getX()][joueur2.getY()]);
@@ -419,6 +466,12 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si on peut placer un mur en bas d'une case sans tenir compte du chemin
+     * @param case1  
+     * @return Vrai si on peut poser un mur en bas,Faux sinon
+     */
+
     public static boolean canPutWallDown(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -440,6 +493,10 @@ public class Rules{
         }
     }
     
+    /**
+     * Supprimme le mur en bas de la case
+     * @param case1
+     */
     protected static void eraseWallDown(Case case1){
         int i = case1.getX();
         int j = case1.getY();
@@ -457,6 +514,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si on peut placer un mur en bas d'une case sans bloquer le chemin
+     * @param case1
+     * @return Vrai si peut placer un mur en bas d'une case sans bloquer le chemin,Faux sinon
+     */
     public static boolean canReallyPutWallDown(Case case1){
         pathFirstPlayer.setStartingCase(tableau[joueur1.getX()][joueur1.getY()]);
         pathSecondPlayer.setStartingCase(tableau[joueur2.getX()][joueur2.getY()]);
@@ -471,7 +533,11 @@ public class Rules{
         }
     }
     
-    
+    /**
+     * Permet de savoir si le joueur peut se deplacer a gauche 
+     * @param joueur
+     * @return Vrai si le joueur peut se deplacer a gauche,Faux sinon
+     */
     public static boolean canMoveLeft(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
@@ -483,6 +549,11 @@ public class Rules{
         }   
     }
     
+    /**
+     * Permet de savoir si le joueur peut se deplacer a droite
+     * @param joueur
+     * @return Vrai si le joueur peut se deplacer a droite,Faux sinon
+     */
     public static boolean canMoveRight(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
@@ -494,6 +565,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si le joueur peut se deplacer en haut
+     * @param joueur
+     * @return Vrai si le joueur peut se deplacer en haut,Faux sinon
+     */
     public static boolean canMoveUp(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
@@ -505,6 +581,11 @@ public class Rules{
         }
     }
     
+    /**
+     * Permet de savoir si le joueur peut se deplacer en bas
+     * @param joueur
+     * @return Vrai si le joueur peut se deplacer en bas,Faux sinon
+     */
     public static boolean canMoveDown(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();

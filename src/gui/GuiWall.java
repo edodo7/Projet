@@ -14,7 +14,10 @@ import javax.swing.JButton;
 import board.Board;
 import board.Case;
 
-
+/**
+ * Boutons permettant de poser des murs sur le plateau graphique
+ * @author Eduardo
+ */
 public class GuiWall extends JButton{
 
 	private static Case[][] realTab = Board.getTableau();

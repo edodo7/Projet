@@ -1,8 +1,4 @@
 package players;
-/**
- * @author Eduardo
- * Cette classe modélise L'IA Difficile
- */
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +8,11 @@ import board.Case;
 import mainAndRules.Rules;
 import pathFinding.PathFinding;
 import pathFinding.*;
+
+/**
+ * Cette classe modélise L'IA Difficile
+ * @author Eduardo
+ */
 public class HardAI extends AGenericPlayer{
 	
 	public static AGenericPlayer joueur2;
@@ -42,6 +43,12 @@ public class HardAI extends AGenericPlayer{
 		walls = 10;
 	}
 	
+	/**
+	 * Permet a l'IA difficile de se deplacer vers une case
+	 * @param j , la ligne sur laquelle se trouve la case 
+	 * @param i  , la colonne sur laquelle se trouve la case
+	 * @return Vrai 
+	 */
 	public boolean move(int i,int j){
 		plateau[x][y].setEmpty(true);
 		x = i;
@@ -50,7 +57,7 @@ public class HardAI extends AGenericPlayer{
 		return true;
 	}
 	/**
-	 * Cette méthode permet de bloquer le chemin de l'adversaire si c'est possible
+	 * Cette méthode permet de bloquer le plus court chemin de l'adversaire si c'est possible
 	 * @param CasesPath L'ArrayList contenant le plus court chemin de l'adversaire
 	 * @return true  si un mur a été placé et false sinon
 	 */
@@ -89,7 +96,9 @@ public class HardAI extends AGenericPlayer{
 		}
 		return false;
 	}
-	
+	/**
+	 * Permet a l'IA de jouer
+	 */
 	public void play() throws IOException{
 		joueur2 = Board.getSecondPlayer();
 		AIpath.setStartingCase(plateau[x][y]);

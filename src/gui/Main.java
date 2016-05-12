@@ -21,7 +21,11 @@ import javax.swing.JOptionPane;
 
 import board.Board;
 import players.AGenericPlayer;
-
+/**
+ * Classe principale,c'est ici que tout les differents composants graphique se coordonent afin de pouvoir jouer une partie entre 2 joueurs
+ * @author Eduardo
+ *
+ */
 public class Main implements Serializable {
 
 	public static AGenericPlayer joueur1;
@@ -42,7 +46,9 @@ public class Main implements Serializable {
 	private JMenuItem sauver = new JMenuItem("Sauvegarder");
 	public static Lock lock;
 	public static Condition done;
-	
+	/**
+	 * Constructeur, il permet de donner le choix au joueur de commmencer une nouvelle partie ou de charger une partie precedement sauvee
+	 */
 	public Main() {
 		PlayersChoice choix = new PlayersChoice();
 		try {
@@ -79,22 +85,19 @@ public class Main implements Serializable {
 		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 		choix.dispose();
-		//lock = new ReentrantLock();
-		//done = lock.newCondition();
 	}
-	
+	/**
+	 * Methode de jeu,elle permet a chaque joueur de jouer chacun a son tour et verifie les conditions de victoire
+	 */
 	public void play(){
 		JOptionPane victory = new JOptionPane();
 		int nbreCoupsJ1 = 0;
 		int nbreCoupsJ2 = 0;
 		boolean continuer = true;
 		while(continuer){
-			System.out.println(board);
-			System.out.println(joueur1.getClass().getName());
 			try{
 				if ((tourJoueur1)){
-					if(joueur1.getClass().getName().equals("players.RandomAI")|| joueur1.getClass().getName().equals("players.HardAI")){
-						System.out.println("C'est au tour du Joueur 1");				
+					if(joueur1.getClass().getName().equals("players.RandomAI")|| joueur1.getClass().getName().equals("players.HardAI")){				
 						if (!joueur2.getClass().getName().equals("players.HumanPlayer")){
 							try {
 								Thread.sleep(1000);
@@ -105,13 +108,10 @@ public class Main implements Serializable {
 						}
 						joueur1.play();
 						nbreCoupsJ1++;
-						System.out.println("Le joueur1 a joué");
 						lastSave.shoot(board);
 						tourJoueur1 = false;
 					}
 					else{
-						System.out.println("C'est au tour du Joueur 1");
-						//ActionThread actionJoueur1 = new ActionThread();
 						lastSave.shoot(board);
 						boolean notPlayedYet = true;
 						MoveListener.notDone = true;
@@ -126,21 +126,18 @@ public class Main implements Serializable {
 								notPlayedYet = false;
 							}
 						}
-						System.out.println("Le joueur1 a joué");
 						lastSave.shoot(board);
 						tourJoueur1 = false;
 						nbreCoupsJ1++;
 					}
 					if (joueur1.getX() == 8){
-						victory.showMessageDialog(null, "Le joueur1 a gagne");
+						victory.showMessageDialog(null, "Le joueur 1 est le vainqueur!");
 						continuer = false;
 					}
 				}
 				else{
-					System.out.println("C'est au tour du Joueur 2");
 					if(joueur2.getClass().getName().equals("players.RandomAI")|| joueur2.getClass().getName().equals("players.HardAI")){
 						joueur2.play();
-						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
 						lastSave.shoot(board);
 						tourJoueur1 = true;
@@ -167,13 +164,12 @@ public class Main implements Serializable {
 								notPlayedYet = false;
 							}
 						}
-						System.out.println("Le joueur2 a joué");
 						nbreCoupsJ2++;
 						lastSave.shoot(board);
 						tourJoueur1 = true;
 					}
 					if (joueur2.getX() == 0){
-						victory.showMessageDialog(null, "Le joueur2 a gagne");
+						victory.showMessageDialog(null, "Le joueur 2 est le vainqueur!");
 						continuer = false;
 					}
 				}
@@ -182,19 +178,15 @@ public class Main implements Serializable {
 				System.out.println(e.getMessage());
 			}
 		}
+		frame.dispose();
 	}
-	
+	/**
+	 * Permet de detecter quand le joueur veut asuvegarder la partie en cours
+	 * @author Eduardo Dom
+	 */
 	public class SaveListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			System.out.println("L'état du tableau quand je l'ai sauvé");
-			System.out.println(board);
 			Save.save(lastSave);
-			try {
-				System.out.println("Voici normalement le plateau sauvé");
-				System.out.println(Save.load().board);
-			} catch (ClassNotFoundException | IOException e1) {
-				e1.printStackTrace();
-			}
 		}
 	}
 	

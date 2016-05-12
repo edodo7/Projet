@@ -7,6 +7,11 @@ import players.AGenericPlayer;
 import players.HardAI;
 import players.RandomAI;
 
+/**
+ * Classe permettant d'obtenir des statistiques de plusieurs parties entre 2 IA
+ * @author Eduardo
+ *
+ */
 public class Stat {
 	private AGenericPlayer joueur1;
 	private AGenericPlayer joueur2;

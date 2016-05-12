@@ -27,7 +27,9 @@ public class HumanPlayer extends AGenericPlayer
 	}
 	
 
-	
+	/**
+	 * Permet au joueur humain de se deplacer en mode console 
+	 */
 	public void move()
 	{
 		boolean continuer = true;
@@ -60,7 +62,12 @@ public class HumanPlayer extends AGenericPlayer
 			}
 		}
 	}
-	
+	/**
+	 * Permet au joueur humain de se deplacer en mode graphique 
+	 * @param i La ligne sur laquelle se trouve la case
+	 * @param j La colonne sur laquelle se trouve la case
+	 * @return Vrai si le joueur a pu se deplacer,Faux sinon 
+	 */
 	public boolean move(int i,int j){
 		if (Rules.canMove(plateau[this.x][this.y], plateau[i][j])){
 			plateau[x][y].setEmpty(true);
@@ -75,7 +82,12 @@ public class HumanPlayer extends AGenericPlayer
 	}
 	
 
-	
+	/**
+	 * Permet au joueur humain de placer un mur sur une case en mode console 
+	 * @param i ,la ligne sur laquelle se trouve la case
+	 * @param j ,la colonne sur laquelle se trouve la case
+	 * @throws IOException
+	 */
 	public void setWall(int i,int j) throws IOException
 	{
 		Scanner wall = new Scanner(System.in);
@@ -146,6 +158,10 @@ public class HumanPlayer extends AGenericPlayer
 			}
 		}
 	}
+	
+	/**
+	 * Permet au joueur humain de jouer en mode console
+	 */
 	public void play()throws IOException
 	{
 		Scanner action = new Scanner(System.in);

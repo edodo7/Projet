@@ -31,7 +31,10 @@ public class Board implements Serializable
 		tableau[joueur2.getX()][joueur2.getY()].setEmpty(false);
 	}
 
-
+	/**
+	 * Permet l'affichage du plateau de jeu en mode console
+	 * @return La chaine de caractere representant le plateau
+	 */
 	public String toString()
 	{
 		String res = "";

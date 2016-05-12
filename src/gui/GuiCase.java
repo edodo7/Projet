@@ -17,7 +17,10 @@ import players.AGenericPlayer;
 import players.HumanPlayer;
 
 import java.io.IOException;
-
+/**
+ * Represente une case de plateau de maniere graphique
+ * @author Eduardo Dom
+ */
 public class GuiCase extends JButton{
 	
 	public static ImageIcon bluePawn;
@@ -65,7 +68,9 @@ public class GuiCase extends JButton{
 	}
 	
 	
-	
+	/**
+	 * Chaque case se reactualise en fonction de si elle contient un joueur ou pas
+	 */
 	public void actualize (){
 		if (this.x == joueur1.getX() && this.y == joueur1.getY() ){
 			this.setIcon(redPawn);

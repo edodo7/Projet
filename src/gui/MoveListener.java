@@ -6,7 +6,11 @@ import java.awt.event.ActionListener;
 import board.Board;
 import players.AGenericPlayer;
 import players.HumanPlayer;
-
+/**
+ * Permet de detecter qu'un joueur veut se deplacer vers une case en mode graphique
+ * @author Eduardo
+ *
+ */
 public class MoveListener implements ActionListener{
 	
 	private int x;
@@ -24,23 +28,19 @@ public class MoveListener implements ActionListener{
 		joueur1 = Board.getFirstPlayer();
 		joueur2 = Board.getSecondPlayer();
 	}
-	
+	/**
+	 * Permet de se deplacer vers la case cliquee si c'est possible
+	 */
 	public void actionPerformed(ActionEvent e){
-		//System.out.println("notDone avant : " + notDone);
 		if(Main.tourJoueur1){
 			if (joueur1.move(this.x, this.y)){
-				//System.out.println("avant modif tourJoueur1");
 				notDone = false;
-				//System.out.println("après modif tourJoueur1");
 			}
 		}
 		else{
 			if (joueur2.move(this.x, this.y)){
-				//System.out.println("avant modif tourJoueur2");
 				notDone = false;
-				//System.out.println("après modif tourJoueur2");
 			}
 		}
-		//System.out.println("notDone après : " + notDone);
 	}
 }

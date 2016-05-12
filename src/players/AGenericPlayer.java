@@ -14,6 +14,10 @@ public abstract class AGenericPlayer implements Serializable{
 	protected int x;
 	protected int y;
 	public int walls;
+	/**
+	 * Permet de placer un mur a droite d'une case 
+	 * @param case1 ,la case sur laquelle il faut placer le mur
+	 */
 	public void putWallRight(Case case1){
 		int i = case1.getX();
 		int j = case1.getY();
@@ -30,7 +34,10 @@ public abstract class AGenericPlayer implements Serializable{
 			plateau[i-1][j-1].setEdgeLeftBegin(true);
 		}
 	}
-	
+	/**
+	 * Permet de placer un mur a gauche d'une case
+	 * @param case1 ,la case sur laquelle il faut placer le mur
+	 */
 	public void putWallLeft(Case case1){
 		int i = case1.getX();
 		int j = case1.getY();
@@ -47,7 +54,10 @@ public abstract class AGenericPlayer implements Serializable{
 			plateau[i-1][j-1].setEdgeRightBegin(true);
 		}
 	}
-	
+	/**
+	 * Permet de placer un mur en haut d'une case 
+	 * @param case1 ,la case sur laquelle il faut placer le mur
+	 */
 	public void putWallUp(Case case1){
 		int i = case1.getX();
 		int j = case1.getY();
@@ -64,7 +74,10 @@ public abstract class AGenericPlayer implements Serializable{
 			plateau[i-1][j-1].setEdgeDownBegin(true);
 		}
 	}
-	
+	/**
+	 * Permet de placer un mur en bas d'une case
+	 * @param case1 ,la case sur laquelle il faut placer le mur
+	 */
 	public void putWallDown(Case case1){
 		int i = case1.getX();
 		int j = case1.getY();
@@ -81,48 +94,56 @@ public abstract class AGenericPlayer implements Serializable{
 			plateau[i+1][j-1].setEdgeUpBegin(true);
 		}
 	}
-	public void moveRight()
-	{
+	
+	/**
+	 * Permet au joueur de se deplacer vers la droite
+	 */
+	public void moveRight(){
 		plateau[x][y].setEmpty(true);
 		y++;
 		plateau[x][y].setEmpty(false);
 	}
-	
+	/**
+	 * Permet au joueur de se deplacer vers la gauche
+	 */
 	public void moveLeft(){
 		plateau[x][y].setEmpty(true);
 		y--;
 		plateau[x][y].setEmpty(false);
 	}
-	
+	/**
+	 * Permet au joueur de se deplacer vers le haut
+	 */
 	public void moveUp(){
 		plateau[x][y].setEmpty(true);
 		x--;
 		plateau[x][y].setEmpty(false);
 	}
-	
+	/**
+	 * Permet au joueur au joueur de se deplacer vers le bas
+	 */
 	public void moveDown(){
 		plateau[x][y].setEmpty(true);
 		x++;
 		plateau[x][y].setEmpty(false);
 	}
-	public int getX()
-	{
+	
+	public int getX(){
 		return x;
 	}
 	
-	public int getY()
-	{
+	public int getY(){
 		return y;
 	}
-	public void setX(int new_x)
-	{
+	
+	public void setX(int new_x){
 		x = new_x;
 	}
 	
-	public void setY(int new_y)
-	{
+	public void setY(int new_y){
 		y = new_y;
 	}
+	
 	public abstract void play()throws IOException;
 	public abstract boolean move(int x,int y);
 }

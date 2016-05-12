@@ -9,7 +9,7 @@
 
 	<target name="build">
 		<mkdir dir="${build.dir}"/>
-		<javac includeantruntime="false" srcdir="${src.dir}:${test.dir}" destdir="${build.dir}" classpath="${lib.dir}/junit-4.12.jar"/>
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}" classpath="${lib.dir}/junit-4.12.jar"/>
 	</target>
 
 	<target name="clean">
@@ -24,18 +24,24 @@
 
 	<target name="doc" depends="build">
 		<mkdir dir="doc"/>
-		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+			<classpath>
+				<pathelement path="${lib.dir}/junit-4.12.jar"/>
+				<pathelement path="${lib.dir}/hamcrest-core-1.3"/>
+				<pathelement path="${build.dir}"/>
+            </classpath>
+        </javadoc>
 	</target>
 
 	<target name="test" depends="build">
-		<junit printsummary="yes" showoutput="yes">
+		<junit printsummary="yes" showoutput="yes" haltonfailure="false">
 			<classpath>
 				<pathelement path="${lib.dir}/junit-4.12.jar"/>
 				<pathelement path="${lib.dir}/hamcrest-core-1.3"/>
 				<pathelement path="${build.dir}"/>
             </classpath>
             <batchtest>
-				<fileset dir="${test.dir}" includes="**/*RulesTest.java"/>
+				<fileset dir="build" includes="**/*Test.java"/>
 			</batchtest>
         </junit>
     </target>

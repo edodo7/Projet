@@ -18,6 +18,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import board.Board;
+/**
+ * Fond d'ecran lors d'une partie
+ * @author Eduardo
+ *
+ */
 public class MyPannel extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

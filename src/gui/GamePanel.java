@@ -19,7 +19,10 @@ import javax.swing.JPanel;
 
 import board.Board;
 import mainAndRules.Main;
-
+/**
+ * Panel de jeu,permettant le deplacement d'un pion sur une case et la pose de murs ainsi que l'affichage de ceux-ci
+ * @author Eduardo Dom
+ */
 public class GamePanel extends JPanel {
 	
 	private Image bluePawn;

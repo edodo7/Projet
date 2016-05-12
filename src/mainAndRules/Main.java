@@ -11,6 +11,7 @@ import players.HardAI;
 import players.HumanPlayer;
 import players.RandomAI;
 /**
+ * Permet de jouer au Quoridor en mode console
  * @author Eduardo
  */
 public class Main {
@@ -74,9 +75,10 @@ public class Main {
 	}
 	
 	
-	
+	/**
+	 * 
+	 */
 	public void play(){
-		MyFrame frame = new MyFrame();
 		Random choice = new Random();
 		int whoStarts = choice.nextInt(2);
 		int nbreCoupsJ1 = 0;
@@ -119,7 +121,6 @@ public class Main {
 				System.out.println(e.getMessage());
 			}
 		}
-		//frame.dispose();
 	}
 	
 	public static Board getBoard(){
