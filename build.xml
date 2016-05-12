@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="Quoridor" default="build">
+	<property name="main-class" value="gui.Main"/>
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build"/>
+	<property name="doc.dir" value="doc" />
+	<property name="test.dir" value="test"/>
+	<property name="lib.dir" value="lib"/>
+
+	<target name="build">
+		<mkdir dir="${build.dir}"/>
+		<javac includeantruntime="false" srcdir="${src.dir}:${test.dir}" destdir="${build.dir}" classpath="${lib.dir}/junit-4.12.jar"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+		<delete dir="${doc.dir}"/>
+	</target>
+
+	<target name="run" depends="build">
+		<java fork="true" classname="${main-class}" classpath="${build.dir}">
+		</java>
+	</target>
+
+	<target name="doc" depends="build">
+		<mkdir dir="doc"/>
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+	</target>
+
+	<target name="test" depends="build">
+		<junit printsummary="yes" showoutput="yes">
+			<classpath>
+				<pathelement path="${lib.dir}/junit-4.12.jar"/>
+				<pathelement path="${lib.dir}/hamcrest-core-1.3"/>
+				<pathelement path="${build.dir}"/>
+            </classpath>
+            <batchtest>
+				<fileset dir="${test.dir}" includes="**/*RulesTest.java"/>
+			</batchtest>
+        </junit>
+    </target>
+</project>
