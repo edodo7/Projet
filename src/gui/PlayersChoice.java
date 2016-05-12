@@ -1,6 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -37,7 +41,11 @@ public class PlayersChoice extends JFrame implements Serializable{
 	public Condition done;
 	
 	public PlayersChoice(){
-		this.setSize(1280, 1280);
+		GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice []  gs= ge.getScreenDevices();
+		GraphicsConfiguration gc= gs[0]. getDefaultConfiguration();
+		Rectangle bounds= gc. getBounds();
+		this.setSize(bounds.width, bounds.height);
 		this.setTitle("Choisissez le type de joueurs");
 		this.setLocationRelativeTo(null);
 		lock = new ReentrantLock();

@@ -3,6 +3,10 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,9 +31,13 @@ public class MyFrame extends JFrame {
 	private Container contentPane = this.getContentPane();
 	
 	public MyFrame() {
+		GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice []  gs= ge.getScreenDevices();
+		GraphicsConfiguration gc= gs[0]. getDefaultConfiguration();
+		Rectangle bounds= gc. getBounds();
 		this.setTitle("Quoridor");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(1280,1280);
+		this.setSize(bounds.width,bounds.height);
 		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 		this.setMinimumSize(new Dimension(1000,1000));
