@@ -1,6 +1,7 @@
 package mainAndRules;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import board.Board;
 import players.AGenericPlayer;
@@ -46,12 +47,36 @@ public class Stat {
 	}
 	
 	public static void main(String[] args) throws IOException{
-		AGenericPlayer J1 = new RandomAI(true);
-		AGenericPlayer J2 = new HardAI(false);
+		System.out.println("Entrez le nombre de parties souhaites");
+		Scanner sc = new Scanner(System.in);
+		double nbresdeParties = sc.nextDouble();
+		AGenericPlayer J1;
+		AGenericPlayer J2;
+		System.out.println("1. IA facile vs IA facile");
+		System.out.println("2. IA facile vs IA difficile");
+		System.out.println("3.IA difficile vs IA difficile");
+		System.out.println("Entrez le numero correspondant au type de joueurs souhaites");
+		int  player = sc.nextInt();
+		if(player == 1){
+			J1 = new RandomAI(true);
+			J2 =  new RandomAI(false);
+		}
+		else if(player == 2){
+			J1 = new RandomAI(true);
+			J2 =  new HardAI(false);
+		}
+		else if (player == 3){
+			J1 = new HardAI(true);
+			J2 =  new HardAI(false);
+		}
+		
+		else{
+			throw new IOException("Mauvaise entree!");
+		}
 		int victoiresJ1 = 0;
 		int victoiresJ2 = 0;
 		boolean tourJ1 = true;
-		for (int i = 0;i < 100;i++){
+		for (int i = 0;i < nbresdeParties ;i++){
 			Board board = new Board(J1,J2);
 			Stat stat = new Stat(J1,J2);
 			int whoWins = stat.play(tourJ1);
@@ -63,7 +88,7 @@ public class Stat {
 			}
 			tourJ1 = !tourJ1;
 		}
-		String str = "Le pourcentage de victoire du joueur1 est de "+((victoiresJ1/30.0)*100)+"%"+"\n"+"Le pourcentage de victoire du joueur2 est de "+((victoiresJ2/30.0)*100)+"%";
+		String str = "\n\n\n\n\nLe pourcentage de victoire du joueur 1 est de "+((victoiresJ1/nbresdeParties)*100)+"%"+"\n"+"Le pourcentage de victoire du joueur 2 est de "+((victoiresJ2/nbresdeParties)*100)+"%";
 		System.out.println(str);
 	}
 }

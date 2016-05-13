@@ -17,12 +17,17 @@
 		<delete dir="${doc.dir}"/>
 	</target>
 
+	<target name="stat" depends="build">
+		<java fork="true" classname= "mainAndRules.Stat" classpath="${build.dir}">
+		</java>
+	</target>
+
 	<target name="run" depends="build">
 		<java fork="true" classname="${main-class}" classpath="${build.dir}">
 		</java>
 	</target>
 
-	<target name="doc" depends="build">
+	<target name="javadoc" depends="build">
 		<mkdir dir="doc"/>
 		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
 			<classpath>
