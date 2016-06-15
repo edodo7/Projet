@@ -1,26 +1,17 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
+import board.Board;
+import players.AGenericPlayer;
+import song.AePlayWave;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-
-import board.Board;
-import players.AGenericPlayer;
 /**
  * Classe principale,c'est ici que tout les differents composants graphique se coordonent afin de pouvoir jouer une partie entre 2 joueurs
  * @author Eduardo
@@ -39,6 +30,8 @@ public class Main implements Serializable {
 	private JButton randomAIVSrandomAI = new JButton("IA facile vs IA facile");
 	private JButton randomAIVShardAI = new JButton("IA facile vs IA difficile");
 	private JButton hardAIVShardAI = new JButton("IA difficile vs IA difficile");
+	private static Thread VictoryTrack = new AePlayWave("./ressources/CosmosVictory.wav");
+	private static Thread FailTrack = new AePlayWave("./ressources/ChaosVictory.wav");
 	public static boolean tourJoueur1;
 	public static Save lastSave;
 	private JMenuBar menuBar = new JMenuBar();
@@ -131,8 +124,10 @@ public class Main implements Serializable {
 						nbreCoupsJ1++;
 					}
 					if (joueur1.getX() == 8){
+						FailTrack.start();
 						victory.showMessageDialog(null, "Le joueur 1 est le vainqueur!");
 						continuer = false;
+						FailTrack.stop();
 					}
 				}
 				else{
@@ -169,8 +164,10 @@ public class Main implements Serializable {
 						tourJoueur1 = true;
 					}
 					if (joueur2.getX() == 0){
+						VictoryTrack.start();
 						victory.showMessageDialog(null, "Le joueur 2 est le vainqueur!");
 						continuer = false;
+						VictoryTrack.stop();
 					}
 				}
 			}
