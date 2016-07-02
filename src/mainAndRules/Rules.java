@@ -27,101 +27,41 @@ public class Rules{
      */
     public static  boolean canMove(Case case1,Case case2){
         if (case1.getX() - case2.getX() == 1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en haut de la case1
-            if (case2.isEdgeDownBegin() || case2.isEdgeDownEnd()|| !case2.isEmpty()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case2.isEdgeDownBegin() || case2.isEdgeDownEnd()|| !case2.isEmpty());
         }
         else if (case1.getX() - case2.getX() == -1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en bas de la case1
-            if(case2.isEdgeUpBegin() || case2.isEdgeUpEnd()|| !case2.isEmpty()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case2.isEdgeUpBegin() || case2.isEdgeUpEnd()|| !case2.isEmpty());
         }
-        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == -1 ){//On regarde si la case2 est à droite de la case1
-            if (case2.isEdgeLeftBegin() || case2.isEdgeLeftEnd()|| !case2.isEmpty()){
-                return false;
-            }
-            else{
-                return true;
-            }
+        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == -1 ){//On regarde si la case2 est ï¿½ droite de la case1
+            return !(case2.isEdgeLeftBegin() || case2.isEdgeLeftEnd()|| !case2.isEmpty());
         }
-        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == 1){//On regarde si la case2 est à gauche de la case1
-            if (case2.isEdgeRightBegin() || case2.isEdgeRightEnd()|| !case2.isEmpty()){
-                return false;
-            }
-            else{
-                return true;
-            }
+        else if (case1.getX() - case2.getX() == 0 && case1.getY() - case2.getY() == 1){//On regarde si la case2 est ï¿½ gauche de la case1
+           return !(case2.isEdgeRightBegin() || case2.isEdgeRightEnd()|| !case2.isEmpty());
         }
         else{//Sinon il faut voir si on peut atteindre la case2 en sautant le pion adverse ou en allant en diagonale
             if(case1.getX()-1 == case2.getX() && case1.getY()+1 == case2.getY()){//Diagonale Haut/Droite
-                if(!case2.isEdgeLeftBegin() && !case2.isEdgeLeftEnd() && !case2.isEdgeDownBegin() && !case2.isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty()){
-                    return true;
-                }
-                else{
-                    return false;
-                }
+               return (!case2.isEdgeLeftBegin() && !case2.isEdgeLeftEnd() && !case2.isEdgeDownBegin() && !case2.isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty());
             }
             else if(case1.getX()-1 == case2.getX() && case1.getY() -1 == case2.getY()){//Diagonale Haut/Gauche
-                if(!case2.isEdgeRightBegin() && !case2.isEdgeRightEnd() && !case2.isEdgeDownBegin() && !case2.isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty()){
-                    return true;
-                }
-                else{
-                    return false;
-                }
+                return (!case2.isEdgeRightBegin() && !case2.isEdgeRightEnd() && !case2.isEdgeDownBegin() && !case2.isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty());
             }
             else if(case1.getX()+1 == case2.getX() && case1.getY() -1 == case2.getY()){//Diagonale Bas/Gauche
-                if(!case2.isEdgeRightBegin() && !case2.isEdgeRightEnd() && !case2.isEdgeUpBegin() && !case2.isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty()){
-                    return true;
-                }
-                else{
-                    return false;
-                }
+                return (!case2.isEdgeRightBegin() && !case2.isEdgeRightEnd() && !case2.isEdgeUpBegin() && !case2.isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty());
             }
             else if(case1.getX()+1 == case2.getX() && case1.getY() +1 == case2.getY()) {//Diagonale Bas/Droite
-                if (!case2.isEdgeLeftBegin() && !case2.isEdgeLeftEnd() && !case2.isEdgeUpBegin() && !case2.isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty()){
-                    return true;
-                }
-                else{
-                    return false;
-                }
+                return (!case2.isEdgeLeftBegin() && !case2.isEdgeLeftEnd() && !case2.isEdgeUpBegin() && !case2.isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty());
             }
             else if(case1.getX()+2 == case2.getX() && case1.getY() == case2.getY()){//On tente de sauter un pion vers le bas
-            	if(!tableau[case1.getX()+1][case1.getY()].isEdgeUpBegin() && !tableau[case1.getX()+1][case1.getY()].isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEdgeDownBegin() && !tableau[case1.getX()+1][case1.getY()].isEdgeDownEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty()){
-            		return true;
-            	}
-            	else{
-            		return false;
-            	}
+            	return (!tableau[case1.getX()+1][case1.getY()].isEdgeUpBegin() && !tableau[case1.getX()+1][case1.getY()].isEdgeUpEnd() && !tableau[case1.getX()+1][case1.getY()].isEdgeDownBegin() && !tableau[case1.getX()+1][case1.getY()].isEdgeDownEnd() && !tableau[case1.getX()+1][case1.getY()].isEmpty());
             }
             else if(case1.getX()-2 == case2.getX() && case1.getY() == case2.getY()){//On tente de sauter un pion vers le haut
-            	if(!tableau[case1.getX()-1][case1.getY()].isEdgeUpBegin() && !tableau[case1.getX()-1][case1.getY()].isEdgeUpEnd() && !tableau[case1.getX()-1][case1.getY()].isEdgeDownBegin() && !tableau[case1.getX()-1][case1.getY()].isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty()){
-            		return true;
-            	}
-            	else{
-            		return false;
-            	}
+            	return (!tableau[case1.getX()-1][case1.getY()].isEdgeUpBegin() && !tableau[case1.getX()-1][case1.getY()].isEdgeUpEnd() && !tableau[case1.getX()-1][case1.getY()].isEdgeDownBegin() && !tableau[case1.getX()-1][case1.getY()].isEdgeDownEnd() && !tableau[case1.getX()-1][case1.getY()].isEmpty());
             }
             else if(case1.getX() == case2.getX() && case1.getY()+2 == case2.getY()){//On tente de sauter un  pion vers la droite 
-            	if(!tableau[case1.getX()][case1.getY()+1].isEdgeLeftBegin() && !tableau[case1.getX()][case1.getY()+1].isEdgeLeftEnd() && !tableau[case1.getX()][case1.getY()+1].isEdgeRightBegin() && !tableau[case1.getX()][case1.getY()+1].isEdgeRightEnd() && !tableau[case1.getX()][case1.getY()+1].isEmpty()){
-            		return true;
-            	}
-            	else{
-            		return false;
-            	}
+            	return (!tableau[case1.getX()][case1.getY()+1].isEdgeLeftBegin() && !tableau[case1.getX()][case1.getY()+1].isEdgeLeftEnd() && !tableau[case1.getX()][case1.getY()+1].isEdgeRightBegin() && !tableau[case1.getX()][case1.getY()+1].isEdgeRightEnd() && !tableau[case1.getX()][case1.getY()+1].isEmpty());
             }
             else if(case1.getX() == case2.getX() && case1.getY()-2 == case2.getY()){//On tente de sauter un pion vers la gauche 
-            	if(!tableau[case1.getX()][case1.getY()-1].isEdgeLeftBegin() && !tableau[case1.getX()][case1.getY()-1].isEdgeLeftEnd() && !tableau[case1.getX()][case1.getY()-1].isEdgeRightBegin() && !tableau[case1.getX()][case1.getY()-1].isEdgeRightEnd() && !tableau[case1.getX()][case1.getY()-1].isEmpty()){
-            		return true;
-            	}
-            	else{
-            		return false;
-            	}
+            	return (!tableau[case1.getX()][case1.getY()-1].isEdgeLeftBegin() && !tableau[case1.getX()][case1.getY()-1].isEdgeLeftEnd() && !tableau[case1.getX()][case1.getY()-1].isEdgeRightBegin() && !tableau[case1.getX()][case1.getY()-1].isEdgeRightEnd() && !tableau[case1.getX()][case1.getY()-1].isEmpty());
             }
             else{
             	return false;
@@ -137,20 +77,10 @@ public class Rules{
         int i = case1.getX();
         int j = case1.getY();
         if (i !=8){
-            if(case1.isEdgeRightBegin() || case1.isEdgeRightEnd() || case1.isEdgeDownBegin() || case1.getY() == 8 || tableau[i+1][j].isEdgeRightBegin()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeRightBegin() || case1.isEdgeRightEnd() || case1.isEdgeDownBegin() || case1.getY() == 8 || tableau[i+1][j].isEdgeRightBegin());
         }
         else{
-            if(case1.isEdgeRightEnd() || case1.isEdgeUpBegin() || case1.getY() == 8 || tableau[i-1][j].isEdgeRightEnd()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeRightEnd() || case1.isEdgeUpBegin() || case1.getY() == 8 || tableau[i-1][j].isEdgeRightEnd());
         }
     }
     /**
@@ -162,14 +92,14 @@ public class Rules{
         int x = case1.getX();
         int y = case1.getY();
         ArrayList<Case> testAl = new ArrayList<Case>();
-        if (x == 0 && y == 0){//Coin supérieur gauche
+        if (x == 0 && y == 0){//Coin supï¿½rieur gauche
             testAl.add(tableau[x][y+1]);
             testAl.add(tableau[x+1][y]);
             testAl.add(tableau[x+1][y+1]);
             testAl.add(tableau[x][y+2]);
             testAl.add(tableau[x+2][y]);
         }
-        else if(x == 0 && y != 0){//Si on se trouve su la première ligne
+        else if(x == 0 && y != 0){//Si on se trouve su la premiï¿½re ligne
             if(y != 8){
                 testAl.add(tableau[x][y-1]);
                 testAl.add(tableau[x][y+1]);
@@ -184,7 +114,7 @@ public class Rules{
                 	testAl.add(tableau[x][y+2]);
                 }
             }
-            else{//Coin supérieur droit
+            else{//Coin supï¿½rieur droit
                 testAl.add(tableau[x][y-1]);
                 testAl.add(tableau[x+1][y]);
                 testAl.add(tableau[x+1][y-1]);
@@ -192,7 +122,7 @@ public class Rules{
                 testAl.add(tableau[x+2][y]);
             }
         }
-        else if(x == 8 && y == 8){//Coin inférieur droit
+        else if(x == 8 && y == 8){//Coin infï¿½rieur droit
             testAl.add(tableau[x][y-1]);
             testAl.add(tableau[x-1][y]);
             testAl.add(tableau[x-1][y-1]);
@@ -200,14 +130,14 @@ public class Rules{
             testAl.add(tableau[x][y-2]);
         }
         else if(x == 8 && y != 8){
-            if (y == 0){//Coin inférieur gauche
+            if (y == 0){//Coin infï¿½rieur gauche
                 testAl.add(tableau[x-1][y]);
                 testAl.add(tableau[x][y+1]);
                 testAl.add(tableau[x-1][y+1]);
                 testAl.add(tableau[x-2][y]);
                 testAl.add(tableau[x][y+2]);
             }
-            else{//On est sur la dernière ligne
+            else{//On est sur la derniï¿½re ligne
                 testAl.add(tableau[x][y-1]);
                 testAl.add(tableau[x-1][y]);
                 testAl.add(tableau[x][y+1]);
@@ -223,7 +153,7 @@ public class Rules{
             }
         }
         else if(y == 0 && x != 0){
-        	if(x==8){//Coin inférieur gauche
+        	if(x==8){//Coin infï¿½rieur gauche
         		testAl.add(tableau[x-1][y]);
         		testAl.add(tableau[x][y+1]); 
         		testAl.add(tableau[x-1][y+1]);
@@ -346,20 +276,10 @@ public class Rules{
         int i = case1.getX();
         int j = case1.getY();
         if (i != 8){
-            if (case1.isEdgeLeftBegin() || case1.isEdgeLeftEnd() || case1.isEdgeDownEnd() || case1.getY() == 0 || tableau[i+1][j].isEdgeLeftBegin()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeLeftBegin() || case1.isEdgeLeftEnd() || case1.isEdgeDownEnd() || case1.getY() == 0 || tableau[i+1][j].isEdgeLeftBegin());
         }
         else{
-            if ( case1.isEdgeLeftEnd() || case1.isEdgeUpEnd() || case1.getY() == 0 || tableau[i-1][j].isEdgeLeftEnd()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !( case1.isEdgeLeftEnd() || case1.isEdgeUpEnd() || case1.getY() == 0 || tableau[i-1][j].isEdgeLeftEnd());
         }
     }
     /**
@@ -411,20 +331,10 @@ public class Rules{
         int i = case1.getX();
         int j = case1.getY();
         if (j != 8){
-            if (case1.isEdgeUpBegin() || case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j+1].isEdgeUpBegin()|| case1.isEdgeRightEnd()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeUpBegin() || case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j+1].isEdgeUpBegin()|| case1.isEdgeRightEnd());
         }
         else{
-            if (case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j-1].isEdgeUpEnd()|| case1.isEdgeLeftEnd()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeUpEnd() || case1.getX() == 0 || tableau[i][j-1].isEdgeUpEnd()|| case1.isEdgeLeftEnd());
         }
     }
     /**
@@ -476,20 +386,10 @@ public class Rules{
         int i = case1.getX();
         int j = case1.getY();
         if (j != 8){
-            if (case1.isEdgeDownBegin() || case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j+1].isEdgeDownBegin()|| case1.isEdgeRightBegin()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeDownBegin() || case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j+1].isEdgeDownBegin()|| case1.isEdgeRightBegin());
         }
         else{
-            if (case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j-1].isEdgeDownEnd()|| case1.isEdgeLeftBegin()){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !(case1.isEdgeDownEnd() || case1.getX() == 8 || tableau[i][j-1].isEdgeDownEnd()|| case1.isEdgeLeftBegin());
         }
     }
     
@@ -541,12 +441,7 @@ public class Rules{
     public static boolean canMoveLeft(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
-        if (y == 0 || tableau[x][y-1].isEdgeRightBegin() || tableau[x][y-1].isEdgeRightEnd()|| tableau[x][y-1].isEmpty() == false){
-            return false;
-        }
-        else{
-            return true;
-        }   
+        return !(y == 0 || tableau[x][y-1].isEdgeRightBegin() || tableau[x][y-1].isEdgeRightEnd()|| tableau[x][y-1].isEmpty() == false);
     }
     
     /**
@@ -557,12 +452,7 @@ public class Rules{
     public static boolean canMoveRight(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
-        if (y == 8 || tableau[x][y+1].isEdgeLeftBegin() || tableau[x][y+1].isEdgeLeftEnd() || tableau[x][y+1].isEmpty() == false){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(y == 8 || tableau[x][y+1].isEdgeLeftBegin() || tableau[x][y+1].isEdgeLeftEnd() || tableau[x][y+1].isEmpty() == false);
     }
     
     /**
@@ -573,12 +463,7 @@ public class Rules{
     public static boolean canMoveUp(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
-        if (x == 0 || tableau[x-1][y].isEdgeDownBegin() || tableau[x-1][y].isEdgeDownEnd()|| tableau[x-1][y].isEmpty() == false){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(x == 0 || tableau[x-1][y].isEdgeDownBegin() || tableau[x-1][y].isEdgeDownEnd()|| tableau[x-1][y].isEmpty() == false);
     }
     
     /**
@@ -589,11 +474,6 @@ public class Rules{
     public static boolean canMoveDown(AGenericPlayer joueur){
         int x = joueur.getX();
         int y = joueur.getY();
-        if (x == 8 || tableau[x+1][y].isEdgeUpBegin() || tableau[x+1][y].isEdgeUpEnd() || tableau[x+1][y].isEmpty() == false){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(x == 8 || tableau[x+1][y].isEdgeUpBegin() || tableau[x+1][y].isEdgeUpEnd() || tableau[x+1][y].isEmpty() == false);
     }
 }
