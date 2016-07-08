@@ -2,3 +2,6 @@
 out/
 ressources/
 /save.dat
+/.project
+/.classpath
+build/
