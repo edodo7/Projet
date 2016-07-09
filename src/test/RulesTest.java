@@ -30,7 +30,6 @@ public class RulesTest {
 		plateau = board.tableau;
 	}
 
-
 	/**
 	 * Teste qu'un mur en bas d'une case empeche de se deplacer en bas de celle ci
 	 */
