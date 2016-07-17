@@ -1,24 +1,19 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import board.Board;
-import mainAndRules.Main;
+
 /**
  * Panel de jeu,permettant le deplacement d'un pion sur une case et la pose de murs ainsi que l'affichage de ceux-ci
  * @author Eduardo Dom

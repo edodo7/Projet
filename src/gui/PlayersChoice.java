@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import mains.GuiMain;
 import players.HardAI;
 import players.HumanPlayer;
 import players.RandomAI;
@@ -96,33 +97,33 @@ public class PlayersChoice extends JFrame implements Serializable{
 			lock.lock();
 			try {
 				if (e.getSource() == humanVShuman){
-					Main.joueur1 = new HumanPlayer(true);
-					Main.joueur2 = new HumanPlayer(false);
+					GuiMain.joueur1 = new HumanPlayer(true);
+					GuiMain.joueur2 = new HumanPlayer(false);
 					done.signal();
 				}
 				else if (e.getSource() == humanVSrandomAI){
-					Main.joueur1 = new RandomAI(true);
-					Main.joueur2 = new HumanPlayer(false);
+					GuiMain.joueur1 = new RandomAI(true);
+					GuiMain.joueur2 = new HumanPlayer(false);
 					done.signal();
 				}
 				else if(e.getSource() == humanVShardAI){
-					Main.joueur1 = new HardAI(true);
-					Main.joueur2 = new HumanPlayer(false);
+					GuiMain.joueur1 = new HardAI(true);
+					GuiMain.joueur2 = new HumanPlayer(false);
 					done.signal();
 				}
 				else if (e.getSource() == randomAIVSrandomAI){
-					Main.joueur1 = new RandomAI(true);
-					Main.joueur2 = new RandomAI(false);
+					GuiMain.joueur1 = new RandomAI(true);
+					GuiMain.joueur2 = new RandomAI(false);
 					done.signal();
 				}
 				else if(e.getSource() == randomAIVShardAI){
-					Main.joueur1 = new HardAI(true);
-					Main.joueur2 = new RandomAI(false);
+					GuiMain.joueur1 = new HardAI(true);
+					GuiMain.joueur2 = new RandomAI(false);
 					done.signal();
 				}
 				else if (e.getSource() == hardAIVShardAI){
-					Main.joueur1 = new HardAI(true);
-					Main.joueur2 = new HardAI(false);
+					GuiMain.joueur1 = new HardAI(true);
+					GuiMain.joueur2 = new HardAI(false);
 					done.signal();
 				}
 			}

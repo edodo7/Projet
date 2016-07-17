@@ -1,9 +1,10 @@
 package pathFinding;
-import java.io.Serializable;
-import java.util.ArrayList;
 import board.Board;
 import board.Case;
-import mainAndRules.Rules;
+import rules.Rules;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 /**
  *Cette classe permet de savoir s'il y a un chemin de la position du Joueur1 vers la sortie et,si oui, d'obtenir le chemin que doit emprunter le joueur pour y arriver
  * @author Eduardo Dom

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="Quoridor" default="build">
-	<property name="main-class" value="gui.Main"/>
+	<property name="main-class" value="mains.GuiMain"/>
 	<property name="src.dir" value="src"/>
 	<property name="build.dir" value="build"/>
 	<property name="doc.dir" value="doc" />
@@ -18,7 +18,7 @@
 	</target>
 
 	<target name="stat" depends="build">
-		<java fork="true" classname= "mainAndRules.Stat" classpath="${build.dir}">
+		<java fork="true" classname= "stat.Stat" classpath="${build.dir}">
 		</java>
 	</target>
 

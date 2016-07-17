@@ -2,11 +2,11 @@ package players;
 import java.util.Random;
 
 import board.Board;
-import mainAndRules.Rules;
+import rules.Rules;
 import board.Case;
 import java.io.IOException;
 /**
- * Cette classe modélise L'IA facile ainsi que son comportement
+ * Cette classe modï¿½lise L'IA facile ainsi que son comportement
  * @author Eduardo Dom
  *
  */
@@ -57,25 +57,25 @@ public class RandomAI extends AGenericPlayer{
 				int j = whatChoice.nextInt(7)+1;
 				if (wall == 0 && Rules.canPutWallUp(plateau[i][j]) && Rules.canReallyPutWallUp(plateau[i][j])){
 					putWallUp(plateau[i][j]);
-					System.out.println("L'IA facile a posé un mur au dessus de la case en position ("+i+","+j+")");
+					System.out.println("L'IA facile a posï¿½ un mur au dessus de la case en position ("+i+","+j+")");
 					walls--;
 					not_done = false;
 				}
 				if (wall == 1 && Rules.canPutWallDown(plateau[i][j])&& Rules.canReallyPutWallDown(plateau[i][j])){
 					putWallDown(plateau[i][j]);
-					System.out.println("L'IA facile a posé un mur en dessous de la case en position ("+i+","+j+")");
+					System.out.println("L'IA facile a posï¿½ un mur en dessous de la case en position ("+i+","+j+")");
 					walls--;
 					not_done = false;
 				}				
 				if (wall == 2 && Rules.canPutWallRight(plateau[i][j])&& Rules.canReallyPutWallRight(plateau[i][j])){
 					putWallRight(plateau[i][j]);
-					System.out.println("L'IA facile a posé un mur à droite de la case en position ("+i+","+j+")");
+					System.out.println("L'IA facile a posï¿½ un mur ï¿½ droite de la case en position ("+i+","+j+")");
 					walls--;
 					not_done = false;
 				}
 				if (wall == 3 && Rules.canPutWallLeft(plateau[i][j])&& Rules.canReallyPutWallLeft(plateau[i][j])){
 					putWallLeft(plateau[i][j]);
-					System.out.println("L'IA facile a posé un mur à gauche de la case en position ("+i+","+j+")");
+					System.out.println("L'IA facile a posï¿½ un mur ï¿½ gauche de la case en position ("+i+","+j+")");
 					walls--;
 					not_done = false;
 				}

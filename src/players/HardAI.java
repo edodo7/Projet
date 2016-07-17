@@ -5,12 +5,11 @@ import java.util.ArrayList;
 
 import board.Board;
 import board.Case;
-import mainAndRules.Rules;
+import rules.Rules;
 import pathFinding.PathFinding;
-import pathFinding.*;
 
 /**
- * Cette classe modélise L'IA Difficile
+ * Cette classe modï¿½lise L'IA Difficile
  * @author Eduardo
  */
 public class HardAI extends AGenericPlayer{
@@ -23,7 +22,7 @@ public class HardAI extends AGenericPlayer{
 	private boolean tour3;
 	private boolean isFirstPlayer;
 	private Case[][] plateau;
-	//Je veux que pendant les 3 premiers tours de jeu L'IA essaye de placer un mur à l'adversaire
+	//Je veux que pendant les 3 premiers tours de jeu L'IA essaye de placer un mur ï¿½ l'adversaire
 	
 	public HardAI(boolean isFirstPlayer){
 		this.isFirstPlayer = isFirstPlayer;
@@ -57,9 +56,9 @@ public class HardAI extends AGenericPlayer{
 		return true;
 	}
 	/**
-	 * Cette méthode permet de bloquer le plus court chemin de l'adversaire si c'est possible
+	 * Cette mï¿½thode permet de bloquer le plus court chemin de l'adversaire si c'est possible
 	 * @param CasesPath L'ArrayList contenant le plus court chemin de l'adversaire
-	 * @return true  si un mur a été placé et false sinon
+	 * @return true  si un mur a ï¿½tï¿½ placï¿½ et false sinon
 	 */
 	public boolean blockPath(ArrayList<Case> CasesPath){
 		Case lastCase;
@@ -68,13 +67,13 @@ public class HardAI extends AGenericPlayer{
 			if (i != CasesPath.size() -1){
 				lastCase = CasesPath.get(i);
 				followingCase = CasesPath.get(i+1);
-				if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY() == -1)){//la case suivante se trouve à droite
+				if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY() == -1)){//la case suivante se trouve ï¿½ droite
 					if(Rules.canPutWallRight(lastCase) && Rules.canReallyPutWallRight(lastCase)){
 						putWallRight(lastCase);
 						return true;
 					}
 				}
-				else if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY()== 1)){//la case se trouve à gauche
+				else if ((lastCase.getX() - followingCase.getX() == 0) && (lastCase.getY() - followingCase.getY()== 1)){//la case se trouve ï¿½ gauche
 					if(Rules.canPutWallLeft(lastCase) && Rules.canReallyPutWallLeft(lastCase)){
 						putWallLeft(lastCase);
 						return true;
@@ -153,7 +152,7 @@ public class HardAI extends AGenericPlayer{
 				}
 			}
 		}
-		else{//Il n'y a plus de mur, on est obligé de se déplacer
+		else{//Il n'y a plus de mur, on est obligï¿½ de se dï¿½placer
 			if (AIListPath.get(1).getX() == joueur2.getX() && AIListPath.get(1).getY() == joueur2.getY()){
 				move(AIListPath.get(2).getX(),AIListPath.get(2).getY());
 			}

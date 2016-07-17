@@ -1,4 +1,4 @@
-package mainAndRules;
+package stat;
 
 import java.io.IOException;
 import java.util.Scanner;

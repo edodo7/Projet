@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import board.Board;
 import board.Case;
+import mains.GuiMain;
 import players.AGenericPlayer;
 /**
  * Permet de sauvegarder une partie en cours
@@ -29,7 +29,7 @@ public class Save implements Serializable {
 		this.plateau = board.getTableau();
 		this.joueur1 = board.getFirstPlayer();
 		this.joueur2 = board.getSecondPlayer();
-		this.tourJoueur1 = Main.tourJoueur1;
+		this.tourJoueur1 = GuiMain.tourJoueur1;
 	}
 	/**
 	 * Permet d'enregistrer les donnees actuelles de la partie
@@ -40,7 +40,7 @@ public class Save implements Serializable {
 		this.plateau = board.getTableau();
 		this.joueur1 = board.getFirstPlayer();
 		this.joueur2 = board.getSecondPlayer();
-		this.tourJoueur1 = Main.tourJoueur1;
+		this.tourJoueur1 = GuiMain.tourJoueur1;
 	}
 	/**
 	 * Permet d'ecrire les donnees de sauvegarde dans un fichier pour pouvoir les recuperer plus tard

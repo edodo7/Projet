@@ -3,9 +3,9 @@ package players;
 import java.io.IOException;
 import java.util.Scanner;
 
-import mainAndRules.Rules;
+import rules.Rules;
 /**
- * Cette classe modélise le comportemet du  joueur humain.
+ * Cette classe modï¿½lise le comportemet du  joueur humain.
  * @author Eduardo Dom
  *
  */
@@ -95,7 +95,7 @@ public class HumanPlayer extends AGenericPlayer
 		String reponse =  wall.nextLine(); 	
 		if (reponse.equals("N"))
 		{
-			System.out.println("Un mur à droite ou à gauche? Gauche[G] ou Droite[D]");
+			System.out.println("Un mur ï¿½ droite ou ï¿½ gauche? Gauche[G] ou Droite[D]");
 			String reponse2 = wall.nextLine();
 			if (reponse2.equals("D")){
 				if (Rules.canPutWallRight(plateau[i][j])){

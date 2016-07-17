@@ -2,7 +2,7 @@ package test;
 
 import board.Board;
 import board.Case;
-import mainAndRules.Rules;
+import rules.Rules;
 import org.junit.Before;
 import org.junit.Test;
 import players.AGenericPlayer;

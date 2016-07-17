@@ -1,6 +1,7 @@
-package gui;
+package mains;
 
 import board.Board;
+import gui.*;
 import players.AGenericPlayer;
 import song.AePlayWave;
 
@@ -17,7 +18,7 @@ import java.util.concurrent.locks.Lock;
  * @author Eduardo
  *
  */
-public class Main implements Serializable {
+public class GuiMain implements Serializable {
 
 	public static AGenericPlayer joueur1;
 	public static AGenericPlayer joueur2;
@@ -42,7 +43,7 @@ public class Main implements Serializable {
 	/**
 	 * Constructeur, il permet de donner le choix au joueur de commmencer une nouvelle partie ou de charger une partie precedement sauvee
 	 */
-	public Main() {
+	public GuiMain() {
 		PlayersChoice choix = new PlayersChoice();
 		try {
 			choix.Wait();
@@ -190,10 +191,10 @@ public class Main implements Serializable {
 	
 	
 	public static void main(String[] args){
-		Main main = new Main();
+		GuiMain guiMain = new GuiMain();
 		while(true){
-			main.play();
-			main = new Main();
+			guiMain.play();
+			guiMain = new GuiMain();
 		}
 	}
 }
