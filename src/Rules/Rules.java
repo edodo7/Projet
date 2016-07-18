@@ -12,6 +12,7 @@ import java.util.ArrayList;
  *
  */
 public class Rules{
+    public static String test = "Je suis un test";
     public static Case[][] tableau = Board.getTableau();
     public static AGenericPlayer joueur1= Board.getFirstPlayer();
     public static AGenericPlayer joueur2= Board.getSecondPlayer();
