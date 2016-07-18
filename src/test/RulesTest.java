@@ -2,11 +2,11 @@ package test;
 
 import board.Board;
 import board.Case;
-import rules.Rules;
 import org.junit.Before;
 import org.junit.Test;
 import players.AGenericPlayer;
-import players.HumanPlayer;
+import players.HardAI;
+import rules.Rules;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -24,10 +24,11 @@ public class RulesTest {
 	 * Initialisation pour les test
 	 */
 	@Before public void init(){
-		joueur1 = new HumanPlayer(true);
-		joueur2 = new HumanPlayer(false);
+		joueur1 = new HardAI(true);
+		joueur2 = new HardAI(false);
 		board = new Board(joueur1,joueur2);
 		plateau = board.tableau;
+		Board.setTableau(board.tableau);
 	}
 
 	/**
@@ -71,9 +72,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void faceToFaceForward(){
-		joueur1.setX(7);
-		joueur1.setY(4);
-		plateau[7][4].setEmpty(false);
+		joueur1.move(7,4);
 		assertTrue(Rules.canMove(plateau[8][4],plateau[6][4]));
 	}
 	/**
@@ -81,9 +80,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void faceToFaceBackward(){
-		joueur2.setX(1);
-		joueur2.setY(4);
-		plateau[1][4].setEmpty(false);
+		joueur2.move(1,4);
 		assertTrue(Rules.canMove(plateau[0][4],plateau[2][4]));
 	}
 	/**
@@ -91,9 +88,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void faceToFaceDiagonalLeftUp(){
-		joueur1.setX(7);
-		joueur1.setY(4);
-		plateau[7][4].setEmpty(false);
+		joueur1.move(7,4);
 		joueur1.putWallUp(plateau[7][4]);
 		assertTrue(Rules.canMove(plateau[8][4],plateau[7][3]));
 	}
@@ -103,9 +98,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void faceToFaceDiagonalRightUp(){
-		joueur1.setX(7);
-		joueur1.setY(4);
-		plateau[7][4].setEmpty(false);
+		joueur1.move(7,4);
 		joueur1.putWallUp(plateau[7][4]);
 		assertTrue(Rules.canMove(plateau[8][4],plateau[7][5]));
 	}
@@ -114,9 +107,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void faceToFaceDiagonalLeftDown(){
-		joueur2.setX(1);
-		joueur2.setY(4);
-		plateau[1][4].setEmpty(false);
+		joueur2.move(1,4);
 		joueur1.putWallDown(plateau[1][4]);
 		assertTrue(Rules.canMove(plateau[0][4],plateau[1][3]));
 	}
@@ -126,10 +117,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void faceToFaceDiagonalRightDown(){
-		joueur2.setX(1);
-		joueur2.setY(4);
-		plateau[1][4].setEmpty(false);
-		joueur1.putWallDown(plateau[1][4]);
+		joueur2.move(1,4);
 		assertTrue(Rules.canMove(plateau[0][4],plateau[1][5]));
 	}
 	
@@ -186,9 +174,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void cannotMoveLeftBeingEdgeLeft(){
-		joueur2.setX(1);
-		joueur2.setY(0);
-		plateau[1][0].setEmpty(false);
+		joueur2.move(1,0);
 		assertFalse(Rules.canMoveLeft(joueur2));
 	}
 	/**
@@ -196,9 +182,7 @@ public class RulesTest {
 	 */
 	@Test
 	public void cannotMoveRightBeingEdgeRight(){
-		joueur2.setX(1);
-		joueur2.setY(8);
-		plateau[1][8].setEmpty(false);
+		joueur2.move(1,8);
 		assertFalse(Rules.canMoveRight(joueur2));
 	}
 	

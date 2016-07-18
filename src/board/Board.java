@@ -1,7 +1,7 @@
 package board;
-import java.io.Serializable;
-
 import players.AGenericPlayer;
+
+import java.io.Serializable;
 
 /**
  * Cette classe permet de modeliser le plateau de jeu ainsi que les joueurs qui y sont presents(Qu'ils soient humains ou IA)
@@ -62,7 +62,7 @@ public class Board implements Serializable
 	
 
 	
-	public void setTableau(Case[][] tableau){
+	public static void setTableau(Case[][] tableau){
 		Board.tableau = tableau;
 	}
 	
