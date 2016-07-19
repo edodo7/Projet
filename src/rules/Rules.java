@@ -26,7 +26,6 @@ public class Rules{
 		 * @return Vrai si on peut se deplacer depuis la case de depart vers la case d'arrivee,Faux sinon
 		 */
 		public static  boolean canMove(Case case1,Case case2){
-			
 				if (case1.getX() - case2.getX() == 1 && case1.getY() - case2.getY() == 0 ){//On regarde si la case2 est en haut de la case1
 						return !(case2.isEdgeDownBegin() || case2.isEdgeDownEnd()|| !case2.isEmpty());
 				}
