@@ -10,6 +10,7 @@ import rules.Rules;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
 /**
  * Classe permettant de verifier le respect des regles 
  * @author Eduardo Dom
