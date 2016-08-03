@@ -24,20 +24,11 @@ public class GuiWall extends JButton{
 	private int x;
 	private int y;
 	private boolean isVertical;
-	public static ImageIcon HorizonalWall;
-	public static ImageIcon VerticalWall;
 	
 	public GuiWall(int x ,int y, boolean isVertical){
 		this.x = x;
 		this.y = y;
 		this.isVertical = isVertical;
-		try{
-			HorizonalWall = new ImageIcon(ImageIO.read(new File("./ressources/hWall.png")));
-			VerticalWall = new ImageIcon(ImageIO.read(new File("./ressources/vWall.png")));
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
 		if (isVertical){
 			this.setPreferredSize(new Dimension(15,90));
 		}
