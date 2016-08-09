@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import rules.Rules;
 /**
- * Cette classe mod�lise le comportemet du  joueur humain.
+ * Cette classe modelise le comportemet du  joueur humain.
  * @author Eduardo Dom
  *
  */
