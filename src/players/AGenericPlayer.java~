@@ -6,7 +6,7 @@ import java.io.Serializable;
 import board.Board;
 import board.Case;
 /**
- * Cette classe modelise le comportement de n'impote quel joueur(qu'il soit humain ou IA).
+ * Cette classe modélise le comportement de n'impote quel joueur(qu'il soit humain ou IA).
  * @author Eduardo Dom
  */
 public abstract class AGenericPlayer implements Serializable{

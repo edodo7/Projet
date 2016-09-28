@@ -26,7 +26,7 @@ public class Board implements Serializable
 			{
 				tableau[i][j] = new Case(i,j);
 			}
-		}
+		}é
 		tableau[joueur1.getX()][joueur1.getY()].setEmpty(false);
 		tableau[joueur2.getX()][joueur2.getY()].setEmpty(false);
 	}

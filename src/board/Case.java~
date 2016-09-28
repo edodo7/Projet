@@ -56,7 +56,7 @@ public class Case implements Serializable
 		this.EdgeLeftBegin = value_EdgeLeftBegin;
 	}
 
-	public boolean isEdgeLeftEnd() {
+	public boolean isEdgeLéeftEnd() {
 		return EdgeLeftEnd;
 	}
 
